@@ -1,1 +1,1 @@
-# tp-ia2024
+# Trabajo Práctico IA 2024
