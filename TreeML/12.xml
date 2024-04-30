@@ -1,0 +1,65 @@
+<tree id="12" edgedefault="directed">
+<node Id="0" Action="null" Cost="0.0" Estado_Agente=" position=&quot;(2,1)&quot; energy=&quot;50&quot;
+world=&quot;[ 
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 0 0 *  ]
+[ 0 0 0 0  ]
+ ]&quot;"/>
+<node Id="1" Action="Eat" Cost="-1.0" Estado_Agente=" position=&quot;(2,1)&quot; energy=&quot;50&quot;
+world=&quot;[ 
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 0 0 *  ]
+[ 0 0 0 0  ]
+ ]&quot;"/>
+<node Id="2" Action="GoRight" Cost="-1.0" Estado_Agente=" position=&quot;(2,2)&quot; energy=&quot;50&quot;
+world=&quot;[ 
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 2 0 *  ]
+[ 0 0 0 0  ]
+ ]&quot;"/>
+<node Id="3" Action="GoDown" Cost="-1.0" Estado_Agente=" position=&quot;(3,1)&quot; energy=&quot;50&quot;
+world=&quot;[ 
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 2 0 *  ]
+[ 0 0 0 0  ]
+ ]&quot;"/>
+<node Id="4" Action="GoRight" Cost="-2.0" Estado_Agente=" position=&quot;(2,2)&quot; energy=&quot;50&quot;
+world=&quot;[ 
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 0 0 *  ]
+[ 0 0 0 0  ]
+ ]&quot;"/>
+<node Id="5" Action="GoDown" Cost="-2.0" Estado_Agente=" position=&quot;(3,1)&quot; energy=&quot;50&quot;
+world=&quot;[ 
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 0 0 *  ]
+[ 0 0 0 0  ]
+ ]&quot;"/>
+<node Id="6" Action="GoRight" Cost="-3.0" Estado_Agente=" position=&quot;(2,3)&quot; energy=&quot;50&quot;
+world=&quot;[ 
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+ ]&quot;"/>
+<node Id="7" Action="GoDown" Cost="-3.0" Estado_Agente=" position=&quot;(3,2)&quot; energy=&quot;50&quot;
+world=&quot;[ 
+[ 0 0 0 0  ]
+[ 0 0 0 0  ]
+[ 0 0 0 *  ]
+[ 0 0 0 0  ]
+ ]&quot;"/>
+<edge source="0" target="1"/>
+<edge source="0" target="2"/>
+<edge source="0" target="3"/>
+<edge source="1" target="4"/>
+<edge source="1" target="5"/>
+<edge source="4" target="6"/>
+<edge source="4" target="7"/>
+</tree>
