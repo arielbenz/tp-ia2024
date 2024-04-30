@@ -1,4 +1,4 @@
-package frsf.cidisi.faia.examples.search.amongus;
+package frsf.cidisi.faia.examples.search.impostor;
 
 import frsf.cidisi.faia.agent.Perception;
 

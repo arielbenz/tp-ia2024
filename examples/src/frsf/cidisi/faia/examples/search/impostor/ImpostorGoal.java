@@ -10,12 +10,12 @@ import frsf.cidisi.faia.state.AgentState;
  */
 public class ImpostorGoal extends GoalTest {
 
-    @Override
-    public boolean isGoalState(AgentState agentState) {
-        if (((ImpostorAgentState) agentState).isNoMoreFood() &&
-                ((ImpostorAgentState) agentState).isAllWorldKnown()) {
-            return true;
-        }
-        return false;
+  @Override
+  public boolean isGoalState(AgentState agentState) {
+    if (((ImpostorAgentState) agentState).isNoMoreFood() &&
+        ((ImpostorAgentState) agentState).isAllWorldKnown()) {
+      return true;
     }
+    return false;
+  }
 }
