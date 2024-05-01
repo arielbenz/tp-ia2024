@@ -40,13 +40,12 @@ public class ImpostorPerception extends Perception {
     ImpostorEnvironment impostorEnvironment = (ImpostorEnvironment) environment;
     ImpostorEnvironmentState environmentState = impostorEnvironment.getEnvironmentState();
 
-    int row = environmentState.getAgentPosition()[0];
-    int col = environmentState.getAgentPosition()[1];
+    int pos = environmentState.getAgentPosition();
 
-    this.setTopSensor(impostorEnvironment.getTopPosition(row, col));
-    this.setLeftSensor(impostorEnvironment.getLeftPosition(row, col));
-    this.setRightSensor(impostorEnvironment.getRightPosition(row, col));
-    this.setBottomSensor(impostorEnvironment.getBottomPosition(row, col));
+    this.setTopSensor(impostorEnvironment.getTopPosition(pos));
+    this.setLeftSensor(impostorEnvironment.getLeftPosition(pos));
+    this.setRightSensor(impostorEnvironment.getRightPosition(pos));
+    this.setBottomSensor(impostorEnvironment.getBottomPosition(pos));
   }
 
   // The following methods are Impostor-specific:
