@@ -34,16 +34,30 @@ public class ImpostorEnvironmentState extends EnvironmentState {
       }
     }
 
-    /* Sets some cells with foods and enemies. */
-    ship[0][0] = ImpostorPerception.HALL_F;
-    ship[0][1] = ImpostorPerception.WALL;
-    ship[0][2] = ImpostorPerception.WALL;
-    ship[0][3] = ImpostorPerception.WALL;
+    /* Sets inicial
+     //motor Inferior */
+    ship[0][0] = ImpostorPerception.HALL_F;   //arriba
+    ship[0][1] = ImpostorPerception.WALL;  //abajo
+    ship[0][2] = ImpostorPerception.WALL;  //Izquierda
+    ship[0][3] = ImpostorPerception.WALL;  //Derecha
 
-    ship[1][0] = ImpostorPerception.WALL;
+    //seguridad
+    ship[1][0] = ImpostorPerception.WALL;  
     ship[1][1] = ImpostorPerception.WALL;
     ship[1][2] = ImpostorPerception.HALL_F;
     ship[1][3] = ImpostorPerception.WALL;
+    
+    //reactor
+    ship[2][0] = ImpostorPerception.WALL;
+    ship[2][1] = ImpostorPerception.WALL;
+    ship[2][2] = ImpostorPerception.WALL;
+    ship[2][3] = ImpostorPerception.HALL_F;
+    
+    //motor superior
+    ship[3][0] = ImpostorPerception.WALL;
+    ship[3][1] = ImpostorPerception.HALL_F;
+    ship[3][2] = ImpostorPerception.WALL;
+    ship[3][3] = ImpostorPerception.WALL;
 
     // [20, -1, -1, -1]
     // [-1, -1, 20, -1]
@@ -81,9 +95,9 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     return ship;
   }
 
-  public void setShip(int[][] world) {
-    this.ship = world;
-  }
+  //public void setShip(int[][] world) {
+  //  this.ship = world;
+  //}
 
   public void setShip(int row, int col, int value) {
     this.ship[row][col] = value;

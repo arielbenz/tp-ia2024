@@ -8,8 +8,8 @@ public class ImpostorPerception extends Perception {
 
   public static int UNKNOWN_PERCEPTION = -1;
   public static int EMPTY_PERCEPTION = 0;
-  public static int ENEMY_PERCEPTION = 1;
-  public static int FOOD_PERCEPTION = 2;
+  public static int CREW_PERCEPTION = 1;
+  public static int ROOM_SABOTAGE_PERCEPTION = 2;
 
   public static int ROOM_LOWER_ENGINE = 10;
   public static int ROOM_SECURITY = 11;
@@ -18,6 +18,11 @@ public class ImpostorPerception extends Perception {
   public static int HALL_F = 20;
   public static int WALL = -1;
 
+  public static int UP = 0;
+  public static int BOTTOM = 1;
+  public static int LEFT = 2;
+  public static int RIGHT = 3;
+  
   private int leftSensor;
   private int topSensor;
   private int rightSensor;
@@ -40,13 +45,13 @@ public class ImpostorPerception extends Perception {
     ImpostorEnvironment impostorEnvironment = (ImpostorEnvironment) environment;
     ImpostorEnvironmentState environmentState = impostorEnvironment.getEnvironmentState();
 
-    int row = environmentState.getAgentPosition()[0];
-    int col = environmentState.getAgentPosition()[1];
+    int pos = environmentState.getAgentPosition();
+    //int col = environmentState.getAgentPosition()[1];
 
-    this.setTopSensor(impostorEnvironment.getTopCell(row, col));
-    this.setLeftSensor(impostorEnvironment.getLeftCell(row, col));
-    this.setRightSensor(impostorEnvironment.getRightCell(row, col));
-    this.setBottomSensor(impostorEnvironment.getBottomCell(row, col));
+    this.setTopSensor(impostorEnvironment.getTopCell(pos));
+    this.setLeftSensor(impostorEnvironment.getLeftCell(pos));
+    this.setRightSensor(impostorEnvironment.getRightCell(pos));
+    this.setBottomSensor(impostorEnvironment.getBottomCell(pos));
   }
 
   // The following methods are Impostor-specific:
@@ -95,15 +100,15 @@ public class ImpostorPerception extends Perception {
   public String toString() {
     StringBuffer str = new StringBuffer();
 
-    str.append("Energy: " + this.energy);
+    str.append("Energia: " + this.energy);
     str.append("; ");
-    str.append("Left Sensor: " + this.leftSensor);
+    str.append("Sensor Izquierda: " + this.leftSensor);
     str.append("; ");
-    str.append("Up Sensor: " + this.topSensor);
+    str.append("Sensor Arriba: " + this.topSensor);
     str.append("; ");
-    str.append("Right Sensor: " + this.rightSensor);
+    str.append("Sensor Derecha: " + this.rightSensor);
     str.append("; ");
-    str.append("Down Sensor: " + this.bottomSensor);
+    str.append("Sensor Abajo: " + this.bottomSensor);
 
     return str.toString();
   }

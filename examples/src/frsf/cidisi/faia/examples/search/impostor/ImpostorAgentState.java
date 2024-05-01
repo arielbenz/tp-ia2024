@@ -17,8 +17,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   private int[] crewPerRoom; // [0, 0, 0, 0, 0]
   // private int visitedCells;
 
-  public ImpostorAgentState(int[] m, int e, int[] crew, int pos, int[] sabRooms) {
-    crewPerRoom = m;
+  public ImpostorAgentState( int e, int[] crew, int pos, int[] sabRooms) {
+    crewPerRoom = crew;
     position = pos;
     initialPosition = 1;
     sabotageRooms = sabRooms;
@@ -36,6 +36,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   /**
    * This method clones the state of the agent. It's used in the search
    * process, when creating the search tree.
+   * VEEERRR BIEN CLONE
    */
   @Override
   public SearchBasedAgentState clone() {
@@ -65,47 +66,19 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void updateState(Perception p) {
     ImpostorPerception impostorPerception = (ImpostorPerception) p;
 
-    int row = this.getRowPosition();
-    int col = this.getColumnPosition();
+    int pos = this.getAgentPosition();
+    //int col = this.getColumnPosition();
 
-    if (col == 0) {
-      col = 3;
-    } else {
-      col = col - 1;
-    }
-    world[row][col] = impostorPerception.getLeftSensor();
-
-    row = this.getRowPosition();
-    col = this.getColumnPosition();
-
-    if (col == 3) {
-      col = 0;
-    } else {
-      col = col + 1;
-    }
-    world[row][col] = impostorPerception.getRightSensor();
-
-    row = this.getRowPosition();
-    col = this.getColumnPosition();
-
-    if (row == 0) {
-      row = 3;
-    } else {
-      row = row - 1;
-    }
-    world[row][col] = impostorPerception.getTopSensor();
-
-    row = this.getRowPosition();
-    col = this.getColumnPosition();
-
-    if (row == 3) {
-      row = 0;
-    } else {
-      row = row + 1;
-    }
-    world[row][col] = impostorPerception.getBottomSensor();
+    ship[pos][0] = impostorPerception.getTopSensor();
+    ship[pos][1] = impostorPerception.getBottomSensor();
+    ship[pos][2] = impostorPerception.getLeftSensor();
+    ship[pos][3] = impostorPerception.getRightSensor();
+    
+   // row = this.getRowPosition();
+   // col = this.getColumnPosition();
 
     energy = impostorPerception.getEnergy();
+    //cANTIDADETRIPULANTES
   }
 
   /**
@@ -132,17 +105,17 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public String toString() {
     String str = "";
 
-    str = str + " position=\"(" + getRowPosition() + "," + "" + getColumnPosition() + ")\"";
-    str = str + " energy=\"" + energy + "\"\n";
+    str = str + " posicion=\"(" + getAgentPosition() + ")\"";
+    str = str + " energia=\"" + energy + "\"\n";
 
-    str = str + "world=\"[ \n";
-    for (int row = 0; row < world.length; row++) {
+    str = str + "NAVE=\"[ \n";
+    for (int row = 0; row < ship.length; row++) {
       str = str + "[ ";
-      for (int col = 0; col < world.length; col++) {
+      for (int col = 0; col < ship.length; col++) {
         if (world[row][col] == -1) {
           str = str + "* ";
         } else {
-          str = str + world[row][col] + " ";
+          str = str + ship[row][col] + " ";
         }
       }
       str = str + " ]\n";
@@ -155,6 +128,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   /**
    * This method is used in the search process to verify if the node already
    * exists in the actual search.
+   * VEEER BIEN ESTO
    */
   @Override
   public boolean equals(Object obj) {
@@ -180,17 +154,18 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   // The following methods are Impostor-specific:
+  // el agente no lo tiene definido como estador ver si hay que borrar esto
 
-  public int[][] getWorld() {
-    return world;
+  public int[][] getShip() {
+    return ship;
   }
 
-  public int getWorldPosition(int row, int col) {
-    return world[row][col];
+  public int getShipPosition(int row, int col) {
+    return ship[row][col];
   }
 
-  public void setWorldPosition(int row, int col, int value) {
-    this.world[row][col] = value;
+  public void setShipPosition(int row, int col, int value) {
+    this.ship[row][col] = value;
   }
 
   public int getPosition() {
@@ -209,10 +184,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     this.energy = energy;
   }
 
-  public boolean isAllWorldKnown() {
-    for (int row = 0; row < world.length; row++) {
-      for (int col = 0; col < world.length; col++) {
-        if (world[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
+  public boolean isAllShipKnown() {
+    for (int row = 0; row < ship.length; row++) {
+      for (int col = 0; col < ship.length; col++) {
+        if (ship[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
           return false;
         }
       }
