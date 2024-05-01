@@ -27,14 +27,15 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   @Override
   public void initState() {
 
-    // Sets all cells as empty
+    // Sets all positions as empty
     for (int row = 0; row < ship.length; row++) {
       for (int col = 0; col < ship.length; col++) {
         ship[row][col] = ImpostorPerception.EMPTY_PERCEPTION;
       }
     }
 
-    /* Sets some cells with foods and enemies. */
+    /* Set rooms structure of the ship. */
+
     ship[0][0] = ImpostorPerception.HALL_F;
     ship[0][1] = ImpostorPerception.WALL;
     ship[0][2] = ImpostorPerception.WALL;
@@ -45,11 +46,32 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     ship[1][2] = ImpostorPerception.HALL_F;
     ship[1][3] = ImpostorPerception.WALL;
 
-    // [20, -1, -1, -1]
-    // [-1, -1, 20, -1]
-    // [20, -1, -1, -1]
-    // [20, -1, -1, -1]
-    // [20, -1, -1, -1]
+    ship[2][0] = ImpostorPerception.WALL;
+    ship[2][1] = ImpostorPerception.WALL;
+    ship[2][2] = ImpostorPerception.WALL;
+    ship[2][3] = ImpostorPerception.HALL_F;
+
+    ship[3][0] = ImpostorPerception.WALL;
+    ship[3][1] = ImpostorPerception.HALL_F;
+    ship[3][2] = ImpostorPerception.WALL;
+    ship[3][3] = ImpostorPerception.WALL;
+
+    ship[4][0] = ImpostorPerception.ROOM_UPPER_ENGINE;
+    ship[4][1] = ImpostorPerception.ROOM_LOWER_ENGINE;
+    ship[4][2] = ImpostorPerception.ROOM_REACTOR;
+    ship[4][3] = ImpostorPerception.ROOM_SECURITY;
+
+    ////////////////////////
+    // Orientation matriz //
+    ////////////////////////
+    //      [UP  DO  LE  RI]
+    // [10] [20, -1, -1, -1]
+    // [11] [-1, -1, 20, -1]
+    // [12] [-1, -1, -1, 20]
+    // [13] [-1, 20, -1, -1]
+    // [20] [13, 10, 12, 11]
+    //
+    ////////////////////////
 
     this.setAgentPosition(1);
     this.setAgentEnergy(50);
@@ -113,19 +135,19 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.agentEnergy = agentEnergy;
   }
 
-  public int getTopCell(int pos) {
+  public int getTopPosition(int pos) {
     return ship[pos][0];
   }
 
-  public int getBottomCell(int pos) {
+  public int getBottomPosition(int pos) {
     return ship[pos][1];
   }
 
-  public int getLeftCell(int pos) {
+  public int getLeftPosition(int pos) {
     return ship[pos][2];
   }
 
-  public int getRightCell(int pos) {
+  public int getRightPosition(int pos) {
     return ship[pos][3];
   }
 }

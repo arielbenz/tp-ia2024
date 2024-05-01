@@ -30,14 +30,13 @@ public class ImpostorEnvironment extends Environment {
 
     // Get the actual position of the agent to be able to create the
     // perception
-    int row = this.getEnvironmentState().getAgentPosition()[0];
-    int col = this.getEnvironmentState().getAgentPosition()[1];
+    int pos = this.getEnvironmentState().getAgentPosition();
 
     // Set the perception sensors
-    perception.setTopSensor(this.getTopCell(row, col));
-    perception.setLeftSensor(this.getLeftCell(row, col));
-    perception.setRightSensor(this.getRightCell(row, col));
-    perception.setBottomSensor(this.getBottomCell(row, col));
+    perception.setTopSensor(this.getTopPosition(pos));
+    perception.setLeftSensor(this.getLeftPosition(pos));
+    perception.setRightSensor(this.getRightPosition(pos));
+    perception.setBottomSensor(this.getBottomPosition(pos));
 
     // Return the perception
     return perception;
@@ -65,23 +64,19 @@ public class ImpostorEnvironment extends Environment {
 
   // The following methods are Impostor-specific:
 
-  public int getTopCell(int row, int col) {
-    return ((ImpostorEnvironmentState) this.environmentState)
-        .getTopCell(row, col);
+  public int getTopPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getTopPosition(pos);
   }
 
-  public int getLeftCell(int row, int col) {
-    return ((ImpostorEnvironmentState) this.environmentState)
-        .getLeftCell(row, col);
+  public int getLeftPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getLeftPosition(pos);
   }
 
-  public int getRightCell(int row, int col) {
-    return ((ImpostorEnvironmentState) this.environmentState)
-        .getRightCell(row, col);
+  public int getRightPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
   }
 
-  public int getBottomCell(int row, int col) {
-    return ((ImpostorEnvironmentState) this.environmentState)
-        .getBottomCell(row, col);
+  public int getBottomPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getBottomPosition(pos);
   }
 }
