@@ -2,32 +2,34 @@ package frsf.cidisi.faia.examples.search.impostor;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+import frsf.cidisi.faia.examples.search.pacman.PacmanPerception;
 
 /**
  * Represent the internal state of the Impostor.
  */
 public class ImpostorAgentState extends SearchBasedAgentState {
 
-  private int[][] world;
-  private int[] position;
-  private int[] initialPosition;
+  // private int[] world; // Array of 5 positions [0, 0, 0, 0, 0]
+  private int[] sabotageRooms; // Array of 1 positions
+  private int position;
+  private int initialPosition;
   private int energy;
-  private int visitedCells;
+  private int[] crewPerRoom; // [0, 0, 0, 0, 0]
+  // private int visitedCells;
 
-  public ImpostorAgentState(int[][] m, int row, int col, int e) {
-    world = m;
-    position = new int[] { row, col };
-    initialPosition = new int[2];
-    initialPosition[0] = row;
-    initialPosition[1] = col;
+  public ImpostorAgentState(int[] m, int e, int[] crew, int pos, int[] sabRooms) {
+    crewPerRoom = m;
+    position = pos;
+    initialPosition = 1;
+    sabotageRooms = sabRooms;
     energy = e;
-    visitedCells = 0;
   }
 
   public ImpostorAgentState() {
-    world = new int[4][4];
-    position = new int[2];
+    crewPerRoom = new int[5];
+    position = 2;
     energy = 0;
+    sabotageRooms = new int[1];
     this.initState();
   }
 
@@ -111,7 +113,16 @@ public class ImpostorAgentState extends SearchBasedAgentState {
    */
   @Override
   public void initState() {
+    for (int row = 0; row < crewPerRoom.length; row++) {
+      crewPerRoom[row] = 0;
+    }
 
+    for (int row = 0; row < sabotageRooms.length; row++) {
+      sabotageRooms[row] = 0;
+    }
+
+    this.setPosition(1);
+    this.setEnergy(100);
   }
 
   /**
@@ -182,33 +193,21 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     this.world[row][col] = value;
   }
 
-  public int[] getPosition() {
+  public int getPosition() {
     return position;
   }
 
-  public void setRowPosition(int value) {
-    this.position[0] = value;
-  }
-
-  public void setColumnPosition(int value) {
-    this.position[1] = value;
-  }
-
-  public int getRowPosition() {
-    return position[0];
-  }
-
-  public int getColumnPosition() {
-    return position[1];
+  public void setPosition(int value) {
+    this.position = value;
   }
 
   public int getEnergy() {
     return energy;
   }
 
-  // private void setEnergy(int energy) {
-  //   this.energy = energy;
-  // }
+  private void setEnergy(int energy) {
+    this.energy = energy;
+  }
 
   public boolean isAllWorldKnown() {
     for (int row = 0; row < world.length; row++) {
@@ -222,19 +221,19 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     return true;
   }
 
-  public int getUnknownCellsCount() {
-    int result = 0;
+  // public int getUnknownCellsCount() {
+  //   int result = 0;
 
-    for (int row = 0; row < world.length; row++) {
-      for (int col = 0; col < world.length; col++) {
-        if (world[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
-          result++;
-        }
-      }
-    }
+  //   for (int row = 0; row < world.length; row++) {
+  //     for (int col = 0; col < world.length; col++) {
+  //       if (world[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
+  //         result++;
+  //       }
+  //     }
+  //   }
 
-    return result;
-  }
+  //   return result;
+  // }
 
   public int getRemainingFoodCount() {
     int result = 0;
@@ -261,11 +260,11 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     return true;
   }
 
-  public int getVisitedCellsCount() {
-    return visitedCells;
-  }
+  // public int getVisitedCellsCount() {
+  //   return visitedCells;
+  // }
 
-  public void increaseVisitedCellsCount() {
-    this.visitedCells = +20;
-  }
+  // public void increaseVisitedCellsCount() {
+  //   this.visitedCells = +20;
+  // }
 }

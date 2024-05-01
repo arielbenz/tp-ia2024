@@ -11,6 +11,13 @@ public class ImpostorPerception extends Perception {
   public static int ENEMY_PERCEPTION = 1;
   public static int FOOD_PERCEPTION = 2;
 
+  public static int ROOM_LOWER_ENGINE = 10;
+  public static int ROOM_SECURITY = 11;
+  public static int ROOM_REACTOR = 12;
+  public static int ROOM_UPPER_ENGINE = 13;
+  public static int HALL_F = 20;
+  public static int WALL = -1;
+
   private int leftSensor;
   private int topSensor;
   private int rightSensor;
