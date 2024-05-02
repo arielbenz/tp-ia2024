@@ -31,13 +31,12 @@ public class ImpostorEnvironment extends Environment {
     // Get the actual position of the agent to be able to create the
     // perception
     int pos = this.getEnvironmentState().getAgentPosition();
-   // int col = this.getEnvironmentState().getAgentPosition()[1];
 
     // Set the perception sensors
-    perception.setTopSensor(this.getTopCell(pos));
-    perception.setLeftSensor(this.getLeftCell(pos));
-    perception.setRightSensor(this.getRightCell(pos));
-    perception.setBottomSensor(this.getBottomCell(pos));
+    perception.setTopSensor(this.getTopPosition(pos));
+    perception.setLeftSensor(this.getLeftPosition(pos));
+    perception.setRightSensor(this.getRightPosition(pos));
+    perception.setBottomSensor(this.getBottomPosition(pos));
 
     // Return the perception
     return perception;
@@ -65,23 +64,19 @@ public class ImpostorEnvironment extends Environment {
 
   // The following methods are Impostor-specific:
 
-  public int getTopCell(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState)
-        .getTopCell(pos);
+  public int getTopPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getTopPosition(pos);
   }
 
-  public int getLeftCell(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState)
-        .getLeftCell(pos);
+  public int getLeftPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getLeftPosition(pos);
   }
 
-  public int getRightCell(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState)
-        .getRightCell(pos);
+  public int getRightPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
   }
 
-  public int getBottomCell(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState)
-        .getBottomCell(pos);
+  public int getBottomPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getBottomPosition(pos);
   }
 }
