@@ -7,7 +7,7 @@ import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
-public class Sabotage extends SearchAction {
+public class EliminateCrew extends SearchAction {
   /**
    * See comments in the Eat class.
    */
@@ -21,20 +21,10 @@ public class Sabotage extends SearchAction {
      * The 'Fight' action can be selected only if there is an enemy in
      * the current position. Otherwise return 'null'.
      */
+    if ((impostorState.getCrewPerRoom(pos) > 1) &&
+        (impostorState.getEnergy() > 0)) {
 
-    int[] sabotageRooms = impostorState.getSabotageRooms();
-
-    boolean isSabotageRoom = false;
-
-    for (int i = 0; i <= sabotageRooms.length; i++) {
-      if (sabotageRooms[i] == pos) {
-        isSabotageRoom = true;
-      }
-    }
-
-    if (isSabotageRoom && (impostorState.getEnergy() > 0)) {
-      sabotageRooms[pos] = 0;
-      impostorState.setSabotageRooms(sabotageRooms);
+      impostorState.setCrewPerRoom(pos);
 
       return impostorState;
     }
