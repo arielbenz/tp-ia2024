@@ -9,15 +9,13 @@ import frsf.cidisi.faia.examples.search.pacman.PacmanPerception;
  */
 public class ImpostorAgentState extends SearchBasedAgentState {
 
-  // private int[] world; // Array of 5 positions [0, 0, 0, 0, 0]
   private int[] sabotageRooms; // Array of 1 positions
   private int position;
   private int initialPosition;
   private int energy;
   private int[] crewPerRoom; // [0, 0, 0, 0, 0]
-  // private int visitedCells;
 
-  public ImpostorAgentState( int e, int[] crew, int pos, int[] sabRooms) {
+  public ImpostorAgentState(int e, int[] crew, int pos, int[] sabRooms) {
     crewPerRoom = crew;
     position = pos;
     initialPosition = 1;
@@ -40,20 +38,16 @@ public class ImpostorAgentState extends SearchBasedAgentState {
    */
   @Override
   public SearchBasedAgentState clone() {
-    int[][] newWorld = new int[4][4];
+    int[] newCrewPerRoom = new int[5];
 
     for (int row = 0; row < world.length; row++) {
-      for (int col = 0; col < world.length; col++) {
-        newWorld[row][col] = world[row][col];
-      }
+      
     }
 
-    int[] newPosition = new int[2];
-    newPosition[0] = position[0];
-    newPosition[1] = position[1];
+    int newPosition = position;
 
-    ImpostorAgentState newState = new ImpostorAgentState(newWorld,
-        this.getRowPosition(), this.getColumnPosition(), this.energy);
+    ImpostorAgentState newState = new ImpostorAgentState(this.energy, newCrewPerRoom,
+        this.getPosition(),  );
 
     return newState;
   }
@@ -66,19 +60,14 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void updateState(Perception p) {
     ImpostorPerception impostorPerception = (ImpostorPerception) p;
 
-    int pos = this.getAgentPosition();
-    //int col = this.getColumnPosition();
+    int pos = this.getPosition();
 
     ship[pos][0] = impostorPerception.getTopSensor();
     ship[pos][1] = impostorPerception.getBottomSensor();
     ship[pos][2] = impostorPerception.getLeftSensor();
     ship[pos][3] = impostorPerception.getRightSensor();
-    
-   // row = this.getRowPosition();
-   // col = this.getColumnPosition();
 
     energy = impostorPerception.getEnergy();
-    //cANTIDADETRIPULANTES
   }
 
   /**
@@ -105,7 +94,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public String toString() {
     String str = "";
 
-    str = str + " posicion=\"(" + getAgentPosition() + ")\"";
+    str = str + " posicion=\"(" + getPosition() + ")\"";
     str = str + " energia=\"" + energy + "\"\n";
 
     str = str + "NAVE=\"[ \n";
@@ -136,7 +125,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       return false;
 
     int[][] worldObj = ((ImpostorAgentState) obj).getWorld();
-    int[] positionObj = ((ImpostorAgentState) obj).getPosition();
+    int positionObj = ((ImpostorAgentState) obj).getPosition();
 
     for (int row = 0; row < world.length; row++) {
       for (int col = 0; col < world.length; col++) {
@@ -156,17 +145,17 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   // The following methods are Impostor-specific:
   // el agente no lo tiene definido como estador ver si hay que borrar esto
 
-  public int[][] getShip() {
-    return ship;
-  }
+  // public int[][] getShip() {
+  //   return ship;
+  // }
 
-  public int getShipPosition(int row, int col) {
-    return ship[row][col];
-  }
+  // public int getShipPosition(int row, int col) {
+  //   return ship[row][col];
+  // }
 
-  public void setShipPosition(int row, int col, int value) {
-    this.ship[row][col] = value;
-  }
+  // public void setShipPosition(int row, int col, int value) {
+  //   this.ship[row][col] = value;
+  // }
 
   public int getPosition() {
     return position;
@@ -184,30 +173,38 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     this.energy = energy;
   }
 
-  public boolean isAllShipKnown() {
-    for (int row = 0; row < ship.length; row++) {
-      for (int col = 0; col < ship.length; col++) {
-        if (ship[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
-          return false;
-        }
-      }
-    }
-
-    return true;
+  public int[] getSabotageRooms() {
+    return sabotageRooms;
   }
 
-  // public int getUnknownCellsCount() {
-  //   int result = 0;
+  private void setSabotageRooms(int[] sabotageRooms) {
+    this.sabotageRooms = sabotageRooms;
+  }
 
-  //   for (int row = 0; row < world.length; row++) {
-  //     for (int col = 0; col < world.length; col++) {
-  //       if (world[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
-  //         result++;
+  // public boolean isAllShipKnown() {
+  //   for (int row = 0; row < ship.length; row++) {
+  //     for (int col = 0; col < ship.length; col++) {
+  //       if (ship[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
+  //         return false;
   //       }
   //     }
   //   }
 
-  //   return result;
+  //   return true;
+  // }
+
+  // public int getUnknownCellsCount() {
+  // int result = 0;
+
+  // for (int row = 0; row < world.length; row++) {
+  // for (int col = 0; col < world.length; col++) {
+  // if (world[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
+  // result++;
+  // }
+  // }
+  // }
+
+  // return result;
   // }
 
   public int getRemainingFoodCount() {
@@ -244,10 +241,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
    
 
   // public int getVisitedCellsCount() {
-  //   return visitedCells;
+  // return visitedCells;
   // }
 
   // public void increaseVisitedCellsCount() {
-  //   this.visitedCells = +20;
+  // this.visitedCells = +20;
   // }
 }

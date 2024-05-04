@@ -37,23 +37,23 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     /* Set rooms structure of the ship. */
 
     // Lower Engine
-    ship[0][0] = ImpostorPerception.HALL_F;   // Arriba
-    ship[0][1] = ImpostorPerception.WALL;     // Abajo
-    ship[0][2] = ImpostorPerception.WALL;     // Izquierda
-    ship[0][3] = ImpostorPerception.WALL;     // Derecha
+    ship[0][0] = ImpostorPerception.HALL_F; // Arriba
+    ship[0][1] = ImpostorPerception.WALL; // Abajo
+    ship[0][2] = ImpostorPerception.WALL; // Izquierda
+    ship[0][3] = ImpostorPerception.WALL; // Derecha
 
     // Security
-    ship[1][0] = ImpostorPerception.WALL;  
+    ship[1][0] = ImpostorPerception.WALL;
     ship[1][1] = ImpostorPerception.WALL;
     ship[1][2] = ImpostorPerception.HALL_F;
     ship[1][3] = ImpostorPerception.WALL;
-    
+
     // Reactor
     ship[2][0] = ImpostorPerception.WALL;
     ship[2][1] = ImpostorPerception.WALL;
     ship[2][2] = ImpostorPerception.WALL;
     ship[2][3] = ImpostorPerception.HALL_F;
-    
+
     // Upper Engine
     ship[3][0] = ImpostorPerception.WALL;
     ship[3][1] = ImpostorPerception.HALL_F;
@@ -69,7 +69,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     ////////////////////////
     // Orientation matriz //
     ////////////////////////
-    //      [UP  DO  LE  RI]
+    // [     UP  DO  LE  RI]
     // [10] [20, -1, -1, -1]
     // [11] [-1, -1, 20, -1]
     // [12] [-1, -1, -1, 20]
@@ -108,9 +108,9 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     return ship;
   }
 
-  //public void setShip(int[][] world) {
-  //  this.ship = world;
-  //}
+  // public void setShip(int[][] world) {
+  // this.ship = world;
+  // }
 
   public void setShip(int row, int col, int value) {
     this.ship[row][col] = value;
