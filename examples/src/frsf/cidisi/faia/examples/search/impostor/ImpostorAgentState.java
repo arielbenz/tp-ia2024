@@ -112,7 +112,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     for (int row = 0; row < ship.length; row++) {
       str = str + "[ ";
       for (int col = 0; col < ship.length; col++) {
-        if (world[row][col] == -1) {
+        if (ship[row][col] == -1) {
           str = str + "* ";
         } else {
           str = str + ship[row][col] + " ";
@@ -224,16 +224,24 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     return result;
   }
 
-  public boolean isNoMoreFood() {
-    for (int row = 0; row < world.length; row++) {
-      for (int col = 0; col < world.length; col++) {
-        if (world[row][col] == ImpostorPerception.FOOD_PERCEPTION) {
+  public boolean isNoMoreSabotageRooms() {
+    for (int row = 0; row < sabotageRooms.length; row++) {
+        if (sabotageRooms[row] == ImpostorPerception.ROOM_SABOTAGE_PERCEPTION) {
           return false;
         }
-      }
     }
     return true;
   }
+  
+  public boolean isNoMoreCrewPerRoom() {
+    for (int row = 0; row < crewPerRoom.length; row++) {
+        if (crewPerRoom[row] == ImpostorPerception.CREW_PERCEPTION) {
+          return false;
+        }
+    }
+    return true;
+  }
+   
 
   // public int getVisitedCellsCount() {
   //   return visitedCells;
