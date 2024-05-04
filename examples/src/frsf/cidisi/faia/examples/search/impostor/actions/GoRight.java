@@ -1,6 +1,8 @@
 package frsf.cidisi.faia.examples.search.impostor.actions;
 
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
+import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
+import frsf.cidisi.faia.examples.search.impostor.ImpostorPerception;
 import frsf.cidisi.faia.examples.search.pacman.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
@@ -17,25 +19,12 @@ public class GoRight extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    impostorState.increaseVisitedCellsCount();
+    int pos = impostorState.getPosition();
 
-    int row = impostorState.getRowPosition();
-    int col = impostorState.getColumnPosition();
-
-    // Check the limits of the world
-    if (col == 3) {
-      col = 0;
-    } else {
-      col = col + 1;
-    }
-
-    impostorState.setColumnPosition(col);
-
-    /* The agent can always go right */
-    if (impostorState.getWorldPosition(row, col) == PacmanPerception.UNKNOWN_PERCEPTION) {
-
-      impostorState.setWorldPosition(row, col,
-          PacmanPerception.EMPTY_PERCEPTION);
+    /* The agent can always go down */
+    if (impostorState.getEnergy() > 0 && impostorState.getImpostorOrientation(pos) != ImpostorPerception.WALL) {
+      impostorState.setPosition(impostorState.getImpostorOrientation(3));
+      impostorState.setEnergy(impostorState.getEnergy() - 1);
     }
 
     return impostorState;
@@ -46,25 +35,13 @@ public class GoRight extends SearchAction {
    */
   @Override
   public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-
-    PacmanEnvironmentState environmentState = (PacmanEnvironmentState) est;
+    ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    impostorState.increaseVisitedCellsCount();
+    int pos = environmentState.getAgentPosition();
 
-    int row = environmentState.getAgentPosition()[0];
-    int col = environmentState.getAgentPosition()[1];
-
-    // Check the limits of the world
-    if (col == 3) {
-      col = 0;
-    } else {
-      col = col + 1;
-    }
-
-    impostorState.setColumnPosition(col);
-
-    environmentState.setAgentPosition(new int[] { row, col });
+    impostorState.setPosition(pos);
+    environmentState.setAgentPosition(pos);
 
     return environmentState;
   }

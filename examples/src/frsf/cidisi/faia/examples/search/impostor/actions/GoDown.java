@@ -13,26 +13,12 @@ public class GoDown extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    // Increase the visited cells count
-    impostorState.increaseVisitedCellsCount();
-
-    int row = impostorState.getRowPosition();
-    int col = impostorState.getColumnPosition();
-
-    // Check the limits of the world
-    if (row == 3) {
-      row = 0;
-    } else {
-      row = row + 1;
-    }
-
-    impostorState.setRowPosition(row);
+    int pos = impostorState.getPosition();
 
     /* The agent can always go down */
-    if (impostorState.getWorldPosition(row, col) == ImpostorPerception.UNKNOWN_PERCEPTION) {
-
-      impostorState.setWorldPosition(row, col,
-          ImpostorPerception.EMPTY_PERCEPTION);
+    if (impostorState.getEnergy() > 0 && impostorState.getImpostorOrientation(pos) != ImpostorPerception.WALL) {
+      impostorState.setPosition(impostorState.getImpostorOrientation(1));
+      impostorState.setEnergy(impostorState.getEnergy() - 1);
     }
 
     return impostorState;
@@ -46,20 +32,10 @@ public class GoDown extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    impostorState.increaseVisitedCellsCount();
+    int pos = environmentState.getAgentPosition();
 
-    int row = environmentState.getAgentPosition()[0];
-    int col = environmentState.getAgentPosition()[1];
-
-    if (row == 3) {
-      row = 0;
-    } else {
-      row = row + 1;
-    }
-
-    impostorState.setRowPosition(row);
-
-    environmentState.setAgentPosition(new int[] { row, col });
+    impostorState.setPosition(pos);
+    environmentState.setAgentPosition(pos);
 
     return environmentState;
   }

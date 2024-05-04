@@ -80,6 +80,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
     this.setAgentPosition(1);
     this.setAgentEnergy(50);
+    this.setTotalCrew(2);
   }
 
   /**
@@ -107,10 +108,6 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   public int[][] getShip() {
     return ship;
   }
-
-  // public void setShip(int[][] world) {
-  // this.ship = world;
-  // }
 
   public void setShip(int row, int col, int value) {
     this.ship[row][col] = value;
