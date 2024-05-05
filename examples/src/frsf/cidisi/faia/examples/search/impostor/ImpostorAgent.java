@@ -11,7 +11,25 @@ import java.util.logging.Logger;
 public class ImpostorAgent extends SearchBasedAgent {
 
   public ImpostorAgent() {
+	   // The Impostor Goal
+      ImpostorGoal goal = new ImpostorGoal();
 
+      // The Impostor Agent State
+      ImpostorAgentState impostorState = new ImpostorAgentState();
+      this.setImpostorState(impostorState);
+
+      // Create the operators
+      Vector<SearchAction> operators = new Vector<SearchAction>();
+      operators.addElement(new EliminateCrew());
+      operators.addElement(new Sabotage());
+      operators.addElement(new GoLeft());
+      operators.addElement(new GoUp());
+      operators.addElement(new GoRight());
+      operators.addElement(new GoDown());
+
+      // Create the Problem which the Impostor will resolve
+      Problem problem = new Problem(goal, impostorState, operators);
+      this.setProblem(problem);
   }
 
   /**
@@ -20,7 +38,7 @@ public class ImpostorAgent extends SearchBasedAgent {
   @Override
   public Action selectAction() {
 
-    // Create the search strategy
+    // Create the search strategy en profundidad
     DepthFirstSearch strategy = new DepthFirstSearch();
 
     // Create a Search object with the strategy

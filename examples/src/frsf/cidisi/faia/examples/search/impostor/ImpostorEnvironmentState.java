@@ -90,7 +90,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   public String toString() {
     String str = "";
 
-    str = str + "[ \n";
+    str = str + "NAVE=[ \n";
     for (int row = 0; row < ship.length; row++) {
       str = str + "[ ";
       for (int col = 0; col < ship.length; col++) {

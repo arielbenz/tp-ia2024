@@ -63,16 +63,21 @@ public class ImpostorAgentState extends SearchBasedAgentState {
    */
   @Override
   public SearchBasedAgentState clone() {
-    int[] newCrewPerRoom = new int[5];
-
-    for (int row = 0; row < world.length; row++) {
-      
+	  
+    int[] newCrewPerRoom = new int[5]; //esta es fija no cambia por ahora
+    for (int row = 0; row < CrewPerRoom.length; row++) { // [UP, DO, LE, RI]
+    	newCrewPerRoom [row] = CrewPerRoom[row];
+    }
+    
+    int[] newimpostorOrientation = new int[4]; // la orientacion cambia segun la posicion del agente
+    for (int col = 0; col < 4; col++) { // [UP, DO, LE, RI]
+    	newimpostorOrientation[col] = impostorOrientation[col];
     }
 
     int newPosition = position;
 
-    ImpostorAgentState newState = new ImpostorAgentState(this.energy, newCrewPerRoom,
-        this.getPosition(),  );
+    ImpostorAgentState newState = new ImpostorAgentState(newimpostorOrientation, newCrewPerRoom,
+        this.getPosition(,)this.energy );
 
     return newState;
   }
@@ -108,7 +113,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     str = str + " posicion=\"(" + getPosition() + ")\"";
     str = str + " energia=\"" + energy + "\"\n";
 
-    str = str + "NAVE=\"[ \n";
+    str = str + "ORIENTACION EN NAVE DEL IMPOSTOR=\"[ \n";
     for (int row = 0; row < impostorOrientation.length; row++) {
       str = str + "[ ";
       if (impostorOrientation[row] == -1) {
@@ -126,23 +131,33 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   /**
    * This method is used in the search process to verify if the node already
    * exists in the actual search.
-   * VEEER BIEN ESTO
+   * VEEER BIEN METODO EQUALS !!
    */
   @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof ImpostorAgentState))
       return false;
 
-    int[][] worldObj = ((ImpostorAgentState) obj).getWorld();
+    //int[][] worldObj = ((ImpostorAgentState) obj).getWorld();
+    // int positionObj = ((ImpostorAgentState) obj).getPosition();
+    
+    int[] impostorOrientationObj = ((ImpostorAgentState) obj).getImpostorOrientation(position);
     int positionObj = ((ImpostorAgentState) obj).getPosition();
 
-    for (int row = 0; row < world.length; row++) {
+   /* for (int row = 0; row < world.length; row++) {
       if (world[row][col] != worldObj[row][col]) {
         return false;
       }
-    }
+    } */
 
-    if (position[0] != positionObj[0] || position[1] != positionObj[1]) {
+    for (int row = 0; row < impostorOrientation.length; row++) {
+        if (impostorOrientation[row] != impostorOrientationObj[row]) {
+          return false;
+        }
+    }
+    
+    //if (position[0] != positionObj[0] || position[1] != positionObj[1]) {
+    if (position != positionObj) {
       return false;
     }
 
