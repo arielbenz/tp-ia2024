@@ -47,7 +47,6 @@ public class PacmanPerception extends Perception {
      */
     @Override
     public void initPerception(Agent agent, Environment environment) {
-        PacmanAgent pacmanAgent = (PacmanAgent) agent;
         PacmanEnvironment pacmanEnvironment = (PacmanEnvironment) environment;
         PacmanEnvironmentState environmentState =
                 pacmanEnvironment.getEnvironmentState();
