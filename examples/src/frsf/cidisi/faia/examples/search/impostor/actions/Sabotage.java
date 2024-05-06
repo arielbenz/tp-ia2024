@@ -28,16 +28,19 @@ public class Sabotage extends SearchAction {
     int[] sabotageRooms = impostorState.getSabotageRooms();
 
     boolean isSabotageRoom = false;
+    int[] newSabotageRooms = new int[] {};
 
     for (int i = 0; i < sabotageRooms.length; i++) {
       if (sabotageRooms[i] == pos) {
         isSabotageRoom = true;
+      } else {
+        // newSabotageRooms[0] = sabotageRooms[i];
       }
     }
 
     if (isSabotageRoom && (impostorState.getEnergy() > 0)) {
-      sabotageRooms[pos] = 0;
-      impostorState.setSabotageRooms(sabotageRooms);
+      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
+      impostorState.setSabotageRooms(new int[] {});
 
       return impostorState;
     }

@@ -61,17 +61,17 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   @Override
   public SearchBasedAgentState clone() {
 
-    int[] newCrewPerRoom = new int[5]; // esta es fija no cambia por ahora
+    int[] newCrewPerRoom = new int[crewPerRoom.length]; // esta es fija no cambia por ahora
     for (int row = 0; row < crewPerRoom.length; row++) { // [UP, DO, LE, RI]
       newCrewPerRoom[row] = crewPerRoom[row];
     }
 
-    int[] newImpostorOrientation = new int[4]; // la orientacion cambia segun la posicion del agente
+    int[] newImpostorOrientation = new int[impostorOrientation.length]; // la orientacion cambia segun la posicion del agente
     for (int col = 0; col < impostorOrientation.length; col++) { // [UP, DO, LE, RI]
       newImpostorOrientation[col] = impostorOrientation[col];
     }
 
-    int[] newSabotageRooms = new int[1];
+    int[] newSabotageRooms = new int[sabotageRooms.length];
     for (int i = 0; i < sabotageRooms.length; i++) { // [UP, DO, LE, RI]
       newSabotageRooms[i] = sabotageRooms[i];
     }
