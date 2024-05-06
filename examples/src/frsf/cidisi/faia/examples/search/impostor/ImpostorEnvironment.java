@@ -33,9 +33,9 @@ public class ImpostorEnvironment extends Environment {
 
     // Set the perception sensors
     perception.setUpSensor(this.getUpPosition(pos));
+    perception.setDownSensor(this.getDownPosition(pos));
     perception.setLeftSensor(this.getLeftPosition(pos));
     perception.setRightSensor(this.getRightPosition(pos));
-    perception.setDownSensor(this.getDownPosition(pos));
 
     // Return the perception
     return perception;
@@ -66,6 +66,10 @@ public class ImpostorEnvironment extends Environment {
   public int getUpPosition(int pos) {
     return ((ImpostorEnvironmentState) this.environmentState).getUpPosition(pos);
   }
+  
+  public int getDownPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getDownPosition(pos);
+  }
 
   public int getLeftPosition(int pos) {
     return ((ImpostorEnvironmentState) this.environmentState).getLeftPosition(pos);
@@ -75,7 +79,4 @@ public class ImpostorEnvironment extends Environment {
     return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
   }
 
-  public int getDownPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getDownPosition(pos);
-  }
 }

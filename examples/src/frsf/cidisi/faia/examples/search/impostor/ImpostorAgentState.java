@@ -28,7 +28,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     crewPerRoom = new int[5];
     sabotageRooms = new int[1];
     impostorOrientation = new int[4];
-    position = Constants.ROOM_UPPER_ENGINE;
+    position = Constants.ROOM_LOWER_ENGINE;
     energy = 0;
     this.initState();
   }
@@ -49,7 +49,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     crewPerRoom = new int[] { 0, 1, 1, 0, 0 };
     sabotageRooms = new int[] { Constants.ROOM_REACTOR };
 
-    this.setPosition(Constants.ROOM_UPPER_ENGINE);
+    this.setPosition(Constants.ROOM_LOWER_ENGINE);
     this.setEnergy(Constants.START_ENERGY);
   }
 
@@ -110,8 +110,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public String toString() {
     String str = "";
 
-    str = str + "\n\n* Posición=\"(" + getPosition() + ")\"";
-    str = str + "\n* Energía=\"" + energy + "\"\n";
+    str = str + "\n\n* Posición: (" + getPosition() + " - " + Constants.ROOMS.get(getPosition()) + ")";
+    str = str + "\n* Energía: " + energy + "\n";
 
     str = str + "\nORIENTACIÓN EN NAVE DEL IMPOSTOR=\"( ";
     for (int row = 0; row < impostorOrientation.length; row++) {
