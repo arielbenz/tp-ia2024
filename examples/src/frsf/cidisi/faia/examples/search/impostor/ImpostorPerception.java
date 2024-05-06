@@ -13,7 +13,7 @@ public class ImpostorPerception extends Perception {
   private int energy;
 
   public ImpostorPerception() {
-    energy = Constants.START_ENERGY;
+    energy = Constants.INITIAL_AGENT_ENERGY;
   }
 
   public ImpostorPerception(Agent agent, Environment environment) {

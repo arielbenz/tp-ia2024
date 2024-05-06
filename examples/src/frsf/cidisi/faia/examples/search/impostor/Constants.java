@@ -29,10 +29,17 @@ public class Constants {
   public static final int LEFT = 2;
   public static final int RIGHT = 3;
 
-  // Starting values
-  public static final int START_ENERGY = 100;
-  public static final int TOTAL_CREW = 2;
-
+  // Initial values
+  public static final int INITIAL_AGENT_ENERGY = 100;
+  public static final int INITIAL_AGENT_POSITION = ROOM_LOWER_ENGINE;
+  public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 1, 1, 0, 0 };
+  public static final int INITIAL_TOTAL_CREW = 2;
+  public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR };
   public static final int Q_CONSUME_ENERGY = 1;
 
+  // Game data structure
+  public static final int[][] SHIP = new int[5][4];
+  public static final int[] CREW_PER_ROOM = new int[INITIAL_CREW_PER_ROOM.length];
+  public static final int[] SABOTAGE_ROOMS = new int[INITIAL_SABOTAGE_ROOMS.length];
+  public static final int[] AGENT_ORIENTATION = new int[4];
 }

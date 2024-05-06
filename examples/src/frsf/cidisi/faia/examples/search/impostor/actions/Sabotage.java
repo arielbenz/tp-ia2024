@@ -60,7 +60,7 @@ public class Sabotage extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
 
     if ((environmentState.getTotalCrew() > 0) && (environmentState.getAgentEnergy() > 0)) {
-      // environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
+      // TODO - remove room
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - Constants.Q_CONSUME_ENERGY);
     }
 

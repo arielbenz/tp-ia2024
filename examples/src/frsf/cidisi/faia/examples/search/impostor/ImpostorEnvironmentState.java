@@ -17,7 +17,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   }
 
   public ImpostorEnvironmentState() {
-    ship = new int[5][4];
+    ship = Constants.SHIP;
     this.initState();
   }
 
@@ -72,9 +72,9 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     //
     ////////////////////////////////
 
-    this.setAgentPosition(Constants.ROOM_LOWER_ENGINE);
-    this.setAgentEnergy(Constants.START_ENERGY);
-    this.setTotalCrew(Constants.TOTAL_CREW);
+    this.setAgentPosition(Constants.INITIAL_AGENT_POSITION);
+    this.setAgentEnergy(Constants.INITIAL_AGENT_ENERGY);
+    this.setTotalCrew(Constants.INITIAL_TOTAL_CREW);
   }
 
   /**
