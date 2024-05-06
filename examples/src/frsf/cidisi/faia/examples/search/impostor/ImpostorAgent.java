@@ -73,8 +73,6 @@ public class ImpostorAgent extends SearchBasedAgent {
       Logger.getLogger(ImpostorAgent.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    System.out.println("selectedAction 2: " + selectedAction);
-
     // Return the selected action
     return selectedAction;
   }

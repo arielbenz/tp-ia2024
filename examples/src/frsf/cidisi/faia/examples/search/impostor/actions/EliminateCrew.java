@@ -16,9 +16,12 @@ public class EliminateCrew extends SearchAction {
    */
   @Override
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
+
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
     int pos = impostorState.getPosition();
+
+    System.out.println("-- Eliminate Action -- Agent pos: " + pos);
 
     /*
      * The 'EliminateCrew' action can be selected only if there is a crew member in

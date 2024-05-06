@@ -116,7 +116,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     str = str + "\nORIENTACIÓN EN NAVE DEL IMPOSTOR=\"( ";
     for (int row = 0; row < impostorOrientation.length; row++) {
       str = str + "[ ";
-      if (impostorOrientation[row] == ImpostorPerception.WALL) {
+      if (impostorOrientation[row] == Constants.WALL) {
         str = str + "* ";
       } else {
         str = str + impostorOrientation[row] + " ";

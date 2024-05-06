@@ -16,9 +16,12 @@ public class Sabotage extends SearchAction {
    */
   @Override
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
+
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
     int pos = impostorState.getPosition();
+
+    System.out.println("-- Sabotage Action -- Agent pos: " + pos);
 
     /*
      * The 'Sabotage' action can be selected only if there is a sabotage room in

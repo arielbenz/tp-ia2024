@@ -3,7 +3,6 @@ package frsf.cidisi.faia.examples.search.impostor.actions;
 import frsf.cidisi.faia.examples.search.impostor.Constants;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
-import frsf.cidisi.faia.examples.search.impostor.ImpostorPerception;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -20,9 +19,13 @@ public class GoUp extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
+    int pos = impostorState.getPosition();
+    
+    System.out.println("-- Go Up Action -- Agent pos: " + pos);
+
     /* The agent can always go up */
     if (impostorState.getEnergy() > 0
-        && impostorState.getImpostorOrientation(Constants.UP) != ImpostorPerception.WALL) {
+        && impostorState.getImpostorOrientation(Constants.UP) != Constants.WALL) {
       impostorState.setPosition(impostorState.getImpostorOrientation(Constants.UP));
       impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
     }

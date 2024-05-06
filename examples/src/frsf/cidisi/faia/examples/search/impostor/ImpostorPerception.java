@@ -6,10 +6,6 @@ import frsf.cidisi.faia.environment.Environment;
 
 public class ImpostorPerception extends Perception {
 
-  public static int EMPTY_PERCEPTION = 0;
-
-  public static int WALL = -1;
-
   private int upSensor;
   private int downSensor;
   private int leftSensor;
@@ -89,8 +85,10 @@ public class ImpostorPerception extends Perception {
     str.append("\n" + "* Energía: " + this.energy + "\n");
     str.append("* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + Constants.ROOMS.get(this.upSensor) + "\n");
     str.append("* Sensor Abajo: " + "(" + this.downSensor + ")" + " : " + Constants.ROOMS.get(this.downSensor) + "\n");
-    str.append("* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + Constants.ROOMS.get(this.leftSensor) + "\n");
-    str.append("* Sensor Derecha: " + "(" + this.rightSensor + ")" + " : " + Constants.ROOMS.get(this.rightSensor) + "\n");
+    str.append(
+        "* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + Constants.ROOMS.get(this.leftSensor) + "\n");
+    str.append(
+        "* Sensor Derecha: " + "(" + this.rightSensor + ")" + " : " + Constants.ROOMS.get(this.rightSensor) + "\n");
 
     return str.toString();
   }
