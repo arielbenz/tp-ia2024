@@ -8,8 +8,10 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 public class Sabotage extends SearchAction {
+
   /**
-   * See comments in the Eat class.
+   * This method updates a tree node state when the search process is running.
+   * It does not updates the real world state.
    */
   @Override
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
@@ -18,7 +20,7 @@ public class Sabotage extends SearchAction {
     int pos = impostorState.getPosition();
 
     /*
-     * The 'Fight' action can be selected only if there is an enemy in
+     * The 'Sabotage' action can be selected only if there is a sabotage room in
      * the current position. Otherwise return 'null'.
      */
 
@@ -26,7 +28,7 @@ public class Sabotage extends SearchAction {
 
     boolean isSabotageRoom = false;
 
-    for (int i = 0; i <= sabotageRooms.length; i++) {
+    for (int i = 0; i < sabotageRooms.length; i++) {
       if (sabotageRooms[i] == pos) {
         isSabotageRoom = true;
       }
@@ -43,7 +45,7 @@ public class Sabotage extends SearchAction {
   }
 
   /**
-   * See comments in the Eat class.
+   * This method updates the agent state and the real world state.
    */
   @Override
   public EnvironmentState execute(AgentState ast, EnvironmentState est) {
@@ -60,7 +62,7 @@ public class Sabotage extends SearchAction {
   }
 
   /**
-   * See comments in the Eat class.
+   * This method returns the action cost.
    */
   @Override
   public Double getCost() {
@@ -68,7 +70,8 @@ public class Sabotage extends SearchAction {
   }
 
   /**
-   * See comments in the Eat class.
+   * This method is not important for a search based agent, but is essensial
+   * when creating a calculus based one.
    */
   @Override
   public String toString() {

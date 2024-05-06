@@ -2,6 +2,17 @@ package frsf.cidisi.faia.examples.search.impostor;
 
 import frsf.cidisi.faia.agent.Perception;
 
+import frsf.cidisi.faia.examples.search.impostor.actions.EliminateCrew;
+import frsf.cidisi.faia.examples.search.impostor.actions.Sabotage;
+import frsf.cidisi.faia.examples.search.impostor.actions.GoLeft;
+import frsf.cidisi.faia.examples.search.impostor.actions.GoUp;
+import frsf.cidisi.faia.examples.search.impostor.actions.GoRight;
+import frsf.cidisi.faia.examples.search.impostor.actions.GoDown;
+
+import java.util.Vector;
+
+import frsf.cidisi.faia.agent.search.Problem;
+import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.solver.search.*;
@@ -16,7 +27,7 @@ public class ImpostorAgent extends SearchBasedAgent {
 
       // The Impostor Agent State
       ImpostorAgentState impostorState = new ImpostorAgentState();
-      this.setImpostorState(impostorState);
+      this.setAgentState(impostorState);
 
       // Create the operators
       Vector<SearchAction> operators = new Vector<SearchAction>();

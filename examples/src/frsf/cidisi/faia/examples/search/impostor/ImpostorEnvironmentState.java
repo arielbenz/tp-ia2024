@@ -29,7 +29,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
     // Sets all positions as empty
     for (int row = 0; row < ship.length; row++) {
-      for (int col = 0; col < ship.length; col++) {
+      for (int col = 0; col < ship[row].length; col++) {
         ship[row][col] = ImpostorPerception.EMPTY_PERCEPTION;
       }
     }
@@ -93,7 +93,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     str = str + "NAVE=[ \n";
     for (int row = 0; row < ship.length; row++) {
       str = str + "[ ";
-      for (int col = 0; col < ship.length; col++) {
+      for (int col = 0; col < ship[row].length; col++) {
         str = str + ship[row][col] + " ";
       }
       str = str + " ]\n";

@@ -2,14 +2,12 @@ package frsf.cidisi.faia.examples.search.impostor;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanPerception;
 
 /**
  * Represent the internal state of the Impostor.
  */
 public class ImpostorAgentState extends SearchBasedAgentState {
   private int position;
-  private int initialPosition;
   private int energy;
 
   private int[] sabotageRooms; // Array of 1 positions
@@ -21,7 +19,6 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public ImpostorAgentState(int e, int[] crew, int pos, int[] sabRooms, int[] orientation) {
     crewPerRoom = crew;
     position = pos;
-    initialPosition = 1;
     sabotageRooms = sabRooms;
     energy = e;
     impostorOrientation = orientation;
@@ -63,21 +60,24 @@ public class ImpostorAgentState extends SearchBasedAgentState {
    */
   @Override
   public SearchBasedAgentState clone() {
-	  
-    int[] newCrewPerRoom = new int[5]; //esta es fija no cambia por ahora
-    for (int row = 0; row < CrewPerRoom.length; row++) { // [UP, DO, LE, RI]
-    	newCrewPerRoom [row] = CrewPerRoom[row];
+
+    int[] newCrewPerRoom = new int[5]; // esta es fija no cambia por ahora
+    for (int row = 0; row < crewPerRoom.length; row++) { // [UP, DO, LE, RI]
+      newCrewPerRoom[row] = crewPerRoom[row];
     }
-    
-    int[] newimpostorOrientation = new int[4]; // la orientacion cambia segun la posicion del agente
+
+    int[] newImpostorOrientation = new int[4]; // la orientacion cambia segun la posicion del agente
     for (int col = 0; col < 4; col++) { // [UP, DO, LE, RI]
-    	newimpostorOrientation[col] = impostorOrientation[col];
+      newImpostorOrientation[col] = impostorOrientation[col];
     }
 
-    int newPosition = position;
+    int[] newSabotageRooms = new int[1];
+    for (int i = 0; i < sabotageRooms.length; i++) { // [UP, DO, LE, RI]
+      newSabotageRooms[i] = sabotageRooms[i];
+    }
 
-    ImpostorAgentState newState = new ImpostorAgentState(newimpostorOrientation, newCrewPerRoom,
-        this.getPosition(,)this.energy );
+    ImpostorAgentState newState = new ImpostorAgentState(this.energy, newCrewPerRoom, this.getPosition(),
+        newSabotageRooms, newImpostorOrientation);
 
     return newState;
   }
@@ -138,25 +138,27 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     if (!(obj instanceof ImpostorAgentState))
       return false;
 
-    //int[][] worldObj = ((ImpostorAgentState) obj).getWorld();
+    // int[][] worldObj = ((ImpostorAgentState) obj).getWorld();
     // int positionObj = ((ImpostorAgentState) obj).getPosition();
-    
-    int[] impostorOrientationObj = ((ImpostorAgentState) obj).getImpostorOrientation(position);
+
+    int impostorOrientationObj = ((ImpostorAgentState) obj).getImpostorOrientation(position);
     int positionObj = ((ImpostorAgentState) obj).getPosition();
 
-   /* for (int row = 0; row < world.length; row++) {
-      if (world[row][col] != worldObj[row][col]) {
-        return false;
-      }
-    } */
+    /*
+     * for (int row = 0; row < world.length; row++) {
+     * if (world[row][col] != worldObj[row][col]) {
+     * return false;
+     * }
+     * }
+     */
 
     for (int row = 0; row < impostorOrientation.length; row++) {
-        if (impostorOrientation[row] != impostorOrientationObj[row]) {
-          return false;
-        }
+      if (impostorOrientation[row] != impostorOrientationObj) {
+        return false;
+      }
     }
-    
-    //if (position[0] != positionObj[0] || position[1] != positionObj[1]) {
+
+    // if (position[0] != positionObj[0] || position[1] != positionObj[1]) {
     if (position != positionObj) {
       return false;
     }

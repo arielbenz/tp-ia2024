@@ -8,6 +8,10 @@ import frsf.cidisi.faia.state.EnvironmentState;
 
 public class GoDown extends SearchAction {
 
+  /**
+   * This method updates a tree node state when the search process is running.
+   * It does not updates the real world state.
+   */
   @Override
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
 
@@ -25,7 +29,7 @@ public class GoDown extends SearchAction {
   }
 
   /**
-   * See comments in the Eat class.
+   * This method updates the agent state and the real world state.
    */
   @Override
   public EnvironmentState execute(AgentState ast, EnvironmentState est) {
@@ -41,7 +45,7 @@ public class GoDown extends SearchAction {
   }
 
   /**
-   * See comments in the Eat class.
+   * This method returns the action cost.
    */
   @Override
   public Double getCost() {
@@ -49,7 +53,8 @@ public class GoDown extends SearchAction {
   }
 
   /**
-   * See comments in the Eat class.
+   * This method is not important for a search based agent, but is essensial
+   * when creating a calculus based one.
    */
   @Override
   public String toString() {
