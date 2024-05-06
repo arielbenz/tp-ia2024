@@ -46,11 +46,9 @@ public class Sabotage extends SearchAction {
 
       //TODO - send new sabotage rooms array
       impostorState.setSabotageRooms(new int[] {});
-
-      return impostorState;
     }
 
-    return null;
+    return impostorState;
   }
 
   /**
@@ -64,10 +62,9 @@ public class Sabotage extends SearchAction {
     if ((environmentState.getTotalCrew() > 0) && (environmentState.getAgentEnergy() > 0)) {
       // environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - Constants.Q_CONSUME_ENERGY);
-      return environmentState;
     }
 
-    return null;
+    return environmentState;
   }
 
   /**

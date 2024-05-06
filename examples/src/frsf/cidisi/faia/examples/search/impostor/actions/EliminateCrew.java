@@ -21,7 +21,7 @@ public class EliminateCrew extends SearchAction {
 
     int pos = impostorState.getPosition();
 
-    System.out.println("-- Eliminate Action -- Agent pos: " + pos);
+    System.out.println("\n-- Eliminate Action -- Agent pos: " + pos);
 
     /*
      * The 'EliminateCrew' action can be selected only if there is a crew member in
@@ -29,10 +29,16 @@ public class EliminateCrew extends SearchAction {
      */
     if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
       impostorState.setCrewPerRoom(pos);
-      return impostorState;
+
+      System.out.println("-- CrewPerRoom[0]: " + impostorState.getCrewPerRoom(0));
+      System.out.println("-- CrewPerRoom[1]: " + impostorState.getCrewPerRoom(1));
+      System.out.println("-- CrewPerRoom[2]: " + impostorState.getCrewPerRoom(2));
+      System.out.println("-- CrewPerRoom[3]: " + impostorState.getCrewPerRoom(3));
+      System.out.println("-- CrewPerRoom[4]: " + impostorState.getCrewPerRoom(4));
+
     }
 
-    return null;
+    return impostorState;
   }
 
   /**
@@ -46,10 +52,9 @@ public class EliminateCrew extends SearchAction {
     if ((environmentState.getTotalCrew() > 0) && (environmentState.getAgentEnergy() > 0)) {
       environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - Constants.Q_CONSUME_ENERGY);
-      return environmentState;
     }
 
-    return null;
+    return environmentState;
   }
 
   /**

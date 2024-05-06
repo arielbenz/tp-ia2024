@@ -28,6 +28,8 @@ public class GoUp extends SearchAction {
         && impostorState.getImpostorOrientation(Constants.UP) != Constants.WALL) {
       impostorState.setPosition(impostorState.getImpostorOrientation(Constants.UP));
       impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
+
+      System.out.println("-- MOVE TO: " + impostorState.getPosition());
     }
 
     return impostorState;
