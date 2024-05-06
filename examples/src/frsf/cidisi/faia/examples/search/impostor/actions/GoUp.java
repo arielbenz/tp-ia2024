@@ -20,15 +20,26 @@ public class GoUp extends SearchAction {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
     int pos = impostorState.getPosition();
-    
+
     System.out.println("-- Go Up Action -- Agent pos: " + pos);
+
+    int upPosition = impostorState.getImpostorOrientation(Constants.UP);
 
     /* The agent can always go up */
     if (impostorState.getEnergy() > 0
         && impostorState.getImpostorOrientation(Constants.UP) != Constants.WALL) {
-      impostorState.setPosition(impostorState.getImpostorOrientation(Constants.UP));
-      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
 
+      System.out.println("-- UP POSITION: " + upPosition);
+
+      int[] newOrientation = new int[] { Constants.getShipPosition(pos, 0),
+          Constants.getShipPosition(pos, 1), Constants.getShipPosition(pos, 2),
+          Constants.getShipPosition(pos, 3) };
+
+      impostorState.setImpostorOrientation(newOrientation);
+      impostorState.setPosition(upPosition);
+      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
+      
+      System.out.println("-- ENERGY: " + impostorState.getEnergy());
       System.out.println("-- MOVE TO: " + impostorState.getPosition());
     }
 
@@ -44,6 +55,14 @@ public class GoUp extends SearchAction {
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
     int pos = environmentState.getAgentPosition();
+
+    int[] newOrientation = new int[] { Constants.getShipPosition(pos, 0),
+      Constants.getShipPosition(pos, 1), Constants.getShipPosition(pos, 2),
+      Constants.getShipPosition(pos, 3) };
+
+    impostorState.setImpostorOrientation(newOrientation);
+
+    System.out.println("-- ENERGY: " + impostorState.getEnergy());
 
     impostorState.setPosition(pos);
     environmentState.setAgentPosition(pos);

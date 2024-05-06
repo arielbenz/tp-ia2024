@@ -152,6 +152,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     return impostorOrientation;
   }
 
+  public void setImpostorOrientation(int[] orientation) {
+    this.impostorOrientation = orientation;
+  }
+
   public int getPosition() {
     return position;
   }

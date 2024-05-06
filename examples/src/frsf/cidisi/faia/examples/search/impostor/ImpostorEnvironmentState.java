@@ -30,34 +30,34 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     /* Init rooms structure of the ship. */
 
     // Upper Engine = 0
-    ship[Constants.ROOM_UPPER_ENGINE][Constants.UP] = Constants.WALL;
-    ship[Constants.ROOM_UPPER_ENGINE][Constants.DOWN] = Constants.HALL_F;
-    ship[Constants.ROOM_UPPER_ENGINE][Constants.LEFT] = Constants.WALL;
-    ship[Constants.ROOM_UPPER_ENGINE][Constants.RIGHT] = Constants.WALL;
+    // ship[Constants.ROOM_UPPER_ENGINE][Constants.UP] = Constants.WALL;
+    // ship[Constants.ROOM_UPPER_ENGINE][Constants.DOWN] = Constants.HALL_F;
+    // ship[Constants.ROOM_UPPER_ENGINE][Constants.LEFT] = Constants.WALL;
+    // ship[Constants.ROOM_UPPER_ENGINE][Constants.RIGHT] = Constants.WALL;
 
-    // Security = 1
-    ship[Constants.ROOM_SECURITY][Constants.UP] = Constants.WALL;
-    ship[Constants.ROOM_SECURITY][Constants.DOWN] = Constants.WALL;
-    ship[Constants.ROOM_SECURITY][Constants.LEFT] = Constants.HALL_F;
-    ship[Constants.ROOM_SECURITY][Constants.RIGHT] = Constants.WALL;
+    // // Security = 1
+    // ship[Constants.ROOM_SECURITY][Constants.UP] = Constants.WALL;
+    // ship[Constants.ROOM_SECURITY][Constants.DOWN] = Constants.WALL;
+    // ship[Constants.ROOM_SECURITY][Constants.LEFT] = Constants.HALL_F;
+    // ship[Constants.ROOM_SECURITY][Constants.RIGHT] = Constants.WALL;
 
-    // Lower Engine = 2
-    ship[Constants.ROOM_LOWER_ENGINE][Constants.UP] = Constants.HALL_F;
-    ship[Constants.ROOM_LOWER_ENGINE][Constants.DOWN] = Constants.WALL;
-    ship[Constants.ROOM_LOWER_ENGINE][Constants.LEFT] = Constants.WALL;
-    ship[Constants.ROOM_LOWER_ENGINE][Constants.RIGHT] = Constants.WALL;
+    // // Lower Engine = 2
+    // ship[Constants.ROOM_LOWER_ENGINE][Constants.UP] = Constants.HALL_F;
+    // ship[Constants.ROOM_LOWER_ENGINE][Constants.DOWN] = Constants.WALL;
+    // ship[Constants.ROOM_LOWER_ENGINE][Constants.LEFT] = Constants.WALL;
+    // ship[Constants.ROOM_LOWER_ENGINE][Constants.RIGHT] = Constants.WALL;
 
-    // Reactor = 3
-    ship[Constants.ROOM_REACTOR][Constants.UP] = Constants.WALL;
-    ship[Constants.ROOM_REACTOR][Constants.DOWN] = Constants.WALL;
-    ship[Constants.ROOM_REACTOR][Constants.LEFT] = Constants.WALL;
-    ship[Constants.ROOM_REACTOR][Constants.RIGHT] = Constants.HALL_F;
+    // // Reactor = 3
+    // ship[Constants.ROOM_REACTOR][Constants.UP] = Constants.WALL;
+    // ship[Constants.ROOM_REACTOR][Constants.DOWN] = Constants.WALL;
+    // ship[Constants.ROOM_REACTOR][Constants.LEFT] = Constants.WALL;
+    // ship[Constants.ROOM_REACTOR][Constants.RIGHT] = Constants.HALL_F;
 
-    // Hall F = 4
-    ship[Constants.HALL_F][Constants.UP] = Constants.ROOM_UPPER_ENGINE;
-    ship[Constants.HALL_F][Constants.DOWN] = Constants.ROOM_LOWER_ENGINE;
-    ship[Constants.HALL_F][Constants.LEFT] = Constants.ROOM_REACTOR;
-    ship[Constants.HALL_F][Constants.RIGHT] = Constants.ROOM_SECURITY;
+    // // Hall F = 4
+    // ship[Constants.HALL_F][Constants.UP] = Constants.ROOM_UPPER_ENGINE;
+    // ship[Constants.HALL_F][Constants.DOWN] = Constants.ROOM_LOWER_ENGINE;
+    // ship[Constants.HALL_F][Constants.LEFT] = Constants.ROOM_REACTOR;
+    // ship[Constants.HALL_F][Constants.RIGHT] = Constants.ROOM_SECURITY;
 
     ////////////////////////////////
     // Initial Orientation matriz //

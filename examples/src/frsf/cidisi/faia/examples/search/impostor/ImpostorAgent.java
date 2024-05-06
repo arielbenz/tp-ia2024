@@ -59,7 +59,7 @@ public class ImpostorAgent extends SearchBasedAgent {
      * Generate an XML file with the search tree. It can also be generated
      * in other formats like PDF with PDF_TREE
      */
-    searchSolver.setVisibleTree(Search.EFAIA_TREE);
+    searchSolver.setVisibleTree(Search.XML_TREE);
 
     // Set the Search searchSolver.
     this.setSolver(searchSolver);
@@ -68,7 +68,6 @@ public class ImpostorAgent extends SearchBasedAgent {
     Action selectedAction = null;
     try {
       selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
-      System.out.println("selectedAction: " + selectedAction);
     } catch (Exception ex) {
       Logger.getLogger(ImpostorAgent.class.getName()).log(Level.SEVERE, null, ex);
     }

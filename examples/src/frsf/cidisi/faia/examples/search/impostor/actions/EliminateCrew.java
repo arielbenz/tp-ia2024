@@ -48,8 +48,12 @@ public class EliminateCrew extends SearchAction {
   public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
+    ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
     if ((environmentState.getTotalCrew() > 0) && (environmentState.getAgentEnergy() > 0)) {
+      int pos = impostorState.getPosition();
+      impostorState.setCrewPerRoom(pos);
+      
       environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - Constants.Q_CONSUME_ENERGY);
     }

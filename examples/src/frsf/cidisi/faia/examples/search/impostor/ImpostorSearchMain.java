@@ -6,6 +6,9 @@ import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 public class ImpostorSearchMain {
 
   public static void main(String[] args) throws PrologConnectorException {
+
+    Constants constan = new Constants();
+
     ImpostorAgent impostorAgent = new ImpostorAgent();
 
     ImpostorEnvironment impostorEnvironment = new ImpostorEnvironment();
