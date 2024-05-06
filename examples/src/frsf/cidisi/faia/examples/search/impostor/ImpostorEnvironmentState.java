@@ -36,51 +36,51 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
     /* Set rooms structure of the ship. */
 
-    // Lower Engine
-    ship[0][0] = ImpostorPerception.HALL_F; // Arriba
-    ship[0][1] = ImpostorPerception.WALL; // Abajo
-    ship[0][2] = ImpostorPerception.WALL; // Izquierda
-    ship[0][3] = ImpostorPerception.WALL; // Derecha
+    // Upper Engine = 0
+    ship[Constants.ROOM_UPPER_ENGINE][Constants.UP] = Constants.WALL;
+    ship[Constants.ROOM_UPPER_ENGINE][Constants.DOWN] = Constants.HALL_F;
+    ship[Constants.ROOM_UPPER_ENGINE][Constants.LEFT] = Constants.WALL;
+    ship[Constants.ROOM_UPPER_ENGINE][Constants.RIGHT] = Constants.WALL;
 
-    // Security
-    ship[1][0] = ImpostorPerception.WALL;
-    ship[1][1] = ImpostorPerception.WALL;
-    ship[1][2] = ImpostorPerception.HALL_F;
-    ship[1][3] = ImpostorPerception.WALL;
+    // Security = 1
+    ship[Constants.ROOM_SECURITY][Constants.UP] = Constants.WALL;
+    ship[Constants.ROOM_SECURITY][Constants.DOWN] = Constants.WALL;
+    ship[Constants.ROOM_SECURITY][Constants.LEFT] = Constants.HALL_F;
+    ship[Constants.ROOM_SECURITY][Constants.RIGHT] = Constants.WALL;
 
-    // Reactor
-    ship[2][0] = ImpostorPerception.WALL;
-    ship[2][1] = ImpostorPerception.WALL;
-    ship[2][2] = ImpostorPerception.WALL;
-    ship[2][3] = ImpostorPerception.HALL_F;
+    // Lower Engine = 2
+    ship[Constants.ROOM_LOWER_ENGINE][Constants.UP] = Constants.HALL_F;
+    ship[Constants.ROOM_LOWER_ENGINE][Constants.DOWN] = Constants.WALL;
+    ship[Constants.ROOM_LOWER_ENGINE][Constants.LEFT] = Constants.WALL;
+    ship[Constants.ROOM_LOWER_ENGINE][Constants.RIGHT] = Constants.WALL;
 
-    // Upper Engine
-    ship[3][0] = ImpostorPerception.WALL;
-    ship[3][1] = ImpostorPerception.HALL_F;
-    ship[3][2] = ImpostorPerception.WALL;
-    ship[3][3] = ImpostorPerception.WALL;
+    // Reactor = 3
+    ship[Constants.ROOM_REACTOR][Constants.UP] = Constants.WALL;
+    ship[Constants.ROOM_REACTOR][Constants.DOWN] = Constants.WALL;
+    ship[Constants.ROOM_REACTOR][Constants.LEFT] = Constants.WALL;
+    ship[Constants.ROOM_REACTOR][Constants.RIGHT] = Constants.HALL_F;
 
-    // Hall F
-    ship[4][0] = ImpostorPerception.ROOM_UPPER_ENGINE;
-    ship[4][1] = ImpostorPerception.ROOM_LOWER_ENGINE;
-    ship[4][2] = ImpostorPerception.ROOM_REACTOR;
-    ship[4][3] = ImpostorPerception.ROOM_SECURITY;
+    // Hall F = 4
+    ship[Constants.HALL_F][Constants.UP] = Constants.ROOM_UPPER_ENGINE;
+    ship[Constants.HALL_F][Constants.DOWN] = Constants.ROOM_LOWER_ENGINE;
+    ship[Constants.HALL_F][Constants.LEFT] = Constants.ROOM_REACTOR;
+    ship[Constants.HALL_F][Constants.RIGHT] = Constants.ROOM_SECURITY;
 
     ////////////////////////
     // Orientation matriz //
     ////////////////////////
-    // [     UP  DO  LE  RI]
-    // [10] [20, -1, -1, -1]
-    // [11] [-1, -1, 20, -1]
-    // [12] [-1, -1, -1, 20]
-    // [13] [-1, 20, -1, -1]
-    // [20] [13, 10, 12, 11]
+    // [ UP DO LE RI]
+    // [0] [4, -1, -1, -1]
+    // [1] [-1, -1, 4, -1]
+    // [2] [-1, -1, -1, 4]
+    // [3] [-1, 4, -1, -1]
+    // [4] [0, 2, 3, 1]
     //
     ////////////////////////
 
-    this.setAgentPosition(1);
-    this.setAgentEnergy(50);
-    this.setTotalCrew(2);
+    this.setAgentPosition(Constants.ROOM_UPPER_ENGINE);
+    this.setAgentEnergy(Constants.START_ENERGY);
+    this.setTotalCrew(Constants.TOTAL_CREW);
   }
 
   /**
@@ -90,15 +90,15 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   public String toString() {
     String str = "";
 
-    str = str + "NAVE=[ \n";
+    str = str + "NAVE=( \n";
     for (int row = 0; row < ship.length; row++) {
-      str = str + "[ ";
+      str = str + "                   [ ";
       for (int col = 0; col < ship[row].length; col++) {
         str = str + ship[row][col] + " ";
       }
-      str = str + " ]\n";
+      str = str + "]\n";
     }
-    str = str + " ]";
+    str = str + ")";
 
     return str;
   }
@@ -137,19 +137,19 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.agentEnergy = agentEnergy;
   }
 
-  public int getTopPosition(int pos) {
-    return ship[pos][0];
+  public int getUpPosition(int pos) {
+    return ship[pos][Constants.UP];
   }
 
-  public int getBottomPosition(int pos) {
-    return ship[pos][1];
+  public int getDownPosition(int pos) {
+    return ship[pos][Constants.DOWN];
   }
 
   public int getLeftPosition(int pos) {
-    return ship[pos][2];
+    return ship[pos][Constants.LEFT];
   }
 
   public int getRightPosition(int pos) {
-    return ship[pos][3];
+    return ship[pos][Constants.RIGHT];
   }
 }

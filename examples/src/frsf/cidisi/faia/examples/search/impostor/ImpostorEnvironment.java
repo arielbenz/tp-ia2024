@@ -28,15 +28,14 @@ public class ImpostorEnvironment extends Environment {
     // Create a new perception to return
     ImpostorPerception perception = new ImpostorPerception();
 
-    // Get the actual position of the agent to be able to create the
-    // perception
+    // Get the actual position of the agent to be able to create the perception
     int pos = this.getEnvironmentState().getAgentPosition();
 
     // Set the perception sensors
-    perception.setTopSensor(this.getTopPosition(pos));
+    perception.setUpSensor(this.getUpPosition(pos));
     perception.setLeftSensor(this.getLeftPosition(pos));
     perception.setRightSensor(this.getRightPosition(pos));
-    perception.setBottomSensor(this.getBottomPosition(pos));
+    perception.setDownSensor(this.getDownPosition(pos));
 
     // Return the perception
     return perception;
@@ -64,8 +63,8 @@ public class ImpostorEnvironment extends Environment {
 
   // The following methods are Impostor-specific:
 
-  public int getTopPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getTopPosition(pos);
+  public int getUpPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getUpPosition(pos);
   }
 
   public int getLeftPosition(int pos) {
@@ -76,7 +75,7 @@ public class ImpostorEnvironment extends Environment {
     return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
   }
 
-  public int getBottomPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getBottomPosition(pos);
+  public int getDownPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getDownPosition(pos);
   }
 }

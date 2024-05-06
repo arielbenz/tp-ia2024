@@ -1,5 +1,6 @@
 package frsf.cidisi.faia.examples.search.impostor.actions;
 
+import frsf.cidisi.faia.examples.search.impostor.Constants;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorPerception;
@@ -18,12 +19,11 @@ public class GoLeft extends SearchAction {
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    int pos = impostorState.getPosition();
-
-    /* The agent can always go down */
-    if (impostorState.getEnergy() > 0 && impostorState.getImpostorOrientation(pos) != ImpostorPerception.WALL) {
-      impostorState.setPosition(impostorState.getImpostorOrientation(2));
-      impostorState.setEnergy(impostorState.getEnergy() - 1);
+    /* The agent can always go left */
+    if (impostorState.getEnergy() > 0
+        && impostorState.getImpostorOrientation(Constants.LEFT) != ImpostorPerception.WALL) {
+      impostorState.setPosition(impostorState.getImpostorOrientation(Constants.LEFT));
+      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
     }
 
     return impostorState;
