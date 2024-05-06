@@ -90,10 +90,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void updateState(Perception p) {
     ImpostorPerception impostorPerception = (ImpostorPerception) p;
 
-    impostorOrientation[0] = impostorPerception.getUpSensor();
-    impostorOrientation[1] = impostorPerception.getDownSensor();
-    impostorOrientation[2] = impostorPerception.getLeftSensor();
-    impostorOrientation[3] = impostorPerception.getRightSensor();
+    impostorOrientation[Constants.UP] = impostorPerception.getUpSensor();
+    impostorOrientation[Constants.DOWN] = impostorPerception.getDownSensor();
+    impostorOrientation[Constants.LEFT] = impostorPerception.getLeftSensor();
+    impostorOrientation[Constants.RIGHT] = impostorPerception.getRightSensor();
 
     energy = impostorPerception.getEnergy();
 
@@ -196,18 +196,14 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   public boolean isNoMoreSabotageRooms() {
-    for (int row = 0; row < sabotageRooms.length; row++) {
-      // if (sabotageRooms[row] == ImpostorPerception.ROOM_SABOTAGE_PERCEPTION) {
-      if (sabotageRooms[row] > 0) {
-        return false;
-      }
+    if(sabotageRooms.length == 0) {
+      return true;  
     }
-    return true;
+    return false;
   }
 
   public boolean isNoMoreCrewPerRoom() {
     for (int row = 0; row < crewPerRoom.length; row++) {
-      // if (crewPerRoom[row] == ImpostorPerception.CREW_PERCEPTION) {
       if (crewPerRoom[row] > 0) {
         return false;
       }

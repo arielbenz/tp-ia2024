@@ -40,6 +40,8 @@ public class Sabotage extends SearchAction {
 
     if (isSabotageRoom && (impostorState.getEnergy() > 0)) {
       impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
+
+      //TODO - send new sabotage rooms array
       impostorState.setSabotageRooms(new int[] {});
 
       return impostorState;
@@ -57,7 +59,7 @@ public class Sabotage extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
 
     if ((environmentState.getTotalCrew() > 0) && (environmentState.getAgentEnergy() > 0)) {
-      environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
+      // environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - Constants.Q_CONSUME_ENERGY);
       return environmentState;
     }

@@ -24,11 +24,8 @@ public class EliminateCrew extends SearchAction {
      * The 'EliminateCrew' action can be selected only if there is a crew member in
      * the current position. Otherwise return 'null'.
      */
-    if ((impostorState.getCrewPerRoom(pos) > 1) &&
-        (impostorState.getEnergy() > 0)) {
-
+    if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
       impostorState.setCrewPerRoom(pos);
-
       return impostorState;
     }
 

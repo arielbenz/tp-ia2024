@@ -7,8 +7,6 @@ import frsf.cidisi.faia.environment.Environment;
 public class ImpostorPerception extends Perception {
 
   public static int EMPTY_PERCEPTION = 0;
-  public static int CREW_PERCEPTION = 1;
-  public static int ROOM_SABOTAGE_PERCEPTION = 2;
 
   public static int WALL = -1;
 

@@ -27,14 +27,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   @Override
   public void initState() {
 
-    // Sets all positions as empty
-    for (int row = 0; row < ship.length; row++) {
-      for (int col = 0; col < ship[row].length; col++) {
-        ship[row][col] = ImpostorPerception.EMPTY_PERCEPTION;
-      }
-    }
-
-    /* Set rooms structure of the ship. */
+    /* Init rooms structure of the ship. */
 
     // Upper Engine = 0
     ship[Constants.ROOM_UPPER_ENGINE][Constants.UP] = Constants.WALL;
@@ -104,10 +97,6 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   }
 
   // The following methods are Impostor-specific:
-
-  public int[][] getShip() {
-    return ship;
-  }
 
   public void setShip(int row, int col, int value) {
     this.ship[row][col] = value;

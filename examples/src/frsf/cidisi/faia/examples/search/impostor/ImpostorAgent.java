@@ -68,11 +68,12 @@ public class ImpostorAgent extends SearchBasedAgent {
     Action selectedAction = null;
     try {
       selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
+      System.out.println("selectedAction: " + selectedAction);
     } catch (Exception ex) {
       Logger.getLogger(ImpostorAgent.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    System.out.println("selectedAction: " + selectedAction);
+    System.out.println("selectedAction 2: " + selectedAction);
 
     // Return the selected action
     return selectedAction;
