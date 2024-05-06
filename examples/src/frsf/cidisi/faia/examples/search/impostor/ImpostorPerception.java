@@ -6,31 +6,20 @@ import frsf.cidisi.faia.environment.Environment;
 
 public class ImpostorPerception extends Perception {
 
-  public static int UNKNOWN_PERCEPTION = -1;
   public static int EMPTY_PERCEPTION = 0;
   public static int CREW_PERCEPTION = 1;
   public static int ROOM_SABOTAGE_PERCEPTION = 2;
 
-  public static int ROOM_LOWER_ENGINE = 10;
-  public static int ROOM_SECURITY = 11;
-  public static int ROOM_REACTOR = 12;
-  public static int ROOM_UPPER_ENGINE = 13;
-  public static int HALL_F = 20;
   public static int WALL = -1;
-
-  public static int UP = 0;
-  public static int BOTTOM = 1;
-  public static int LEFT = 2;
-  public static int RIGHT = 3;
   
+  private int upSensor;
+  private int downSensor;
   private int leftSensor;
-  private int topSensor;
   private int rightSensor;
-  private int bottomSensor;
   private int energy;
 
   public ImpostorPerception() {
-    energy = 50;
+    energy = Constants.START_ENERGY;
   }
 
   public ImpostorPerception(Agent agent, Environment environment) {
@@ -47,10 +36,10 @@ public class ImpostorPerception extends Perception {
 
     int pos = environmentState.getAgentPosition();
 
-    this.setTopSensor(impostorEnvironment.getTopPosition(pos));
+    this.setUpSensor(impostorEnvironment.getUpPosition(pos));
     this.setLeftSensor(impostorEnvironment.getLeftPosition(pos));
     this.setRightSensor(impostorEnvironment.getRightPosition(pos));
-    this.setBottomSensor(impostorEnvironment.getBottomPosition(pos));
+    this.setDownSensor(impostorEnvironment.getDownPosition(pos));
   }
 
   // The following methods are Impostor-specific:
@@ -63,12 +52,12 @@ public class ImpostorPerception extends Perception {
     this.leftSensor = leftSensor;
   }
 
-  public int getTopSensor() {
-    return topSensor;
+  public int getUpSensor() {
+    return upSensor;
   }
 
-  public void setTopSensor(int topSensor) {
-    this.topSensor = topSensor;
+  public void setUpSensor(int upSensor) {
+    this.upSensor = upSensor;
   }
 
   public int getRightSensor() {
@@ -79,12 +68,12 @@ public class ImpostorPerception extends Perception {
     this.rightSensor = rightSensor;
   }
 
-  public int getBottomSensor() {
-    return bottomSensor;
+  public int getDownSensor() {
+    return downSensor;
   }
 
-  public void setBottomSensor(int bottomSensor) {
-    this.bottomSensor = bottomSensor;
+  public void setDownSensor(int downSensor) {
+    this.downSensor = downSensor;
   }
 
   public int getEnergy() {
@@ -99,15 +88,11 @@ public class ImpostorPerception extends Perception {
   public String toString() {
     StringBuffer str = new StringBuffer();
 
-    str.append("Energia: " + this.energy);
-    str.append("; ");
-    str.append("Sensor Izquierda: " + this.leftSensor);
-    str.append("; ");
-    str.append("Sensor Arriba: " + this.topSensor);
-    str.append("; ");
-    str.append("Sensor Derecha: " + this.rightSensor);
-    str.append("; ");
-    str.append("Sensor Abajo: " + this.bottomSensor);
+    str.append("\n" + "* Energía: " + this.energy + ";\n");
+    str.append("* Sensor Arriba: " + this.upSensor + ";\n");
+    str.append("* Sensor Abajo: " + this.downSensor + ";\n");
+    str.append("* Sensor Izquierda: " + this.leftSensor + ";\n");
+    str.append("* Sensor Derecha: " + this.rightSensor + ";\n");
 
     return str.toString();
   }

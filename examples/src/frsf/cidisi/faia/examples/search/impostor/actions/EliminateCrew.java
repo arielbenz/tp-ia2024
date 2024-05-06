@@ -2,6 +2,7 @@ package frsf.cidisi.faia.examples.search.impostor.actions;
 
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+import frsf.cidisi.faia.examples.search.impostor.Constants;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -44,7 +45,7 @@ public class EliminateCrew extends SearchAction {
 
     if ((environmentState.getTotalCrew() > 0) && (environmentState.getAgentEnergy() > 0)) {
       environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - 1);
+      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - Constants.Q_CONSUME_ENERGY);
       return environmentState;
     }
 

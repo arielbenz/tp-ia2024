@@ -33,10 +33,10 @@ public class ImpostorAgent extends SearchBasedAgent {
       Vector<SearchAction> operators = new Vector<SearchAction>();
       operators.addElement(new EliminateCrew());
       operators.addElement(new Sabotage());
-      operators.addElement(new GoLeft());
       operators.addElement(new GoUp());
-      operators.addElement(new GoRight());
       operators.addElement(new GoDown());
+      operators.addElement(new GoLeft());
+      operators.addElement(new GoRight());
 
       // Create the Problem which the Impostor will resolve
       Problem problem = new Problem(goal, impostorState, operators);
@@ -71,6 +71,8 @@ public class ImpostorAgent extends SearchBasedAgent {
     } catch (Exception ex) {
       Logger.getLogger(ImpostorAgent.class.getName()).log(Level.SEVERE, null, ex);
     }
+
+    System.out.println("selectedAction: " + selectedAction);
 
     // Return the selected action
     return selectedAction;

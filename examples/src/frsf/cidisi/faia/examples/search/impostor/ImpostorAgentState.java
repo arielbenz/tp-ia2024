@@ -28,7 +28,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     crewPerRoom = new int[5];
     sabotageRooms = new int[1];
     impostorOrientation = new int[4];
-    position = 2;
+    position = Constants.ROOM_UPPER_ENGINE;
     energy = 0;
     this.initState();
   }
@@ -47,10 +47,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     // }
 
     crewPerRoom = new int[] { 0, 1, 1, 0, 0 };
-    sabotageRooms = new int[] { 12 };
+    sabotageRooms = new int[] { Constants.ROOM_REACTOR };
 
-    this.setPosition(1);
-    this.setEnergy(100);
+    this.setPosition(Constants.ROOM_UPPER_ENGINE);
+    this.setEnergy(Constants.START_ENERGY);
   }
 
   /**
@@ -67,7 +67,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     }
 
     int[] newImpostorOrientation = new int[4]; // la orientacion cambia segun la posicion del agente
-    for (int col = 0; col < 4; col++) { // [UP, DO, LE, RI]
+    for (int col = 0; col < impostorOrientation.length; col++) { // [UP, DO, LE, RI]
       newImpostorOrientation[col] = impostorOrientation[col];
     }
 
@@ -76,7 +76,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       newSabotageRooms[i] = sabotageRooms[i];
     }
 
-    ImpostorAgentState newState = new ImpostorAgentState(this.energy, newCrewPerRoom, this.getPosition(),
+    ImpostorAgentState newState = new ImpostorAgentState(this.energy, newCrewPerRoom, this.position,
         newSabotageRooms, newImpostorOrientation);
 
     return newState;
@@ -90,8 +90,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void updateState(Perception p) {
     ImpostorPerception impostorPerception = (ImpostorPerception) p;
 
-    impostorOrientation[0] = impostorPerception.getTopSensor();
-    impostorOrientation[1] = impostorPerception.getBottomSensor();
+    impostorOrientation[0] = impostorPerception.getUpSensor();
+    impostorOrientation[1] = impostorPerception.getDownSensor();
     impostorOrientation[2] = impostorPerception.getLeftSensor();
     impostorOrientation[3] = impostorPerception.getRightSensor();
 
@@ -110,20 +110,20 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public String toString() {
     String str = "";
 
-    str = str + " posicion=\"(" + getPosition() + ")\"";
-    str = str + " energia=\"" + energy + "\"\n";
+    str = str + "\n\n* Posición=\"(" + getPosition() + ")\"";
+    str = str + "\n* Energía=\"" + energy + "\"\n";
 
-    str = str + "ORIENTACION EN NAVE DEL IMPOSTOR=\"[ \n";
+    str = str + "\nORIENTACIÓN EN NAVE DEL IMPOSTOR=\"( ";
     for (int row = 0; row < impostorOrientation.length; row++) {
       str = str + "[ ";
-      if (impostorOrientation[row] == -1) {
+      if (impostorOrientation[row] == ImpostorPerception.WALL) {
         str = str + "* ";
       } else {
         str = str + impostorOrientation[row] + " ";
       }
-      str = str + " ]\n";
+      str = str + "]";
     }
-    str = str + " ]\"";
+    str = str + " )\"\n";
 
     return str;
   }
@@ -131,34 +131,21 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   /**
    * This method is used in the search process to verify if the node already
    * exists in the actual search.
-   * VEEER BIEN METODO EQUALS !!
    */
   @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof ImpostorAgentState))
       return false;
 
-    // int[][] worldObj = ((ImpostorAgentState) obj).getWorld();
-    // int positionObj = ((ImpostorAgentState) obj).getPosition();
-
-    int impostorOrientationObj = ((ImpostorAgentState) obj).getImpostorOrientation(position);
+    int[] impostorOrientationObj = ((ImpostorAgentState) obj).getImpostorOrientation();
     int positionObj = ((ImpostorAgentState) obj).getPosition();
 
-    /*
-     * for (int row = 0; row < world.length; row++) {
-     * if (world[row][col] != worldObj[row][col]) {
-     * return false;
-     * }
-     * }
-     */
-
     for (int row = 0; row < impostorOrientation.length; row++) {
-      if (impostorOrientation[row] != impostorOrientationObj) {
+      if (impostorOrientation[row] != impostorOrientationObj[row]) {
         return false;
       }
     }
 
-    // if (position[0] != positionObj[0] || position[1] != positionObj[1]) {
     if (position != positionObj) {
       return false;
     }
@@ -167,22 +154,13 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   // The following methods are Impostor-specific:
-  // el agente no lo tiene definido como estador ver si hay que borrar esto
 
-  // public int[][] getShip() {
-  // return ship;
-  // }
+  public int getImpostorOrientation(int orientation) {
+    return impostorOrientation[orientation];
+  }
 
-  // public int getShipPosition(int row, int col) {
-  // return ship[row][col];
-  // }
-
-  // public void setShipPosition(int row, int col, int value) {
-  // this.ship[row][col] = value;
-  // }
-
-  public int getImpostorOrientation(int pos) {
-    return impostorOrientation[pos];
+  public int[] getImpostorOrientation() {
+    return impostorOrientation;
   }
 
   public int getPosition() {
@@ -217,49 +195,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     this.crewPerRoom[pos] = crewPerRoom[pos] - 1;
   }
 
-  // public boolean isAllShipKnown() {
-  // for (int row = 0; row < ship.length; row++) {
-  // for (int col = 0; col < ship.length; col++) {
-  // if (ship[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
-  // return false;
-  // }
-  // }
-  // }
-
-  // return true;
-  // }
-
-  // public int getUnknownCellsCount() {
-  // int result = 0;
-
-  // for (int row = 0; row < world.length; row++) {
-  // for (int col = 0; col < world.length; col++) {
-  // if (world[row][col] == ImpostorPerception.UNKNOWN_PERCEPTION) {
-  // result++;
-  // }
-  // }
-  // }
-
-  // return result;
-  // }
-
-  // public int getRemainingFoodCount() {
-  // int result = 0;
-
-  // for (int row = 0; row < world.length; row++) {
-  // for (int col = 0; col < world.length; col++) {
-  // if (world[row][col] == ImpostorPerception.FOOD_PERCEPTION) {
-  // result++;
-  // }
-  // }
-  // }
-
-  // return result;
-  // }
-
   public boolean isNoMoreSabotageRooms() {
     for (int row = 0; row < sabotageRooms.length; row++) {
-      if (sabotageRooms[row] == ImpostorPerception.ROOM_SABOTAGE_PERCEPTION) {
+      // if (sabotageRooms[row] == ImpostorPerception.ROOM_SABOTAGE_PERCEPTION) {
+      if (sabotageRooms[row] > 0) {
         return false;
       }
     }
@@ -268,18 +207,11 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
   public boolean isNoMoreCrewPerRoom() {
     for (int row = 0; row < crewPerRoom.length; row++) {
-      if (crewPerRoom[row] == ImpostorPerception.CREW_PERCEPTION) {
+      // if (crewPerRoom[row] == ImpostorPerception.CREW_PERCEPTION) {
+      if (crewPerRoom[row] > 0) {
         return false;
       }
     }
     return true;
   }
-
-  // public int getVisitedCellsCount() {
-  // return visitedCells;
-  // }
-
-  // public void increaseVisitedCellsCount() {
-  // this.visitedCells = +20;
-  // }
 }

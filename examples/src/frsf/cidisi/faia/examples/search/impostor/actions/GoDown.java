@@ -17,12 +17,11 @@ public class GoDown extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    int pos = impostorState.getPosition();
-
     /* The agent can always go down */
-    if (impostorState.getEnergy() > 0 && impostorState.getImpostorOrientation(pos) != ImpostorPerception.WALL) {
-      impostorState.setPosition(impostorState.getImpostorOrientation(1));
-      impostorState.setEnergy(impostorState.getEnergy() - 1);
+    if (impostorState.getEnergy() > 0
+        && impostorState.getImpostorOrientation(Constants.DOWN) != ImpostorPerception.WALL) {
+      impostorState.setPosition(impostorState.getImpostorOrientation(Constants.DOWN));
+      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
     }
 
     return impostorState;
