@@ -33,8 +33,8 @@ public class ShipStructure {
   public static final int INITIAL_AGENT_ENERGY = 100;
   public static final int INITIAL_AGENT_POSITION = ROOM_LOWER_ENGINE;
   
-  public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 1, 0, 0, 0 };
-  public static final int INITIAL_TOTAL_CREW = 1;
+  public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 0, 0, 0, 0 };
+  public static final int INITIAL_TOTAL_CREW = 0;
   
   public static final int Q_CONSUME_ENERGY = 1;
 
