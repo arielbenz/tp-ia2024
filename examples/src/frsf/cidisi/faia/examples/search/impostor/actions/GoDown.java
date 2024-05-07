@@ -18,15 +18,19 @@ public class GoDown extends SearchAction {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
     int pos = impostorState.getPosition();
 
-    System.out.println("-- Go Down Action -- Agent pos: " + pos);
-
     /* The agent can always go down */
     if (impostorState.getEnergy() > 0
-        && impostorState.getImpostorOrientation(Constants.DOWN) != Constants.WALL) {
-      impostorState.setPosition(impostorState.getImpostorOrientation(Constants.DOWN));
-      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
+        && impostorState.getImpostorOrientation(ShipStructure.DOWN) != ShipStructure.WALL) {
+      impostorState.setPosition(impostorState.getImpostorOrientation(ShipStructure.DOWN));
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
 
-      System.out.println("-- MOVE TO: " + impostorState.getPosition());
+      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
+          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
+          ShipStructure.getShipPosition(pos, 3) };
+
+      impostorState.setImpostorOrientation(newOrientation);
+
+      System.out.println("-- Go Down Action - Agent pos: " + pos);
     }
 
     return impostorState;
@@ -42,8 +46,16 @@ public class GoDown extends SearchAction {
 
     int pos = environmentState.getAgentPosition();
 
-    impostorState.setPosition(pos);
-    environmentState.setAgentPosition(pos);
+    if (impostorState.getEnergy() > 0
+        && impostorState.getImpostorOrientation(ShipStructure.DOWN) != ShipStructure.WALL) {
+      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
+          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
+          ShipStructure.getShipPosition(pos, 3) };
+      impostorState.setImpostorOrientation(newOrientation);
+
+      impostorState.setPosition(pos);
+      environmentState.setAgentPosition(pos);
+    }
 
     return environmentState;
   }

@@ -1,6 +1,6 @@
 package frsf.cidisi.faia.examples.search.impostor.actions;
 
-import frsf.cidisi.faia.examples.search.impostor.Constants;
+import frsf.cidisi.faia.examples.search.impostor.ShipStructure;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -21,26 +21,21 @@ public class GoUp extends SearchAction {
 
     int pos = impostorState.getPosition();
 
-    System.out.println("-- Go Up Action -- Agent pos: " + pos);
-
-    int upPosition = impostorState.getImpostorOrientation(Constants.UP);
+    int upPosition = impostorState.getImpostorOrientation(ShipStructure.UP);
 
     /* The agent can always go up */
     if (impostorState.getEnergy() > 0
-        && impostorState.getImpostorOrientation(Constants.UP) != Constants.WALL) {
+        && impostorState.getImpostorOrientation(ShipStructure.UP) != ShipStructure.WALL) {
 
-      System.out.println("-- UP POSITION: " + upPosition);
-
-      int[] newOrientation = new int[] { Constants.getShipPosition(pos, 0),
-          Constants.getShipPosition(pos, 1), Constants.getShipPosition(pos, 2),
-          Constants.getShipPosition(pos, 3) };
+      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
+          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
+          ShipStructure.getShipPosition(pos, 3) };
 
       impostorState.setImpostorOrientation(newOrientation);
       impostorState.setPosition(upPosition);
-      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
-      
-      System.out.println("-- ENERGY: " + impostorState.getEnergy());
-      System.out.println("-- MOVE TO: " + impostorState.getPosition());
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+
+      System.out.println("-- Go Up Action - Agent pos: " + pos);
     }
 
     return impostorState;
@@ -56,16 +51,16 @@ public class GoUp extends SearchAction {
 
     int pos = environmentState.getAgentPosition();
 
-    int[] newOrientation = new int[] { Constants.getShipPosition(pos, 0),
-      Constants.getShipPosition(pos, 1), Constants.getShipPosition(pos, 2),
-      Constants.getShipPosition(pos, 3) };
+    if (impostorState.getEnergy() > 0
+        && impostorState.getImpostorOrientation(ShipStructure.UP) != ShipStructure.WALL) {
+      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
+          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
+          ShipStructure.getShipPosition(pos, 3) };
+      impostorState.setImpostorOrientation(newOrientation);
 
-    impostorState.setImpostorOrientation(newOrientation);
-
-    System.out.println("-- ENERGY: " + impostorState.getEnergy());
-
-    impostorState.setPosition(pos);
-    environmentState.setAgentPosition(pos);
+      impostorState.setPosition(pos);
+      environmentState.setAgentPosition(pos);
+    }
 
     return environmentState;
   }

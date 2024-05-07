@@ -2,7 +2,7 @@ package frsf.cidisi.faia.examples.search.impostor.actions;
 
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.examples.search.impostor.Constants;
+import frsf.cidisi.faia.examples.search.impostor.ShipStructure;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -19,36 +19,37 @@ public class Sabotage extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    int pos = impostorState.getPosition();
-
-    System.out.println("-- Sabotage Action -- Agent pos: " + pos);
-
     /*
      * The 'Sabotage' action can be selected only if there is a sabotage room in
      * the current position. Otherwise return 'null'.
      */
 
+    int pos = impostorState.getPosition();
     int[] sabotageRooms = impostorState.getSabotageRooms();
 
     boolean isSabotageRoom = false;
-    int[] newSabotageRooms = new int[] {};
 
-    for (int i = 0; i < sabotageRooms.length; i++) {
-      if (sabotageRooms[i] == pos) {
-        isSabotageRoom = true;
-      } else {
-        // newSabotageRooms[0] = sabotageRooms[i];
-      }
+    if (sabotageRooms[0] == pos) {
+      isSabotageRoom = true;
     }
+
+    // for (int i = 0; i < sabotageRooms.length; i++) {
+    // if (sabotageRooms[i] == pos) {
+    // isSabotageRoom = true;
+    // }
+    // }
 
     if (isSabotageRoom && (impostorState.getEnergy() > 0)) {
-      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      impostorState.setSabotageRooms(new int[0]);
+      
+      System.out.println("-- Sabotage Action - Agent pos: " + pos);
+      System.out.println("-- Sabotage rooms: " + impostorState.getSabotageRooms().length);
 
-      //TODO - send new sabotage rooms array
-      impostorState.setSabotageRooms(new int[] {});
+      return impostorState;
     }
 
-    return impostorState;
+    return null;
   }
 
   /**
@@ -57,14 +58,28 @@ public class Sabotage extends SearchAction {
   @Override
   public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
+    ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
 
-    if ((environmentState.getTotalCrew() > 0) && (environmentState.getAgentEnergy() > 0)) {
-      // TODO - remove room
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - Constants.Q_CONSUME_ENERGY);
+    int pos = impostorState.getPosition();
+    int[] sabotageRooms = impostorState.getSabotageRooms();
+
+    boolean isSabotageRoom = false;
+    if (sabotageRooms[0] == pos) {
+      isSabotageRoom = true;
     }
 
-    return environmentState;
+    if (isSabotageRoom && impostorState.getEnergy() > 0) {
+      impostorState.setSabotageRooms(new int[0]);
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+
+      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      environmentState.setSabotageRooms(new int[0]);
+
+      return environmentState;
+    }
+
+    return null;
   }
 
   /**

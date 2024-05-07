@@ -1,6 +1,6 @@
 package frsf.cidisi.faia.examples.search.impostor.actions;
 
-import frsf.cidisi.faia.examples.search.impostor.Constants;
+import frsf.cidisi.faia.examples.search.impostor.ShipStructure;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -20,15 +20,19 @@ public class GoLeft extends SearchAction {
 
     int pos = impostorState.getPosition();
 
-    System.out.println("-- Go Left Action -- Agent pos: " + pos);
-
     /* The agent can always go left */
     if (impostorState.getEnergy() > 0
-        && impostorState.getImpostorOrientation(Constants.LEFT) != Constants.WALL) {
-      impostorState.setPosition(impostorState.getImpostorOrientation(Constants.LEFT));
-      impostorState.setEnergy(impostorState.getEnergy() - Constants.Q_CONSUME_ENERGY);
+        && impostorState.getImpostorOrientation(ShipStructure.LEFT) != ShipStructure.WALL) {
+      impostorState.setPosition(impostorState.getImpostorOrientation(ShipStructure.LEFT));
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
 
-      System.out.println("-- MOVE TO: " + impostorState.getPosition());
+      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
+          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
+          ShipStructure.getShipPosition(pos, 3) };
+
+      impostorState.setImpostorOrientation(newOrientation);
+
+      System.out.println("-- Go Left Action - Agent pos: " + pos);
     }
 
     return impostorState;
@@ -44,8 +48,16 @@ public class GoLeft extends SearchAction {
 
     int pos = environmentState.getAgentPosition();
 
-    impostorState.setPosition(pos);
-    environmentState.setAgentPosition(pos);
+    if (impostorState.getEnergy() > 0
+        && impostorState.getImpostorOrientation(ShipStructure.LEFT) != ShipStructure.WALL) {
+      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
+          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
+          ShipStructure.getShipPosition(pos, 3) };
+      impostorState.setImpostorOrientation(newOrientation);
+
+      impostorState.setPosition(pos);
+      environmentState.setAgentPosition(pos);
+    }
 
     return environmentState;
   }

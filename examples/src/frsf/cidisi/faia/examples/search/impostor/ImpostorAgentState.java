@@ -7,7 +7,7 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
  * Represent the internal state of the Impostor.
  */
 public class ImpostorAgentState extends SearchBasedAgentState {
-  
+
   private int position;
   private int energy;
   private int[] sabotageRooms;
@@ -23,9 +23,9 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   public ImpostorAgentState() {
-    crewPerRoom = Constants.CREW_PER_ROOM;
-    sabotageRooms = Constants.SABOTAGE_ROOMS;
-    impostorOrientation = Constants.AGENT_ORIENTATION;
+    crewPerRoom = ShipStructure.CREW_PER_ROOM;
+    sabotageRooms = new int[0];
+    impostorOrientation = ShipStructure.AGENT_ORIENTATION;
     this.initState();
   }
 
@@ -34,10 +34,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
    */
   @Override
   public void initState() {
-    crewPerRoom = Constants.INITIAL_CREW_PER_ROOM;
-    sabotageRooms = Constants.INITIAL_SABOTAGE_ROOMS;
-    energy = Constants.INITIAL_AGENT_ENERGY  ;
-    position = Constants.INITIAL_AGENT_POSITION;
+    crewPerRoom = ShipStructure.INITIAL_CREW_PER_ROOM;
+    sabotageRooms = new int[] { ShipStructure.ROOM_LOWER_ENGINE };
+    energy = ShipStructure.INITIAL_AGENT_ENERGY;
+    position = ShipStructure.INITIAL_AGENT_POSITION;
   }
 
   /**
@@ -81,10 +81,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void updateState(Perception p) {
     ImpostorPerception impostorPerception = (ImpostorPerception) p;
 
-    impostorOrientation[Constants.UP] = impostorPerception.getUpSensor();
-    impostorOrientation[Constants.DOWN] = impostorPerception.getDownSensor();
-    impostorOrientation[Constants.LEFT] = impostorPerception.getLeftSensor();
-    impostorOrientation[Constants.RIGHT] = impostorPerception.getRightSensor();
+    impostorOrientation[ShipStructure.UP] = impostorPerception.getUpSensor();
+    impostorOrientation[ShipStructure.DOWN] = impostorPerception.getDownSensor();
+    impostorOrientation[ShipStructure.LEFT] = impostorPerception.getLeftSensor();
+    impostorOrientation[ShipStructure.RIGHT] = impostorPerception.getRightSensor();
 
     energy = impostorPerception.getEnergy();
   }
@@ -96,13 +96,13 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public String toString() {
     String str = "";
 
-    str = str + "\n\n* Posición: (" + getPosition() + " - " + Constants.ROOMS.get(getPosition()) + ")";
+    str = str + "\n\n* Posición: (" + getPosition() + " - " + ShipStructure.ROOMS.get(getPosition()) + ")";
     str = str + "\n* Energía: " + energy + "\n";
 
     str = str + "\nORIENTACIÓN EN NAVE DEL IMPOSTOR=\"( ";
     for (int row = 0; row < impostorOrientation.length; row++) {
       str = str + "[ ";
-      if (impostorOrientation[row] == Constants.WALL) {
+      if (impostorOrientation[row] == ShipStructure.WALL) {
         str = str + "* ";
       } else {
         str = str + impostorOrientation[row] + " ";
@@ -128,17 +128,14 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
     for (int row = 0; row < impostorOrientation.length; row++) {
       if (impostorOrientation[row] != impostorOrientationObj[row]) {
-        System.out.println("-- EQUALS FALSE --");
         return false;
       }
     }
 
-    if (position != positionObj) {
-      System.out.println("-- EQUALS FALSE --");
+    if (this.position != positionObj) {
       return false;
     }
 
-    System.out.println("-- EQUALS TRUE --");
     return true;
   }
 
@@ -185,10 +182,11 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   public void setCrewPerRoom(int pos) {
-    this.crewPerRoom[pos] = crewPerRoom[pos] - 1;
+    this.crewPerRoom[pos] = this.crewPerRoom[pos] - 1;
   }
 
   public boolean isNoMoreSabotageRooms() {
+    System.out.println("-- isNoMoreSabotageRooms: " + sabotageRooms.length);
     if (sabotageRooms.length == 0) {
       return true;
     }
