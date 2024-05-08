@@ -26,8 +26,10 @@ public class EliminateCrew extends SearchAction {
      * the current position. Otherwise return 'null'.
      */
     if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
+      
       impostorState.setCrewPerRoom(pos);
-
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      
       System.out.println("\n-- Eliminate Action - Agent pos: " + pos);
       return impostorState;
     }

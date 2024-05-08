@@ -50,19 +50,18 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   @Override
   public SearchBasedAgentState clone() {
 
-    int[] newCrewPerRoom = new int[crewPerRoom.length]; // esta es fija no cambia por ahora
-    for (int i = 0; i < crewPerRoom.length; i++) { // [UP, DO, LE, RI]
+    int[] newCrewPerRoom = new int[crewPerRoom.length];
+    for (int i = 0; i < crewPerRoom.length; i++) {
       newCrewPerRoom[i] = crewPerRoom[i];
     }
 
-    // la orientacion cambia segun la posicion del agente
     int[] newImpostorOrientation = new int[impostorOrientation.length];
-    for (int i = 0; i < impostorOrientation.length; i++) { // [UP, DO, LE, RI]
+    for (int i = 0; i < impostorOrientation.length; i++) {
       newImpostorOrientation[i] = impostorOrientation[i];
     }
 
     int[] newSabotageRooms = new int[sabotageRooms.length];
-    for (int i = 0; i < sabotageRooms.length; i++) { // [UP, DO, LE, RI]
+    for (int i = 0; i < sabotageRooms.length; i++) {
       newSabotageRooms[i] = sabotageRooms[i];
     }
 
@@ -132,6 +131,13 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       return false;
     }
 
+    int[] crewPerRoomObj = ((ImpostorAgentState) obj).getCrewPerRoom();
+    for (int i = 0; i < crewPerRoom.length; i++) {
+      if (crewPerRoom[i] != crewPerRoomObj[i]) {
+        return false;
+      }
+    }
+
     if (this.position != positionObj) {
       return false;
     }
@@ -175,6 +181,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
   public void setSabotageRooms(int[] sabotageRooms) {
     this.sabotageRooms = sabotageRooms;
+  }
+
+  public int[] getCrewPerRoom() {
+    return crewPerRoom;
   }
 
   public int getCrewPerRoom(int pos) {
