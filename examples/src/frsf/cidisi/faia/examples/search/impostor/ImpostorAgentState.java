@@ -195,7 +195,6 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
   public boolean isNoMoreSabotageRooms() {
     if (totalSabotageRooms == 0) {
-      System.out.println("-- totalSabotageRooms: " + totalSabotageRooms);
       return true;
     }
     return false;
