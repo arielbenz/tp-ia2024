@@ -16,29 +16,24 @@ public class GoUp extends SearchAction {
    */
   @Override
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
-
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    int pos = impostorState.getPosition();
-
-    int upPosition = impostorState.getImpostorOrientation(ShipStructure.UP);
+    int newPosition = impostorState.getImpostorOrientation(ShipStructure.UP);
 
     /* The agent can always go up */
-    if (impostorState.getEnergy() > 0
-        && impostorState.getImpostorOrientation(ShipStructure.UP) != ShipStructure.WALL) {
+    if (impostorState.getEnergy() > 0 && newPosition != ShipStructure.WALL) {
 
-      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
-          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
-          ShipStructure.getShipPosition(pos, 3) };
+      int[] newOrientation = ShipStructure.getRowShipPosition(newPosition);
 
       impostorState.setImpostorOrientation(newOrientation);
-      impostorState.setPosition(upPosition);
+      impostorState.setPosition(newPosition);
       impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
 
-      System.out.println("-- Go Up Action - Agent pos: " + pos);
+      System.out.println("-- Go Up Action - Agent pos: " + newPosition);
+      return impostorState;
     }
 
-    return impostorState;
+    return null;
   }
 
   /**
@@ -49,17 +44,23 @@ public class GoUp extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    int pos = environmentState.getAgentPosition();
+    // Get new position value
+    int newPosition = impostorState.getImpostorOrientation(ShipStructure.UP);
 
-    if (impostorState.getEnergy() > 0
-        && impostorState.getImpostorOrientation(ShipStructure.UP) != ShipStructure.WALL) {
-      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
-          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
-          ShipStructure.getShipPosition(pos, 3) };
+    // Ask if it possible to move UP based on pre-requisits
+    if (environmentState.getAgentEnergy() > 0 && newPosition != ShipStructure.WALL) {
+
+      // Update orientation agent array
+      int[] newOrientation = ShipStructure.getRowShipPosition(newPosition);
       impostorState.setImpostorOrientation(newOrientation);
 
-      impostorState.setPosition(pos);
-      environmentState.setAgentPosition(pos);
+      // Update agent and environment energy
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+
+      // Update agent state and environment state position
+      impostorState.setPosition(newPosition);
+      environmentState.setAgentPosition(newPosition);
     }
 
     return environmentState;
@@ -79,6 +80,6 @@ public class GoUp extends SearchAction {
    */
   @Override
   public String toString() {
-    return "GoUp";
+    return "**GO UP**";
   }
 }

@@ -26,12 +26,6 @@ public class EliminateCrew extends SearchAction {
      * the current position. Otherwise return 'null'.
      */
     if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
-      System.out.println("-- CrewPerRoom[0]: " + impostorState.getCrewPerRoom(0));
-      System.out.println("-- CrewPerRoom[1]: " + impostorState.getCrewPerRoom(1));
-      System.out.println("-- CrewPerRoom[2]: " + impostorState.getCrewPerRoom(2));
-      System.out.println("-- CrewPerRoom[3]: " + impostorState.getCrewPerRoom(3));
-      System.out.println("-- CrewPerRoom[4]: " + impostorState.getCrewPerRoom(4));
-
       impostorState.setCrewPerRoom(pos);
 
       System.out.println("\n-- Eliminate Action - Agent pos: " + pos);
@@ -50,12 +44,18 @@ public class EliminateCrew extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    if ((environmentState.getTotalCrew() > 0) && (environmentState.getAgentEnergy() > 0)) {
-      int pos = impostorState.getPosition();
-      impostorState.setCrewPerRoom(pos);
+    // Get agente position from environment
+    int pos = environmentState.getAgentPosition();
 
+    if ((impostorState.getCrewPerRoom(pos) > 0) && (environmentState.getAgentEnergy() > 0)) {
+      
+      impostorState.setCrewPerRoom(pos);
       environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
+      
+      // Update agent and environment energy
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+
       return environmentState;
     }
 

@@ -31,10 +31,10 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     ShipStructure shipStructure = new ShipStructure();
     shipStructure.init();
 
-    this.setSabotageRooms(new int[] { ShipStructure.ROOM_LOWER_ENGINE });
     this.setAgentPosition(ShipStructure.INITIAL_AGENT_POSITION);
     this.setAgentEnergy(ShipStructure.INITIAL_AGENT_ENERGY);
     this.setTotalCrew(ShipStructure.INITIAL_TOTAL_CREW);
+    this.setSabotageRooms(ShipStructure.INITIAL_SABOTAGE_ROOMS);
   }
 
   /**
@@ -58,10 +58,6 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   }
 
   // The following methods are Impostor-specific:
-
-  public void setShip(int row, int col, int value) {
-    this.ship[row][col] = value;
-  }
 
   public int getAgentPosition() {
     return agentPosition;

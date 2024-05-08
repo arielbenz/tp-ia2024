@@ -31,11 +31,13 @@ public class ShipStructure {
 
   // Initial values
   public static final int INITIAL_AGENT_ENERGY = 100;
-  public static final int INITIAL_AGENT_POSITION = ROOM_LOWER_ENGINE;
-  
+  public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
+
   public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 0, 0, 0, 0 };
   public static final int INITIAL_TOTAL_CREW = 0;
-  
+
+  public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_LOWER_ENGINE };
+
   public static final int Q_CONSUME_ENERGY = 1;
 
   // Game data structure
@@ -43,7 +45,8 @@ public class ShipStructure {
   public static final int[] AGENT_ORIENTATION = new int[4];
   public static final int[] CREW_PER_ROOM = new int[5];
 
-  public ShipStructure() {}
+  public ShipStructure() {
+  }
 
   public void init() {
     SHIP[ROOM_UPPER_ENGINE][UP] = WALL;
@@ -76,7 +79,11 @@ public class ShipStructure {
     SHIP[HALL_F][RIGHT] = ROOM_SECURITY;
   }
 
-  public static int getShipPosition(int row, int col) {
-    return SHIP[row][col];
+  public static int getShipPosition(int room, int orientation) {
+    return SHIP[room][orientation];
+  }
+
+  public static int[] getRowShipPosition(int room) {
+    return new int[] { SHIP[room][UP], SHIP[room][DOWN], SHIP[room][LEFT], SHIP[room][RIGHT] };
   }
 }

@@ -12,12 +12,13 @@ public class ImpostorGoal extends GoalTest {
 
   @Override
   public boolean isGoalState(AgentState agentState) {
-	  
-    if ( ((ImpostorAgentState) agentState).isNoMoreSabotageRooms() &&
-    		((ImpostorAgentState) agentState).isNoMoreCrewPerRoom() &&
-    			((ImpostorAgentState) agentState).getEnergy() > 0 ) {
-    		return true;
+
+    if (((ImpostorAgentState) agentState).isNoMoreSabotageRooms() &&
+        ((ImpostorAgentState) agentState).isNoMoreCrewPerRoom() &&
+        ((ImpostorAgentState) agentState).getEnergy() > 0) {
+      return true;
     }
     return false;
+
   }
 }

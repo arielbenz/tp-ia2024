@@ -16,27 +16,24 @@ public class GoRight extends SearchAction {
    */
   @Override
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
-
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    int pos = impostorState.getPosition();
+    int newPosition = impostorState.getImpostorOrientation(ShipStructure.RIGHT);
 
     /* The agent can always go right */
-    if (impostorState.getEnergy() > 0
-        && impostorState.getImpostorOrientation(ShipStructure.RIGHT) != ShipStructure.WALL) {
-      impostorState.setPosition(impostorState.getImpostorOrientation(ShipStructure.RIGHT));
-      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+    if (impostorState.getEnergy() > 0 && newPosition != ShipStructure.WALL) {
 
-      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
-          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
-          ShipStructure.getShipPosition(pos, 3) };
+      int[] newOrientation = ShipStructure.getRowShipPosition(newPosition);
 
       impostorState.setImpostorOrientation(newOrientation);
+      impostorState.setPosition(newPosition);
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
 
-      System.out.println("-- Go Right Action - Agent pos: " + pos);
+      System.out.println("-- Go Right Action - Agent pos: " + newPosition);
+      return impostorState;
     }
 
-    return impostorState;
+    return null;
   }
 
   /**
@@ -47,17 +44,23 @@ public class GoRight extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    int pos = environmentState.getAgentPosition();
+    // Get new position value
+    int newPosition = impostorState.getImpostorOrientation(ShipStructure.RIGHT);
 
-    if (impostorState.getEnergy() > 0
-        && impostorState.getImpostorOrientation(ShipStructure.RIGHT) != ShipStructure.WALL) {
-      int[] newOrientation = new int[] { ShipStructure.getShipPosition(pos, 0),
-          ShipStructure.getShipPosition(pos, 1), ShipStructure.getShipPosition(pos, 2),
-          ShipStructure.getShipPosition(pos, 3) };
+    // Ask if it possible to move RIGHT based on pre-requisits
+    if (environmentState.getAgentEnergy() > 0 && newPosition != ShipStructure.WALL) {
+
+      // Update orientation agent array
+      int[] newOrientation = ShipStructure.getRowShipPosition(newPosition);
       impostorState.setImpostorOrientation(newOrientation);
 
-      impostorState.setPosition(pos);
-      environmentState.setAgentPosition(pos);
+      // Update agent and environment energy
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+
+      // Update agent state and environment state position
+      impostorState.setPosition(newPosition);
+      environmentState.setAgentPosition(newPosition);
     }
 
     return environmentState;
@@ -77,6 +80,6 @@ public class GoRight extends SearchAction {
    */
   @Override
   public String toString() {
-    return "GoRight";
+    return "**GO RIGHT**";
   }
 }

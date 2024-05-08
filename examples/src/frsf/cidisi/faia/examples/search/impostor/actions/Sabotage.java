@@ -16,7 +16,6 @@ public class Sabotage extends SearchAction {
    */
   @Override
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
-
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
     /*
@@ -25,26 +24,23 @@ public class Sabotage extends SearchAction {
      */
 
     int pos = impostorState.getPosition();
-    int[] sabotageRooms = impostorState.getSabotageRooms();
+    int totalSabotate = impostorState.getTotalSabotageRooms();
 
+    int[] sabotageRooms = impostorState.getSabotageRooms();
     boolean isSabotageRoom = false;
 
-    if (sabotageRooms[0] == pos) {
-      isSabotageRoom = true;
+    for (int i = 0; i < sabotageRooms.length; i++) {
+      if (sabotageRooms[i] == pos) {
+        isSabotageRoom = true;
+      }
     }
 
-    // for (int i = 0; i < sabotageRooms.length; i++) {
-    // if (sabotageRooms[i] == pos) {
-    // isSabotageRoom = true;
-    // }
-    // }
-
-    if (isSabotageRoom && (impostorState.getEnergy() > 0)) {
+    if (isSabotageRoom && impostorState.getEnergy() > 0 && totalSabotate > 0) {
       impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
       impostorState.setSabotageRooms(new int[0]);
-      
+      impostorState.setTotalSabotageRooms(0);
+
       System.out.println("-- Sabotage Action - Agent pos: " + pos);
-      System.out.println("-- Sabotage rooms: " + impostorState.getSabotageRooms().length);
 
       return impostorState;
     }
@@ -61,20 +57,31 @@ public class Sabotage extends SearchAction {
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
 
-    int pos = impostorState.getPosition();
-    int[] sabotageRooms = impostorState.getSabotageRooms();
+    int pos = environmentState.getAgentPosition();
 
+    int[] sabotageRooms = environmentState.getSabotageRooms();
     boolean isSabotageRoom = false;
-    if (sabotageRooms[0] == pos) {
-      isSabotageRoom = true;
+
+    for (int i = 0; i < sabotageRooms.length; i++) {
+      if (sabotageRooms[i] == pos) {
+        isSabotageRoom = true;
+      }
     }
 
-    if (isSabotageRoom && impostorState.getEnergy() > 0) {
-      impostorState.setSabotageRooms(new int[0]);
-      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+    int totalSabotate = impostorState.getTotalSabotageRooms();
 
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+    if (isSabotageRoom && environmentState.getAgentEnergy() > 0 && totalSabotate > 0) {
+
+      // Update sabotage rooms on agent
+      impostorState.setSabotageRooms(new int[0]);
+      impostorState.setTotalSabotageRooms(0);
+
+      // Update sabotage rooms on environment
       environmentState.setSabotageRooms(new int[0]);
+
+      // Update agent and environment energy
+      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
 
       return environmentState;
     }
@@ -96,6 +103,6 @@ public class Sabotage extends SearchAction {
    */
   @Override
   public String toString() {
-    return "Eliminate Crew";
+    return "**SABOTAGE**";
   }
 }
