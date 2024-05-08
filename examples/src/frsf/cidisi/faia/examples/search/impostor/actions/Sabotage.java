@@ -83,6 +83,7 @@ public class Sabotage extends SearchAction {
 
     if (isSabotageRoom && environmentState.getAgentEnergy() > 0 && totalSabotate > 0) {
 
+      // Remove the sabotage room
       int[] newSabotageRooms = new int[sabotageRooms.length - 1];
 
       for (int i = 0, j = 0; i < sabotageRooms.length; i++) {
