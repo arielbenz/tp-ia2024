@@ -36,7 +36,7 @@ public class ShipStructure {
   public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 0, 0, 0, 0 };
   public static final int INITIAL_TOTAL_CREW = 0;
 
-  public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_LOWER_ENGINE };
+  public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
   public static final int Q_CONSUME_ENERGY = 1;
 

@@ -36,9 +36,20 @@ public class Sabotage extends SearchAction {
     }
 
     if (isSabotageRoom && impostorState.getEnergy() > 0 && totalSabotate > 0) {
+
+      int[] newSabotageRooms = new int[sabotageRooms.length - 1];
+
+      for (int i = 0, j = 0; i < sabotageRooms.length; i++) {
+        if (sabotageRooms[i] != pos) {
+          newSabotageRooms[j] = sabotageRooms[i];
+          j++;
+        }
+      }
+
+      impostorState.setSabotageRooms(newSabotageRooms);
+      impostorState.setTotalSabotageRooms(newSabotageRooms.length);
+
       impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
-      impostorState.setSabotageRooms(new int[0]);
-      impostorState.setTotalSabotageRooms(0);
 
       System.out.println("-- Sabotage Action - Agent pos: " + pos);
 
@@ -72,12 +83,21 @@ public class Sabotage extends SearchAction {
 
     if (isSabotageRoom && environmentState.getAgentEnergy() > 0 && totalSabotate > 0) {
 
+      int[] newSabotageRooms = new int[sabotageRooms.length - 1];
+
+      for (int i = 0, j = 0; i < sabotageRooms.length; i++) {
+        if (sabotageRooms[i] != pos) {
+          newSabotageRooms[j] = sabotageRooms[i];
+          j++;
+        }
+      }
+
       // Update sabotage rooms on agent
-      impostorState.setSabotageRooms(new int[0]);
-      impostorState.setTotalSabotageRooms(0);
+      impostorState.setSabotageRooms(newSabotageRooms);
+      impostorState.setTotalSabotageRooms(newSabotageRooms.length);
 
       // Update sabotage rooms on environment
-      environmentState.setSabotageRooms(new int[0]);
+      environmentState.setSabotageRooms(newSabotageRooms);
 
       // Update agent and environment energy
       impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
