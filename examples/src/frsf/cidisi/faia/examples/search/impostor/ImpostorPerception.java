@@ -13,7 +13,7 @@ public class ImpostorPerception extends Perception {
   private int energy;
 
   public ImpostorPerception() {
-    energy = ShipStructure.INITIAL_AGENT_ENERGY;
+    energy = GameStructure.INITIAL_AGENT_ENERGY;
   }
 
   public ImpostorPerception(Agent agent, Environment environment) {
@@ -83,12 +83,12 @@ public class ImpostorPerception extends Perception {
     StringBuffer str = new StringBuffer();
 
     str.append("\n" + "* Energía: " + this.energy + "\n");
-    str.append("* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + ShipStructure.ROOMS.get(this.upSensor) + "\n");
-    str.append("* Sensor Abajo: " + "(" + this.downSensor + ")" + " : " + ShipStructure.ROOMS.get(this.downSensor) + "\n");
+    str.append("* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + GameStructure.ROOMS.get(this.upSensor) + "\n");
+    str.append("* Sensor Abajo: " + "(" + this.downSensor + ")" + " : " + GameStructure.ROOMS.get(this.downSensor) + "\n");
     str.append(
-        "* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + ShipStructure.ROOMS.get(this.leftSensor) + "\n");
+        "* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + GameStructure.ROOMS.get(this.leftSensor) + "\n");
     str.append(
-        "* Sensor Derecha: " + "(" + this.rightSensor + ")" + " : " + ShipStructure.ROOMS.get(this.rightSensor) + "\n");
+        "* Sensor Derecha: " + "(" + this.rightSensor + ")" + " : " + GameStructure.ROOMS.get(this.rightSensor) + "\n");
 
     return str.toString();
   }

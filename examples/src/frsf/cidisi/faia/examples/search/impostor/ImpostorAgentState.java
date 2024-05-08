@@ -16,9 +16,9 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   private int[] impostorOrientation; // [UP, DOWN, LEFT, RIGHT]
 
   public ImpostorAgentState() {
-    crewPerRoom = ShipStructure.CREW_PER_ROOM;
+    crewPerRoom = GameStructure.CREW_PER_ROOM;
     sabotageRooms = new int[0];
-    impostorOrientation = ShipStructure.AGENT_ORIENTATION;
+    impostorOrientation = GameStructure.AGENT_ORIENTATION;
     this.initState();
   }
 
@@ -36,10 +36,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
    */
   @Override
   public void initState() {
-    energy = ShipStructure.INITIAL_AGENT_ENERGY;
-    position = ShipStructure.INITIAL_AGENT_POSITION;
-    crewPerRoom = ShipStructure.INITIAL_CREW_PER_ROOM;
-    sabotageRooms = ShipStructure.INITIAL_SABOTAGE_ROOMS;
+    energy = GameStructure.INITIAL_AGENT_ENERGY;
+    position = GameStructure.INITIAL_AGENT_POSITION;
+    crewPerRoom = GameStructure.INITIAL_CREW_PER_ROOM;
+    sabotageRooms = GameStructure.INITIAL_SABOTAGE_ROOMS;
     totalSabotageRooms = sabotageRooms.length;
   }
 
@@ -82,10 +82,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void updateState(Perception p) {
     ImpostorPerception impostorPerception = (ImpostorPerception) p;
 
-    impostorOrientation[ShipStructure.UP] = impostorPerception.getUpSensor();
-    impostorOrientation[ShipStructure.DOWN] = impostorPerception.getDownSensor();
-    impostorOrientation[ShipStructure.LEFT] = impostorPerception.getLeftSensor();
-    impostorOrientation[ShipStructure.RIGHT] = impostorPerception.getRightSensor();
+    impostorOrientation[GameStructure.UP] = impostorPerception.getUpSensor();
+    impostorOrientation[GameStructure.DOWN] = impostorPerception.getDownSensor();
+    impostorOrientation[GameStructure.LEFT] = impostorPerception.getLeftSensor();
+    impostorOrientation[GameStructure.RIGHT] = impostorPerception.getRightSensor();
 
     energy = impostorPerception.getEnergy();
   }
@@ -97,13 +97,13 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public String toString() {
     String str = "";
 
-    str = str + "\n\n* Posición: (" + this.getPosition() + " - " + ShipStructure.ROOMS.get(this.getPosition()) + ")";
+    str = str + "\n\n* Posición: (" + this.getPosition() + " - " + GameStructure.ROOMS.get(this.getPosition()) + ")";
     str = str + "\n* Energía: " + energy + "\n";
 
     str = str + "\nORIENTACIÓN EN NAVE = \"( ";
     for (int row = 0; row < impostorOrientation.length; row++) {
       str = str + "[ ";
-      if (impostorOrientation[row] == ShipStructure.WALL) {
+      if (impostorOrientation[row] == GameStructure.WALL) {
         str = str + "* ";
       } else {
         str = str + impostorOrientation[row] + " ";

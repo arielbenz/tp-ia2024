@@ -2,7 +2,9 @@ package frsf.cidisi.faia.examples.search.impostor;
 
 import java.util.HashMap;
 
-public class ShipStructure {
+import frsf.cidisi.faia.solver.search.*;
+
+public class GameStructure {
 
   // Rooms codification
   public static final int ROOM_UPPER_ENGINE = 0;
@@ -45,7 +47,7 @@ public class ShipStructure {
   public static final int[] AGENT_ORIENTATION = new int[4];
   public static final int[] CREW_PER_ROOM = new int[5];
 
-  public ShipStructure() {
+  public GameStructure() {
   }
 
   public void init() {
@@ -85,5 +87,19 @@ public class ShipStructure {
 
   public static int[] getRowShipPosition(int room) {
     return new int[] { SHIP[room][UP], SHIP[room][DOWN], SHIP[room][LEFT], SHIP[room][RIGHT] };
+  }
+
+  // WHITHOUT_TREE
+  // XML_TREE
+  // PDF_TREE
+  // GRAPHICAL_TREE
+  // GRAPHVIZ_TREE
+  // EFAIA_TREE
+  public static final int VISIBLE_TREE = Search.XML_TREE;
+
+  // BreathFirstSearch
+  // DepthFirstSearch
+  public static Strategy getSearchStrategy() {
+    return new DepthFirstSearch();
   }
 }

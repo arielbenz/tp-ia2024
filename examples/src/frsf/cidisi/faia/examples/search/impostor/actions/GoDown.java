@@ -16,16 +16,16 @@ public class GoDown extends SearchAction {
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    int newPosition = impostorState.getImpostorOrientation(ShipStructure.DOWN);
+    int newPosition = impostorState.getImpostorOrientation(GameStructure.DOWN);
 
     /* The agent can always go down */
-    if (impostorState.getEnergy() > 0 && newPosition != ShipStructure.WALL) {
+    if (impostorState.getEnergy() > 0 && newPosition != GameStructure.WALL) {
 
-      int[] newOrientation = ShipStructure.getRowShipPosition(newPosition);
+      int[] newOrientation = GameStructure.getRowShipPosition(newPosition);
 
       impostorState.setImpostorOrientation(newOrientation);
       impostorState.setPosition(newPosition);
-      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
       System.out.println("-- Go Down Action - Agent pos: " + newPosition);
       return impostorState;
@@ -43,18 +43,18 @@ public class GoDown extends SearchAction {
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
     // Get new position value
-    int newPosition = impostorState.getImpostorOrientation(ShipStructure.DOWN);
+    int newPosition = impostorState.getImpostorOrientation(GameStructure.DOWN);
 
     // Ask if it possible to move DOWN based on pre-requisits
-    if (environmentState.getAgentEnergy() > 0 && newPosition != ShipStructure.WALL) {
+    if (environmentState.getAgentEnergy() > 0 && newPosition != GameStructure.WALL) {
 
       // Update orientation agent array
-      int[] newOrientation = ShipStructure.getRowShipPosition(newPosition);
+      int[] newOrientation = GameStructure.getRowShipPosition(newPosition);
       impostorState.setImpostorOrientation(newOrientation);
 
       // Update agent and environment energy
-      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
       // Update agent state and environment state position
       impostorState.setPosition(newPosition);

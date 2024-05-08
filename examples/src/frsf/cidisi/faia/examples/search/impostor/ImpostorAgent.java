@@ -22,25 +22,25 @@ import java.util.logging.Logger;
 public class ImpostorAgent extends SearchBasedAgent {
 
   public ImpostorAgent() {
-	   // The Impostor Goal
-      ImpostorGoal goal = new ImpostorGoal();
+    // The Impostor Goal
+    ImpostorGoal goal = new ImpostorGoal();
 
-      // The Impostor Agent State
-      ImpostorAgentState impostorState = new ImpostorAgentState();
-      this.setAgentState(impostorState);
+    // The Impostor Agent State
+    ImpostorAgentState impostorState = new ImpostorAgentState();
+    this.setAgentState(impostorState);
 
-      // Create the operators
-      Vector<SearchAction> operators = new Vector<SearchAction>();
-      operators.addElement(new EliminateCrew());
-      operators.addElement(new Sabotage());
-      operators.addElement(new GoUp());
-      operators.addElement(new GoDown());
-      operators.addElement(new GoLeft());
-      operators.addElement(new GoRight());
+    // Create the operators
+    Vector<SearchAction> operators = new Vector<SearchAction>();
+    operators.addElement(new EliminateCrew());
+    operators.addElement(new Sabotage());
+    operators.addElement(new GoUp());
+    operators.addElement(new GoDown());
+    operators.addElement(new GoLeft());
+    operators.addElement(new GoRight());
 
-      // Create the Problem which the Impostor will resolve
-      Problem problem = new Problem(goal, impostorState, operators);
-      this.setProblem(problem);
+    // Create the Problem which the Impostor will resolve
+    Problem problem = new Problem(goal, impostorState, operators);
+    this.setProblem(problem);
   }
 
   /**
@@ -49,17 +49,14 @@ public class ImpostorAgent extends SearchBasedAgent {
   @Override
   public Action selectAction() {
 
-    // Create the search strategy en profundidad
-    DepthFirstSearch strategy = new DepthFirstSearch();
-
     // Create a Search object with the strategy
-    Search searchSolver = new Search(strategy);
+    Search searchSolver = new Search(GameStructure.getSearchStrategy());
 
     /*
      * Generate an XML file with the search tree. It can also be generated
      * in other formats like PDF with PDF_TREE
      */
-    searchSolver.setVisibleTree(Search.XML_TREE);
+    searchSolver.setVisibleTree(GameStructure.VISIBLE_TREE);
 
     // Set the Search searchSolver.
     this.setSolver(searchSolver);

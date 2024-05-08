@@ -2,7 +2,7 @@ package frsf.cidisi.faia.examples.search.impostor.actions;
 
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.examples.search.impostor.ShipStructure;
+import frsf.cidisi.faia.examples.search.impostor.GameStructure;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -49,7 +49,7 @@ public class Sabotage extends SearchAction {
       impostorState.setSabotageRooms(newSabotageRooms);
       impostorState.setTotalSabotageRooms(newSabotageRooms.length);
 
-      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
       System.out.println("-- Sabotage Action - Agent pos: " + pos);
 
@@ -101,8 +101,8 @@ public class Sabotage extends SearchAction {
       environmentState.setSabotageRooms(newSabotageRooms);
 
       // Update agent and environment energy
-      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
       return environmentState;
     }

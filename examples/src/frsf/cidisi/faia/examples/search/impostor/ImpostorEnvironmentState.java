@@ -18,7 +18,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   }
 
   public ImpostorEnvironmentState() {
-    ship = ShipStructure.SHIP;
+    ship = GameStructure.SHIP;
     this.initState();
   }
 
@@ -28,13 +28,13 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   @Override
   public void initState() {
 
-    ShipStructure shipStructure = new ShipStructure();
+    GameStructure shipStructure = new GameStructure();
     shipStructure.init();
 
-    this.setAgentPosition(ShipStructure.INITIAL_AGENT_POSITION);
-    this.setAgentEnergy(ShipStructure.INITIAL_AGENT_ENERGY);
-    this.setTotalCrew(ShipStructure.INITIAL_TOTAL_CREW);
-    this.setSabotageRooms(ShipStructure.INITIAL_SABOTAGE_ROOMS);
+    this.setAgentPosition(GameStructure.INITIAL_AGENT_POSITION);
+    this.setAgentEnergy(GameStructure.INITIAL_AGENT_ENERGY);
+    this.setTotalCrew(GameStructure.INITIAL_TOTAL_CREW);
+    this.setSabotageRooms(GameStructure.INITIAL_SABOTAGE_ROOMS);
   }
 
   /**
@@ -92,18 +92,18 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   }
 
   public int getUpPosition(int pos) {
-    return ship[pos][ShipStructure.UP];
+    return ship[pos][GameStructure.UP];
   }
 
   public int getDownPosition(int pos) {
-    return ship[pos][ShipStructure.DOWN];
+    return ship[pos][GameStructure.DOWN];
   }
 
   public int getLeftPosition(int pos) {
-    return ship[pos][ShipStructure.LEFT];
+    return ship[pos][GameStructure.LEFT];
   }
 
   public int getRightPosition(int pos) {
-    return ship[pos][ShipStructure.RIGHT];
+    return ship[pos][GameStructure.RIGHT];
   }
 }

@@ -2,7 +2,7 @@ package frsf.cidisi.faia.examples.search.impostor.actions;
 
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.examples.search.impostor.ShipStructure;
+import frsf.cidisi.faia.examples.search.impostor.GameStructure;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorAgentState;
 import frsf.cidisi.faia.examples.search.impostor.ImpostorEnvironmentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -28,7 +28,7 @@ public class EliminateCrew extends SearchAction {
     if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
       
       impostorState.setCrewPerRoom(pos);
-      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
       
       System.out.println("\n-- Eliminate Action - Agent pos: " + pos);
       return impostorState;
@@ -55,8 +55,8 @@ public class EliminateCrew extends SearchAction {
       environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
       
       // Update agent and environment energy
-      impostorState.setEnergy(impostorState.getEnergy() - ShipStructure.Q_CONSUME_ENERGY);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - ShipStructure.Q_CONSUME_ENERGY);
+      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
       return environmentState;
     }
