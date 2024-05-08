@@ -53,7 +53,6 @@ public class ImpostorEnvironment extends Environment {
 
     int agentEnergy = impostorEnvironmentState.getAgentEnergy();
 
-    // FIXME: The impostor agent always has the same energy
     // If the agent has no energy, he failed
     if (agentEnergy <= 0)
       return true;
