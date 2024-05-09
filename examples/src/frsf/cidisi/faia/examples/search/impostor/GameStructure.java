@@ -2,7 +2,7 @@ package frsf.cidisi.faia.examples.search.impostor;
 
 import java.util.HashMap;
 
-import frsf.cidisi.faia.examples.search.pacman.CostFunction;
+import frsf.cidisi.faia.examples.search.impostor.CostFunction;
 import frsf.cidisi.faia.solver.search.*;
 
 public class GameStructure {
@@ -13,6 +13,7 @@ public class GameStructure {
   public static final int ROOM_LOWER_ENGINE = 2;
   public static final int ROOM_REACTOR = 3;
   public static final int HALL_F = 4;
+  /*
   public static final int HALL_A = 5;
   public static final int HALL_B = 6;
   public static final int HALL_C = 7;
@@ -28,6 +29,7 @@ public class GameStructure {
   public static final int ROOM_STORAGE = 17;
   public static final int ROOM_ELECTRICAL = 18;
   public static final int ROOM_MEDBAY = 19;
+  */
 
   public static final int WALL = -1;
 
@@ -39,7 +41,21 @@ public class GameStructure {
     ROOMS.put(ROOM_LOWER_ENGINE, "Lower Engine");
     ROOMS.put(ROOM_REACTOR, "Reactor");
     ROOMS.put(HALL_F, "Hall F");
-
+    /* ROOMS.put(HALL_A, "Hall A");
+    *  ROOMS.put(HALL_B, "Hall B");
+    *  ROOMS.put(HALL_C, "Hall C");
+    *  ROOMS.put(HALL_D, "Hall D");
+    *  ROOMS.put(HALL_E, "Hall E");
+    * ROOMS.put(ROOM_CAFETERIA, "Cafeteria");
+    * ROOMS.put(ROOM_WEAPONS, "Weapons");
+    * ROOMS.put(ROOM_NAVIGATION, "Navigation");
+    * ROOMS.put(ROOM_O2, "O2");
+    * ROOMS.put(ROOM_ADMIN, "Admin");
+    * ROOMS.put(ROOM_SHIELDS, "shields");
+    * ROOMS.put(ROOM_STORAGE, "Storage");
+    * ROOMS.put(ROOM_ELECTRICAL, "Electical");
+    * ROOMS.put(ROOM_MEDBAY , "Medbay");
+    */
 
   }
 
