@@ -52,6 +52,7 @@ public class GameStructure {
     * ROOMS.put(ROOM_O2, "O2");
     * ROOMS.put(ROOM_ADMIN, "Admin");
     * ROOMS.put(ROOM_SHIELDS, "shields");
+    * ROOMS.put(ROOM_COMUNICATIONS, "comunications");
     * ROOMS.put(ROOM_STORAGE, "Storage");
     * ROOMS.put(ROOM_ELECTRICAL, "Electical");
     * ROOMS.put(ROOM_MEDBAY , "Medbay");
@@ -113,6 +114,39 @@ public class GameStructure {
     SHIP[HALL_F][DOWN] = ROOM_LOWER_ENGINE;
     SHIP[HALL_F][LEFT] = ROOM_REACTOR;
     SHIP[HALL_F][RIGHT] = ROOM_SECURITY;
+
+     /*
+     // Hall A =  
+     SHIP[HALL_A][UP] = ROOM_WEAPONS;
+     SHIP[HALL_A][DOWN] = ROOM_SHIELDS;
+     SHIP[HALL_A][LEFT] = ROOM_O2;
+     SHIP[HALL_A][RIGHT] = ROOM_NAVIGATION;
+     
+    //  Hall B =  
+     SHIP[HALL_B][UP] = WALL;
+     SHIP[HALL_B][DOWN] = ROOM_COMUNICATIONS;
+     SHIP[HALL_B][LEFT] = ROOM_STORAGE;
+     SHIP[HALL_B][RIGHT] = ROOM_SHIELDS;
+
+    //  Hall C =  
+     SHIP[HALL_C][UP] = ROOM_CAFETERIA;
+     SHIP[HALL_C][DOWN] = ROOM_STORAGE;
+     SHIP[HALL_C][LEFT] = WALL;
+     SHIP[HALL_C][RIGHT] = ROOM_ADMIN;
+
+    //  Hall D =  
+     SHIP[HALL_D][UP] = ROOM_ELECTRICAL;
+     SHIP[HALL_D][DOWN] = WALL;
+     SHIP[HALL_D][LEFT] = ROOM_LOWER_ENGINE;
+     SHIP[HALL_D][RIGHT] = ROOM_STORAGE;
+
+    //  Hall E =  
+     SHIP[HALL_E][UP] = WALL;
+     SHIP[HALL_E][DOWN] = ROOM_MEDBAY;
+     SHIP[HALL_E][LEFT] = ROOM_UPPER_ENGINE;
+     SHIP[HALL_E][RIGHT] = ROOM_CAFETERIA;
+
+     */
 
   }
 
