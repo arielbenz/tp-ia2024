@@ -10,11 +10,6 @@ public class ImpostorPerception extends Perception {
   private int downSensor;
   private int leftSensor;
   private int rightSensor;
-  private int energy;
-
-  public ImpostorPerception() {
-    energy = GameStructure.INITIAL_AGENT_ENERGY;
-  }
 
   public ImpostorPerception(Agent agent, Environment environment) {
     super(agent, environment);
@@ -70,19 +65,10 @@ public class ImpostorPerception extends Perception {
     this.downSensor = downSensor;
   }
 
-  public int getEnergy() {
-    return energy;
-  }
-
-  public void setEnergy(int energy) {
-    this.energy = energy;
-  }
-
   @Override
   public String toString() {
     StringBuffer str = new StringBuffer();
 
-    str.append("\n" + "* Energía: " + this.energy + "\n");
     str.append("* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + GameStructure.ROOMS.get(this.upSensor) + "\n");
     str.append("* Sensor Abajo: " + "(" + this.downSensor + ")" + " : " + GameStructure.ROOMS.get(this.downSensor) + "\n");
     str.append(

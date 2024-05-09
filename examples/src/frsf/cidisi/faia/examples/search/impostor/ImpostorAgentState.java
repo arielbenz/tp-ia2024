@@ -86,8 +86,6 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     impostorOrientation[GameStructure.DOWN] = impostorPerception.getDownSensor();
     impostorOrientation[GameStructure.LEFT] = impostorPerception.getLeftSensor();
     impostorOrientation[GameStructure.RIGHT] = impostorPerception.getRightSensor();
-
-    energy = impostorPerception.getEnergy();
   }
 
   /**
