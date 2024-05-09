@@ -19,6 +19,9 @@ public class EliminateCrew extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
+     // Increase the visited cells count
+     impostorState.increaseVisitedCellsCount(1);
+     
     int pos = impostorState.getPosition();
 
     /*
@@ -30,7 +33,7 @@ public class EliminateCrew extends SearchAction {
       impostorState.setCrewPerRoom(pos);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
       
-      System.out.println("\n-- Eliminate Action - Agent pos: " + pos);
+      System.out.println("\n-- Eliminate Action - Agent pos: " + pos +"  -remaining energy: "+impostorState.getEnergy() );
       return impostorState;
     }
 
@@ -45,6 +48,9 @@ public class EliminateCrew extends SearchAction {
 
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
+
+     // Increase the visited cells count
+     impostorState.increaseVisitedCellsCount(1);
 
     // Get agente position from environment
     int pos = environmentState.getAgentPosition();
@@ -69,8 +75,9 @@ public class EliminateCrew extends SearchAction {
    */
   @Override
   public Double getCost() {
-    return new Double(0);
+    return new Double(1);
   }
+
 
   /**
    * This method is not important for a search based agent, but is essensial

@@ -18,6 +18,9 @@ public class GoRight extends SearchAction {
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
+     // Increase the visited cells count
+     impostorState.increaseVisitedCellsCount(10);
+
     int newPosition = impostorState.getImpostorOrientation(GameStructure.RIGHT);
 
     /* The agent can always go right */
@@ -29,7 +32,7 @@ public class GoRight extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
-      System.out.println("-- Go Right Action - Agent pos: " + newPosition);
+      System.out.println("-- Go Right Action - Agent pos: " + newPosition +"  -remaining energy: "+impostorState.getEnergy() );
       return impostorState;
     }
 
@@ -43,6 +46,9 @@ public class GoRight extends SearchAction {
   public EnvironmentState execute(AgentState ast, EnvironmentState est) {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
+
+     // Increase the visited cells count
+     impostorState.increaseVisitedCellsCount(10);
 
     // Get new position value
     int newPosition = impostorState.getImpostorOrientation(GameStructure.RIGHT);
@@ -71,7 +77,7 @@ public class GoRight extends SearchAction {
    */
   @Override
   public Double getCost() {
-    return new Double(0);
+    return new Double(10);
   }
 
   /**

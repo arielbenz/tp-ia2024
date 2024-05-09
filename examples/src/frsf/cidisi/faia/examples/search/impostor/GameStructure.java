@@ -2,6 +2,7 @@ package frsf.cidisi.faia.examples.search.impostor;
 
 import java.util.HashMap;
 
+import frsf.cidisi.faia.examples.search.pacman.CostFunction;
 import frsf.cidisi.faia.solver.search.*;
 
 public class GameStructure {
@@ -12,6 +13,21 @@ public class GameStructure {
   public static final int ROOM_LOWER_ENGINE = 2;
   public static final int ROOM_REACTOR = 3;
   public static final int HALL_F = 4;
+  public static final int HALL_A = 5;
+  public static final int HALL_B = 6;
+  public static final int HALL_C = 7;
+  public static final int HALL_D = 8;
+  public static final int HALL_E = 9;
+  public static final int ROOM_CAFETERIA = 10;
+  public static final int ROOM_WEAPONS = 11;
+  public static final int ROOM_NAVIGATION = 12;
+  public static final int ROOM_O2 = 13;
+  public static final int ROOM_ADMIN = 14;
+  public static final int ROOM_SHIELDS = 15;
+  public static final int ROOM_COMUNICATION = 16;
+  public static final int ROOM_STORAGE = 17;
+  public static final int ROOM_ELECTRICAL = 18;
+  public static final int ROOM_MEDBAY = 19;
 
   public static final int WALL = -1;
 
@@ -23,6 +39,8 @@ public class GameStructure {
     ROOMS.put(ROOM_LOWER_ENGINE, "Lower Engine");
     ROOMS.put(ROOM_REACTOR, "Reactor");
     ROOMS.put(HALL_F, "Hall F");
+
+
   }
 
   // Orientation codification
@@ -79,6 +97,7 @@ public class GameStructure {
     SHIP[HALL_F][DOWN] = ROOM_LOWER_ENGINE;
     SHIP[HALL_F][LEFT] = ROOM_REACTOR;
     SHIP[HALL_F][RIGHT] = ROOM_SECURITY;
+
   }
 
   public static int getShipPosition(int room, int orientation) {
@@ -99,7 +118,19 @@ public class GameStructure {
 
   // BreathFirstSearch
   // DepthFirstSearch
+  // UniformCostSearch
+ 
+   // Create the search strategy
   public static Strategy getSearchStrategy() {
+    System.out.println("Estrategia: PROFUNDIDAD");
     return new DepthFirstSearch();
+
+    //System.out.println("Estrategia: AMPLITUD");
+    //return new BreathFirstSearch();
+
+  
+
   }
+
+ 
 }

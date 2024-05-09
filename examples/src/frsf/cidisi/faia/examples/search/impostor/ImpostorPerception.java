@@ -30,6 +30,8 @@ public class ImpostorPerception extends Perception {
 
     int pos = environmentState.getAgentPosition();
 
+    this.setEnergy(environmentState.getAgentEnergy());
+
     this.setUpSensor(impostorEnvironment.getUpPosition(pos));
     this.setLeftSensor(impostorEnvironment.getLeftPosition(pos));
     this.setRightSensor(impostorEnvironment.getRightPosition(pos));

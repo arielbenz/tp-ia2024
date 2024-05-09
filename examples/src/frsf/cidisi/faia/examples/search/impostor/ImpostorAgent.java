@@ -50,7 +50,14 @@ public class ImpostorAgent extends SearchBasedAgent {
   public Action selectAction() {
 
     // Create a Search object with the strategy
-    Search searchSolver = new Search(GameStructure.getSearchStrategy());
+    //Search searchSolver = new Search(GameStructure.getSearchStrategy());
+
+   // Uniform Cost:
+    IStepCostFunction costFunction = new CostFunction();
+    UniformCostSearch strategy = new UniformCostSearch(costFunction);
+
+    // Create a Search object with the strategy
+    Search searchSolver = new Search(strategy);
 
     /*
      * Generate an XML file with the search tree. It can also be generated
