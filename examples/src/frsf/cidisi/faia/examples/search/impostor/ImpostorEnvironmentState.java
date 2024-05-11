@@ -9,7 +9,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
   private int[][] ship;
   private int[] sabotageRooms;
-  private int[] crewPosition; 
+  private int[] crewPosition;
   private int agentPosition;
   private int agentEnergy;
   private int totalCrew;
@@ -36,6 +36,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.setAgentEnergy(GameStructure.INITIAL_AGENT_ENERGY);
     this.setTotalCrew(GameStructure.INITIAL_TOTAL_CREW);
     this.setSabotageRooms(GameStructure.INITIAL_SABOTAGE_ROOMS);
+    this.setCrewPosition(GameStructure.CREW_PER_ROOM);
   }
 
   /**
@@ -60,12 +61,20 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
   // The following methods are Impostor-specific:
 
-  public int[] getcrewPosition(){
+  public int[] getCrewPosition() {
     return crewPosition;
   }
 
-  public void setCrewPosition(int crewPos,int crewUpdate){
-    this.crewPosition[crewPos] = this.crewPosition[crewPos] - crewUpdate;
+  public int getCrewPosition(int pos) {
+    return crewPosition[pos];
+  }
+
+  public void setCrewPosition(int crewPos, int crewUpdate) {
+    this.crewPosition[crewPos] = crewUpdate;
+  }
+
+  public void setCrewPosition(int[] crewPos) {
+    this.crewPosition = crewPos;
   }
 
   public int getAgentPosition() {

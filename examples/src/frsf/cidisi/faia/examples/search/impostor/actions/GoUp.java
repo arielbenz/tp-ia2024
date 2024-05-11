@@ -18,13 +18,13 @@ public class GoUp extends SearchAction {
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    // Increase the visited cells count
-    impostorState.increaseActionCost(10);
-
     int newPosition = impostorState.getImpostorOrientation(GameStructure.UP);
 
     /* The agent can always go up */
     if (impostorState.getEnergy() > 0 && newPosition != GameStructure.WALL) {
+
+      // Increase the visited cells count
+      impostorState.increaseActionCost(10);
 
       int[] newOrientation = GameStructure.getRowShipPosition(newPosition);
 
@@ -49,14 +49,14 @@ public class GoUp extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    // Increase the visited cells count
-    impostorState.increaseActionCost(10);
-
     // Get new position value
     int newPosition = impostorState.getImpostorOrientation(GameStructure.UP);
 
     // Ask if it possible to move UP based on pre-requisits
     if (environmentState.getAgentEnergy() > 0 && newPosition != GameStructure.WALL) {
+
+      // Increase the visited cells count
+      impostorState.increaseActionCost(10);
 
       // Update orientation agent array
       int[] newOrientation = GameStructure.getRowShipPosition(newPosition);

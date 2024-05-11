@@ -29,42 +29,50 @@ public class ImpostorEnvironment extends Environment {
     // Create a new perception to return
     ImpostorPerception perception = new ImpostorPerception();
 
-    // TODO: execute random crew
-
-    public void moverTripulantesAleatoriamente() {
-      Random random = new Random()
-      // Itera en cada posicion del crewPosition (cada habitacion)
-      for (int i = 0; i < ImpostorEnvironmentState.getcrewPosition.length; i++) {
-          // Verifica si hay un tripulante en la habitacion
-          if (ImpostorEnvironmentState.getcrewPosition[i] > 0) {
-              // Itera por cada tripulante en la misma habitacion
-              for (int j = 0; j < ImpostorEnvironmentState.getcrewPosition[i]; j++) {
-                  // Aca se podria considerar si la habitacion a mover es la misma, que vuelva a generar otro valor
-                  int newPosition = random.nextInt(crewPosition.length);
-                  //while (newPosition == i) {
-                  //    newPosition = random.nextInt(crewPosition.length);
-                  //}
-                  // Hace el cambio efectivo de posicion
-                  ImpostorEnvironmentState.setCrewPosition(i,-1)--;
-                  ImpostorEnvironmentState.setCrewPosition(newPosition,+1);
-              }
-          }
-      }
-  }
+    crewPositionUpdate();
 
     // Get the actual position of the agent to be able to create the perception
     int pos = this.getEnvironmentState().getAgentPosition();
-    int[] crewpos = this.getEnvironmentState().getcrewPosition();
+
     // Set the perception sensors
     perception.setUpSensor(this.getUpPosition(pos));
     perception.setDownSensor(this.getDownPosition(pos));
     perception.setLeftSensor(this.getLeftPosition(pos));
     perception.setRightSensor(this.getRightPosition(pos));
-
-    // TODO: get crew position from perception
+    perception.setCrewSensor(this.getRightPosition(pos));
 
     // Return the perception
     return perception;
+  }
+
+  public void crewPositionUpdate() {
+    Random random = new Random();
+
+    // Itera en cada posicion del crewPosition (cada habitacion)
+    for (int i = 0; i < GameStructure.CREW_PER_ROOM.length; i++) {
+
+      int amountCrewInRoom = ((ImpostorEnvironmentState) this.environmentState).getCrewPosition(i);
+      // Verifica si hay un tripulante en la habitacion
+      if (amountCrewInRoom > 0) {
+
+        // Itera por cada tripulante en la misma habitacion
+        for (int j = 0; j < amountCrewInRoom; j++) {
+
+          // Aca se podria considerar si la habitacion a mover es la misma, que vuelva a
+          // generar otro valor
+          int newPosition = random.nextInt(GameStructure.CREW_PER_ROOM.length);
+          // while (newPosition == i) {
+          // newPosition = random.nextInt(crewPosition.length);
+          // }
+          // Hace el cambio efectivo de posicion
+          ((ImpostorEnvironmentState) this.environmentState).setCrewPosition(i, amountCrewInRoom - 1);
+
+          int amountCrewNewPosition = ((ImpostorEnvironmentState) this.environmentState).getCrewPosition(newPosition);
+          ((ImpostorEnvironmentState) this.environmentState).setCrewPosition(newPosition, amountCrewNewPosition + 1);
+        }
+      }
+
+    }
   }
 
   @Override
@@ -91,7 +99,7 @@ public class ImpostorEnvironment extends Environment {
   public int getUpPosition(int pos) {
     return ((ImpostorEnvironmentState) this.environmentState).getUpPosition(pos);
   }
-  
+
   public int getDownPosition(int pos) {
     return ((ImpostorEnvironmentState) this.environmentState).getDownPosition(pos);
   }
@@ -104,8 +112,8 @@ public class ImpostorEnvironment extends Environment {
     return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
   }
 
-  public int[] getCrewPos(int[] poscrew){
-    return ((ImpostorEnvironmentState) this.environmentState).getcrewPosition();
+  public int getCrewPosition(int pos) {
+    return ((ImpostorEnvironmentState) this.environmentState).getCrewPosition(pos);
   }
 
 }

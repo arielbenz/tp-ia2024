@@ -67,7 +67,7 @@ public class GameStructure {
   public static final int INITIAL_AGENT_ENERGY = 100;
   public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
 
-  public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 1, 1, 0, 0 };
+  // public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 1, 1, 0, 0 };
   public static final int INITIAL_TOTAL_CREW = 2;
   // public static final int CREW_IN_POSITION = 0;
 
@@ -78,7 +78,7 @@ public class GameStructure {
   // Game data structure
   public static final int[][] SHIP = new int[5][4];
   public static final int[] AGENT_ORIENTATION = new int[4];
-  public static final int[] CREW_PER_ROOM = new int[5];
+  public static final int[] CREW_PER_ROOM = new int[] { 0, 1, 1, 0, 0 };
 
   public GameStructure() {
   }
