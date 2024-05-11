@@ -33,6 +33,7 @@ public class GameStructure {
   public static final HashMap<Integer, String> ROOMS = new HashMap<>();
   static {
     ROOMS.put(WALL, "Wall");
+    
     ROOMS.put(ROOM_UPPER_ENGINE, "Upper Engine");
     ROOMS.put(ROOM_SECURITY, "Security");
     ROOMS.put(ROOM_LOWER_ENGINE, "Lower Engine");
@@ -43,10 +44,11 @@ public class GameStructure {
     ROOMS.put(ROOM_O2, "O2");
     ROOMS.put(ROOM_ADMIN, "Admin");
     ROOMS.put(ROOM_SHIELDS, "shields");
-    ROOMS.put(ROOM_COMUNICATION, "comunications");
+    ROOMS.put(ROOM_COMUNICATION, "Comunications");
     ROOMS.put(ROOM_STORAGE, "Storage");
     ROOMS.put(ROOM_ELECTRICAL, "Electical");
     ROOMS.put(ROOM_MEDBAY, "Medbay");
+
     ROOMS.put(HALL_A, "Hall A");
     ROOMS.put(HALL_B, "Hall B");
     ROOMS.put(HALL_C, "Hall C");
@@ -65,8 +67,9 @@ public class GameStructure {
   public static final int INITIAL_AGENT_ENERGY = 100;
   public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
 
-  public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 1, 1, 0, 0, 0 };
+  public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 1, 1, 0, 0 };
   public static final int INITIAL_TOTAL_CREW = 2;
+  // public static final int CREW_IN_POSITION = 0;
 
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 

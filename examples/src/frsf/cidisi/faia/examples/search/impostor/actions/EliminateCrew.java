@@ -65,6 +65,8 @@ public class EliminateCrew extends SearchAction {
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
+      // TODO: Execute random position crew
+
       return environmentState;
     }
 

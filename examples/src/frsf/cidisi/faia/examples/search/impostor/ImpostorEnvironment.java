@@ -28,6 +28,8 @@ public class ImpostorEnvironment extends Environment {
     // Create a new perception to return
     ImpostorPerception perception = new ImpostorPerception();
 
+    // TODO: execute random crew
+
     // Get the actual position of the agent to be able to create the perception
     int pos = this.getEnvironmentState().getAgentPosition();
 
@@ -36,6 +38,8 @@ public class ImpostorEnvironment extends Environment {
     perception.setDownSensor(this.getDownPosition(pos));
     perception.setLeftSensor(this.getLeftPosition(pos));
     perception.setRightSensor(this.getRightPosition(pos));
+
+    // TODO: get crew position from perception
 
     // Return the perception
     return perception;
