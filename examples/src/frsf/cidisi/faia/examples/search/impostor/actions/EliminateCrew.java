@@ -19,18 +19,18 @@ public class EliminateCrew extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    // Increase the visited cells count
-    impostorState.increaseActionCost(1);
-
     int pos = impostorState.getPosition();
 
     /*
      * The 'EliminateCrew' action can be selected only if there is a crew member in
      * the current position. Otherwise return 'null'.
      */
-    if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
+    if ((impostorState.getCrewPerRoom() > 0) && (impostorState.getEnergy() > 0)) {
 
-      impostorState.setCrewPerRoom(pos);
+      // Increase the visited cells count
+      impostorState.increaseActionCost(1);
+
+      impostorState.setCrewPerRoom();
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
       System.out
@@ -50,22 +50,17 @@ public class EliminateCrew extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    // Increase the visited cells count
-    impostorState.increaseActionCost(1);
+    if ((impostorState.getCrewPerRoom() > 0) && (environmentState.getAgentEnergy() > 0)) {
 
-    // Get agente position from environment
-    int pos = environmentState.getAgentPosition();
+      // Increase the visited cells count
+      impostorState.increaseActionCost(1);
 
-    if ((impostorState.getCrewPerRoom(pos) > 0) && (environmentState.getAgentEnergy() > 0)) {
-
-      impostorState.setCrewPerRoom(pos);
+      impostorState.setCrewPerRoom();
       environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
 
       // Update agent and environment energy
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
-
-      // TODO: Execute random position crew
 
       return environmentState;
     }

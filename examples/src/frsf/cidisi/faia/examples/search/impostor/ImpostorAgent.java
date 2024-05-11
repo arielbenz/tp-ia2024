@@ -1,5 +1,4 @@
 package frsf.cidisi.faia.examples.search.impostor;
-import frsf.cidisi.faia.examples.search.impostor.Heuristic;
 
 import frsf.cidisi.faia.agent.Perception;
 
