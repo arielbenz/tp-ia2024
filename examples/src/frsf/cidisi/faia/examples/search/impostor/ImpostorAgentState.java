@@ -2,6 +2,7 @@ package frsf.cidisi.faia.examples.search.impostor;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+//import frsf.cidisi.faia.examples.search.impostor.ImpostorPerception;
 
 /**
  * Represent the internal state of the Impostor.
@@ -246,6 +247,17 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
   public void increaseActionCost(int n) {
     this.visitedCells = +n;
+  }
+
+  public int getRemainingCrewRoom() {
+      int result = 0;
+
+      for (int row = 0; row < crewPerRoom.length; row++) {
+        if (crewPerRoom[row] > 0) {
+            result++;
+        }
+      }   
+      return result;
   }
 
 }
