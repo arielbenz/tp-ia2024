@@ -11,6 +11,10 @@ public class ImpostorPerception extends Perception {
   private int leftSensor;
   private int rightSensor;
 
+  public ImpostorPerception() {
+    super();
+  }
+
   public ImpostorPerception(Agent agent, Environment environment) {
     super(agent, environment);
   }

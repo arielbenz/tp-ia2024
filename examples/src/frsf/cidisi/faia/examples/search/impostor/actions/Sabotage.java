@@ -18,6 +18,9 @@ public class Sabotage extends SearchAction {
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
+    // Increase the visited cells count
+    impostorState.increaseActionCost(1);
+
     /*
      * The 'Sabotage' action can be selected only if there is a sabotage room in
      * the current position. Otherwise return 'null'.
@@ -51,7 +54,8 @@ public class Sabotage extends SearchAction {
 
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
-      System.out.println("-- Sabotage Action - Agent pos: " + pos);
+      System.out
+          .println("-- Sabotage Action - Agent pos: " + pos + "  -remaining energy: " + impostorState.getEnergy());
 
       return impostorState;
     }
@@ -67,6 +71,9 @@ public class Sabotage extends SearchAction {
 
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
+
+    // Increase the visited cells count
+    impostorState.increaseActionCost(1);
 
     int pos = environmentState.getAgentPosition();
 
@@ -115,7 +122,7 @@ public class Sabotage extends SearchAction {
    */
   @Override
   public Double getCost() {
-    return new Double(0);
+    return new Double(1);
   }
 
   /**
