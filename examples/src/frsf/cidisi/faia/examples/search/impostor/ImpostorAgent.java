@@ -50,9 +50,9 @@ public class ImpostorAgent extends SearchBasedAgent {
   public Action selectAction() {
 
     // Create a Search object with the strategy
-    //Search searchSolver = new Search(GameStructure.getSearchStrategy());
+    // Search searchSolver = new Search(GameStructure.getSearchStrategy());
 
-   // Uniform Cost:
+    // Uniform Cost:
     IStepCostFunction costFunction = new CostFunction();
     UniformCostSearch strategy = new UniformCostSearch(costFunction);
 

@@ -88,9 +88,6 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     impostorOrientation[GameStructure.DOWN] = impostorPerception.getDownSensor();
     impostorOrientation[GameStructure.LEFT] = impostorPerception.getLeftSensor();
     impostorOrientation[GameStructure.RIGHT] = impostorPerception.getRightSensor();
-
-    energy = impostorPerception.getEnergy();
-    //System.out.println("energy impostorPercepcion:"+ energy + "\n");
   }
 
   /**
@@ -113,26 +110,27 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       }
       str = str + "]";
     }
-    
+
     str = str + " )\"\n";
     str = str + "\nHabitaciones a Sabotear = \"( ";
     for (int row = 0; row < sabotageRooms.length; row++) {
       str = str + "[";
-      str = str + GameStructure.ROOMS.get(row) ;
+      str = str + GameStructure.ROOMS.get(row);
       str = str + "] ";
     }
     str = str + " )\"\n";
- 
+
     str = str + "\nHabitaciones c/Tripulantes = \"( ";
     for (int row = 0; row < crewPerRoom.length; row++) {
       str = str + "[";
-      if (crewPerRoom[row] == 0 ) {
+      if (crewPerRoom[row] == 0) {
         str = str + " * ]";
       } else {
-        str = str + crewPerRoom[row] + "-"+ GameStructure.ROOMS.get(row) ;
+        str = str + crewPerRoom[row] + "-" + GameStructure.ROOMS.get(row);
         str = str + "] ";
       }
     }
+
     str = str + " )\"\n";
 
     return str;
@@ -241,12 +239,13 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     }
     return true;
   }
-  public int getVisitedCellsCount() {
+
+  public int getActionCost() {
     return visitedCells;
   }
 
-  public void increaseVisitedCellsCount(int n) {
-      this.visitedCells = +n;
+  public void increaseActionCost(int n) {
+    this.visitedCells = +n;
   }
 
 }

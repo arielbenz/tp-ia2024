@@ -16,8 +16,8 @@ public class GoDown extends SearchAction {
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-     // Increase the visited cells count
-     impostorState.increaseVisitedCellsCount(10);
+    // Increase the visited cells count
+    impostorState.increaseActionCost(10);
 
     int newPosition = impostorState.getImpostorOrientation(GameStructure.DOWN);
 
@@ -30,7 +30,9 @@ public class GoDown extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
-      System.out.println("-- Go Down Action - Agent pos: " + newPosition +"  -remaining energy: "+impostorState.getEnergy() );
+      System.out.println(
+          "-- Go Down Action - Agent pos: " + newPosition + "  -remaining energy: " + impostorState.getEnergy());
+
       return impostorState;
     }
 
@@ -45,8 +47,8 @@ public class GoDown extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-     // Increase the visited cells count
-     impostorState.increaseVisitedCellsCount(10);
+    // Increase the visited cells count
+    impostorState.increaseActionCost(10);
 
     // Get new position value
     int newPosition = impostorState.getImpostorOrientation(GameStructure.DOWN);

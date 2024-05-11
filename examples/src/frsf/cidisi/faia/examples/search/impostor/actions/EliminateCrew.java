@@ -19,9 +19,9 @@ public class EliminateCrew extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-     // Increase the visited cells count
-     impostorState.increaseVisitedCellsCount(1);
-     
+    // Increase the visited cells count
+    impostorState.increaseActionCost(1);
+
     int pos = impostorState.getPosition();
 
     /*
@@ -29,11 +29,12 @@ public class EliminateCrew extends SearchAction {
      * the current position. Otherwise return 'null'.
      */
     if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
-      
+
       impostorState.setCrewPerRoom(pos);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
-      
-      System.out.println("\n-- Eliminate Action - Agent pos: " + pos +"  -remaining energy: "+impostorState.getEnergy() );
+
+      System.out
+          .println("\n-- Eliminate Action - Agent pos: " + pos + "  -remaining energy: " + impostorState.getEnergy());
       return impostorState;
     }
 
@@ -49,17 +50,17 @@ public class EliminateCrew extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-     // Increase the visited cells count
-     impostorState.increaseVisitedCellsCount(1);
+    // Increase the visited cells count
+    impostorState.increaseActionCost(1);
 
     // Get agente position from environment
     int pos = environmentState.getAgentPosition();
 
     if ((impostorState.getCrewPerRoom(pos) > 0) && (environmentState.getAgentEnergy() > 0)) {
-      
+
       impostorState.setCrewPerRoom(pos);
       environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
-      
+
       // Update agent and environment energy
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
       environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
@@ -77,7 +78,6 @@ public class EliminateCrew extends SearchAction {
   public Double getCost() {
     return new Double(1);
   }
-
 
   /**
    * This method is not important for a search based agent, but is essensial

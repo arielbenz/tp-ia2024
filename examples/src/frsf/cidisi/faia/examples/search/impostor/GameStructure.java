@@ -2,7 +2,6 @@ package frsf.cidisi.faia.examples.search.impostor;
 
 import java.util.HashMap;
 
-import frsf.cidisi.faia.examples.search.impostor.CostFunction;
 import frsf.cidisi.faia.solver.search.*;
 
 public class GameStructure {
@@ -12,13 +11,12 @@ public class GameStructure {
   public static final int ROOM_SECURITY = 1;
   public static final int ROOM_LOWER_ENGINE = 2;
   public static final int ROOM_REACTOR = 3;
-  public static final int HALL_F = 4;
-  /*
   public static final int HALL_A = 5;
   public static final int HALL_B = 6;
   public static final int HALL_C = 7;
   public static final int HALL_D = 8;
   public static final int HALL_E = 9;
+  public static final int HALL_F = 4;
   public static final int ROOM_CAFETERIA = 10;
   public static final int ROOM_WEAPONS = 11;
   public static final int ROOM_NAVIGATION = 12;
@@ -29,7 +27,6 @@ public class GameStructure {
   public static final int ROOM_STORAGE = 17;
   public static final int ROOM_ELECTRICAL = 18;
   public static final int ROOM_MEDBAY = 19;
-  */
 
   public static final int WALL = -1;
 
@@ -40,24 +37,22 @@ public class GameStructure {
     ROOMS.put(ROOM_SECURITY, "Security");
     ROOMS.put(ROOM_LOWER_ENGINE, "Lower Engine");
     ROOMS.put(ROOM_REACTOR, "Reactor");
+    ROOMS.put(ROOM_CAFETERIA, "Cafeteria");
+    ROOMS.put(ROOM_WEAPONS, "Weapons");
+    ROOMS.put(ROOM_NAVIGATION, "Navigation");
+    ROOMS.put(ROOM_O2, "O2");
+    ROOMS.put(ROOM_ADMIN, "Admin");
+    ROOMS.put(ROOM_SHIELDS, "shields");
+    ROOMS.put(ROOM_COMUNICATION, "comunications");
+    ROOMS.put(ROOM_STORAGE, "Storage");
+    ROOMS.put(ROOM_ELECTRICAL, "Electical");
+    ROOMS.put(ROOM_MEDBAY, "Medbay");
+    ROOMS.put(HALL_A, "Hall A");
+    ROOMS.put(HALL_B, "Hall B");
+    ROOMS.put(HALL_C, "Hall C");
+    ROOMS.put(HALL_D, "Hall D");
+    ROOMS.put(HALL_E, "Hall E");
     ROOMS.put(HALL_F, "Hall F");
-    /* ROOMS.put(HALL_A, "Hall A");
-    *  ROOMS.put(HALL_B, "Hall B");
-    *  ROOMS.put(HALL_C, "Hall C");
-    *  ROOMS.put(HALL_D, "Hall D");
-    *  ROOMS.put(HALL_E, "Hall E");
-    * ROOMS.put(ROOM_CAFETERIA, "Cafeteria");
-    * ROOMS.put(ROOM_WEAPONS, "Weapons");
-    * ROOMS.put(ROOM_NAVIGATION, "Navigation");
-    * ROOMS.put(ROOM_O2, "O2");
-    * ROOMS.put(ROOM_ADMIN, "Admin");
-    * ROOMS.put(ROOM_SHIELDS, "shields");
-    * ROOMS.put(ROOM_COMUNICATIONS, "comunications");
-    * ROOMS.put(ROOM_STORAGE, "Storage");
-    * ROOMS.put(ROOM_ELECTRICAL, "Electical");
-    * ROOMS.put(ROOM_MEDBAY , "Medbay");
-    */
-
   }
 
   // Orientation codification
@@ -115,38 +110,35 @@ public class GameStructure {
     SHIP[HALL_F][LEFT] = ROOM_REACTOR;
     SHIP[HALL_F][RIGHT] = ROOM_SECURITY;
 
-     /*
-     // Hall A =  
-     SHIP[HALL_A][UP] = ROOM_WEAPONS;
-     SHIP[HALL_A][DOWN] = ROOM_SHIELDS;
-     SHIP[HALL_A][LEFT] = ROOM_O2;
-     SHIP[HALL_A][RIGHT] = ROOM_NAVIGATION;
-     
-    //  Hall B =  
-     SHIP[HALL_B][UP] = WALL;
-     SHIP[HALL_B][DOWN] = ROOM_COMUNICATIONS;
-     SHIP[HALL_B][LEFT] = ROOM_STORAGE;
-     SHIP[HALL_B][RIGHT] = ROOM_SHIELDS;
+    // // Hall A =
+    // SHIP[HALL_A][UP] = ROOM_WEAPONS;
+    // SHIP[HALL_A][DOWN] = ROOM_SHIELDS;
+    // SHIP[HALL_A][LEFT] = ROOM_O2;
+    // SHIP[HALL_A][RIGHT] = ROOM_NAVIGATION;
 
-    //  Hall C =  
-     SHIP[HALL_C][UP] = ROOM_CAFETERIA;
-     SHIP[HALL_C][DOWN] = ROOM_STORAGE;
-     SHIP[HALL_C][LEFT] = WALL;
-     SHIP[HALL_C][RIGHT] = ROOM_ADMIN;
+    // // Hall B =
+    // SHIP[HALL_B][UP] = WALL;
+    // SHIP[HALL_B][DOWN] = ROOM_COMUNICATION;
+    // SHIP[HALL_B][LEFT] = ROOM_STORAGE;
+    // SHIP[HALL_B][RIGHT] = ROOM_SHIELDS;
 
-    //  Hall D =  
-     SHIP[HALL_D][UP] = ROOM_ELECTRICAL;
-     SHIP[HALL_D][DOWN] = WALL;
-     SHIP[HALL_D][LEFT] = ROOM_LOWER_ENGINE;
-     SHIP[HALL_D][RIGHT] = ROOM_STORAGE;
+    // // Hall C =
+    // SHIP[HALL_C][UP] = ROOM_CAFETERIA;
+    // SHIP[HALL_C][DOWN] = ROOM_STORAGE;
+    // SHIP[HALL_C][LEFT] = WALL;
+    // SHIP[HALL_C][RIGHT] = ROOM_ADMIN;
 
-    //  Hall E =  
-     SHIP[HALL_E][UP] = WALL;
-     SHIP[HALL_E][DOWN] = ROOM_MEDBAY;
-     SHIP[HALL_E][LEFT] = ROOM_UPPER_ENGINE;
-     SHIP[HALL_E][RIGHT] = ROOM_CAFETERIA;
+    // // Hall D =
+    // SHIP[HALL_D][UP] = ROOM_ELECTRICAL;
+    // SHIP[HALL_D][DOWN] = WALL;
+    // SHIP[HALL_D][LEFT] = ROOM_LOWER_ENGINE;
+    // SHIP[HALL_D][RIGHT] = ROOM_STORAGE;
 
-     */
+    // // Hall E =
+    // SHIP[HALL_E][UP] = WALL;
+    // SHIP[HALL_E][DOWN] = ROOM_MEDBAY;
+    // SHIP[HALL_E][LEFT] = ROOM_UPPER_ENGINE;
+    // SHIP[HALL_E][RIGHT] = ROOM_CAFETERIA;
 
   }
 
@@ -165,22 +157,11 @@ public class GameStructure {
   // GRAPHVIZ_TREE
   // EFAIA_TREE
   public static final int VISIBLE_TREE = Search.XML_TREE;
-
+  
   // BreathFirstSearch
   // DepthFirstSearch
   // UniformCostSearch
- 
-   // Create the search strategy
   public static Strategy getSearchStrategy() {
-    System.out.println("Estrategia: PROFUNDIDAD");
     return new DepthFirstSearch();
-
-    //System.out.println("Estrategia: AMPLITUD");
-    //return new BreathFirstSearch();
-
-  
-
   }
-
- 
 }
