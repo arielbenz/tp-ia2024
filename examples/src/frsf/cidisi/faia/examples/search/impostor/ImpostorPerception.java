@@ -10,6 +10,7 @@ public class ImpostorPerception extends Perception {
   private int downSensor;
   private int leftSensor;
   private int rightSensor;
+  private int[] crewSensor;
 
   public ImpostorPerception() {
     super();
@@ -28,14 +29,24 @@ public class ImpostorPerception extends Perception {
     ImpostorEnvironmentState environmentState = impostorEnvironment.getEnvironmentState();
 
     int pos = environmentState.getAgentPosition();
+    int[] crewpos = environmentState.getcrewPosition();
 
     this.setUpSensor(impostorEnvironment.getUpPosition(pos));
     this.setLeftSensor(impostorEnvironment.getLeftPosition(pos));
     this.setRightSensor(impostorEnvironment.getRightPosition(pos));
     this.setDownSensor(impostorEnvironment.getDownPosition(pos));
+    this.setCrewSensor(crewpos);
   }
 
   // The following methods are Impostor-specific:
+
+  public int[] getCrewSensor(){
+    return crewSensor;
+  }
+
+  public void setCrewSensor(int[] crewSensor){
+    this.crewSensor = crewSensor;
+  } 
 
   public int getLeftSensor() {
     return leftSensor;
@@ -75,10 +86,10 @@ public class ImpostorPerception extends Perception {
 
     str.append("* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + GameStructure.ROOMS.get(this.upSensor) + "\n");
     str.append("* Sensor Abajo: " + "(" + this.downSensor + ")" + " : " + GameStructure.ROOMS.get(this.downSensor) + "\n");
-    str.append(
-        "* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + GameStructure.ROOMS.get(this.leftSensor) + "\n");
-    str.append(
-        "* Sensor Derecha: " + "(" + this.rightSensor + ")" + " : " + GameStructure.ROOMS.get(this.rightSensor) + "\n");
+    str.append("* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + GameStructure.ROOMS.get(this.leftSensor) + "\n");
+    str.append("* Sensor Derecha: " + "(" + this.rightSensor + ")" + " : " + GameStructure.ROOMS.get(this.rightSensor) + "\n");
+  //  str.append("Sensor crewSensor: ") + "(" + this.crewSensor + ")" + " : " + GameStructure.
+    
 
     return str.toString();
   }

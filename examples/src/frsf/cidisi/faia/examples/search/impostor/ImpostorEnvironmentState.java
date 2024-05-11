@@ -9,6 +9,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
   private int[][] ship;
   private int[] sabotageRooms;
+  private int[] crewPosition; 
   private int agentPosition;
   private int agentEnergy;
   private int totalCrew;
@@ -58,6 +59,14 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   }
 
   // The following methods are Impostor-specific:
+
+  public int[] getcrewPosition(){
+    return crewPosition;
+  }
+
+  public void setCrewPosition(int crewPos,int crewUpdate){
+    this.crewPosition[crewPos] = this.crewPosition[crewPos] - crewUpdate;
+  }
 
   public int getAgentPosition() {
     return agentPosition;

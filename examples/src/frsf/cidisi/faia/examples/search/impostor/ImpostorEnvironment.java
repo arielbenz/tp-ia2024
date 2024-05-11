@@ -3,6 +3,7 @@ package frsf.cidisi.faia.examples.search.impostor;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import java.util.Random;
 
 public class ImpostorEnvironment extends Environment {
 
@@ -30,9 +31,30 @@ public class ImpostorEnvironment extends Environment {
 
     // TODO: execute random crew
 
+    public void moverTripulantesAleatoriamente() {
+      Random random = new Random()
+      // Itera en cada posicion del crewPosition (cada habitacion)
+      for (int i = 0; i < ImpostorEnvironmentState.getcrewPosition.length; i++) {
+          // Verifica si hay un tripulante en la habitacion
+          if (ImpostorEnvironmentState.getcrewPosition[i] > 0) {
+              // Itera por cada tripulante en la misma habitacion
+              for (int j = 0; j < ImpostorEnvironmentState.getcrewPosition[i]; j++) {
+                  // Aca se podria considerar si la habitacion a mover es la misma, que vuelva a generar otro valor
+                  int newPosition = random.nextInt(crewPosition.length);
+                  //while (newPosition == i) {
+                  //    newPosition = random.nextInt(crewPosition.length);
+                  //}
+                  // Hace el cambio efectivo de posicion
+                  ImpostorEnvironmentState.setCrewPosition(i,-1)--;
+                  ImpostorEnvironmentState.setCrewPosition(newPosition,+1);
+              }
+          }
+      }
+  }
+
     // Get the actual position of the agent to be able to create the perception
     int pos = this.getEnvironmentState().getAgentPosition();
-
+    int[] crewpos = this.getEnvironmentState().getcrewPosition();
     // Set the perception sensors
     perception.setUpSensor(this.getUpPosition(pos));
     perception.setDownSensor(this.getDownPosition(pos));
@@ -80,6 +102,10 @@ public class ImpostorEnvironment extends Environment {
 
   public int getRightPosition(int pos) {
     return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
+  }
+
+  public int[] getCrewPos(int[] poscrew){
+    return ((ImpostorEnvironmentState) this.environmentState).getcrewPosition();
   }
 
 }
