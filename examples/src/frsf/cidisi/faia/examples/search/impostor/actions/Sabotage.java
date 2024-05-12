@@ -52,7 +52,7 @@ public class Sabotage extends SearchAction {
       impostorState.setSabotageRooms(newSabotageRooms);
       impostorState.setTotalSabotageRooms(newSabotageRooms.length);
 
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
 
       System.out
           .println("-- Sabotage Action - Agent pos: " + pos + "  -remaining energy: " + impostorState.getEnergy());
@@ -108,8 +108,8 @@ public class Sabotage extends SearchAction {
       environmentState.setSabotageRooms(newSabotageRooms);
 
       // Update agent and environment energy
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
+      environmentState.consumeAgentEnergy();
 
       return environmentState;
     }

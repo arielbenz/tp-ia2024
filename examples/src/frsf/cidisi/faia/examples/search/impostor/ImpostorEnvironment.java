@@ -39,13 +39,13 @@ public class ImpostorEnvironment extends Environment {
     perception.setDownSensor(this.getDownPosition(pos));
     perception.setLeftSensor(this.getLeftPosition(pos));
     perception.setRightSensor(this.getRightPosition(pos));
-    perception.setCrewSensor(this.getRightPosition(pos));
+    perception.setCrewSensor(this.getCrewPosition(pos));
 
     // Return the perception
     return perception;
   }
 
-  public void crewPositionUpdate() {
+  private void crewPositionUpdate() {
     Random random = new Random();
 
     // Itera en cada posicion del crewPosition (cada habitacion)
@@ -88,10 +88,7 @@ public class ImpostorEnvironment extends Environment {
     int agentEnergy = impostorEnvironmentState.getAgentEnergy();
 
     // If the agent has no energy, he failed
-    if (agentEnergy <= 0)
-      return true;
-
-    return false;
+    return agentEnergy <= 0;
   }
 
   // The following methods are Impostor-specific:

@@ -16,7 +16,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   private int crewPerRoom;
   private int totalCrew;
   private int[] impostorOrientation; // [UP, DOWN, LEFT, RIGHT]
-  private int visitedCells;
+  private int actionCost;
 
   public ImpostorAgentState() {
     crewPerRoom = 0;
@@ -32,7 +32,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     totalSabotageRooms = sabRooms.length;
     crewPerRoom = crew;
     impostorOrientation = orientation;
-    visitedCells = 0;
+    actionCost = 0;
   }
 
   /**
@@ -195,6 +195,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     this.energy = energy;
   }
 
+  public void consumeEnergy() {
+    this.energy = this.energy - GameStructure.Q_CONSUME_ENERGY;
+  }
+
   public int[] getSabotageRooms() {
     return sabotageRooms;
   }
@@ -232,11 +236,11 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   public int getActionCost() {
-    return visitedCells;
+    return actionCost;
   }
 
   public void increaseActionCost(int n) {
-    this.visitedCells = +n;
+    this.actionCost = +n;
   }
 
   public int getRemainingCrewRoom() {

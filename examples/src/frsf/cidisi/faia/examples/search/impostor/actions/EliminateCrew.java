@@ -31,7 +31,7 @@ public class EliminateCrew extends SearchAction {
       impostorState.increaseActionCost(1);
 
       impostorState.setCrewPerRoom();
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
 
       System.out
           .println("\n-- Eliminate Action - Agent pos: " + pos + "  -remaining energy: " + impostorState.getEnergy());
@@ -59,8 +59,8 @@ public class EliminateCrew extends SearchAction {
       environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
 
       // Update agent and environment energy
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
+      environmentState.consumeAgentEnergy();
 
       return environmentState;
     }
