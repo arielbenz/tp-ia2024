@@ -32,9 +32,6 @@ public class GoLeft extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.consumeEnergy();
 
-      System.out.println(
-          "-- Go Left Action - Agent pos: " + newPosition + "  -remaining energy: " + impostorState.getEnergy());
-
       return impostorState;
     }
 
@@ -79,7 +76,7 @@ public class GoLeft extends SearchAction {
    */
   @Override
   public Double getCost() {
-    return new Double(10);
+    return new Double(GameStructure.ACTION_MOVE_COST);
   }
 
   /**

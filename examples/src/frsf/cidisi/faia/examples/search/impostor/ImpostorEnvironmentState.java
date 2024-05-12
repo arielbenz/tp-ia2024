@@ -61,10 +61,6 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
   // The following methods are Impostor-specific:
 
-  public int[] getCrewPosition() {
-    return crewPosition;
-  }
-
   public int getCrewPosition(int pos) {
     return crewPosition[pos];
   }

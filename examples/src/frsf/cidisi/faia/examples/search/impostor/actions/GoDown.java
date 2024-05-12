@@ -30,9 +30,6 @@ public class GoDown extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.consumeEnergy();
 
-      System.out.println(
-          "-- Go Down Action - Agent pos: " + newPosition + "  -remaining energy: " + impostorState.getEnergy());
-
       return impostorState;
     }
 
@@ -77,7 +74,7 @@ public class GoDown extends SearchAction {
    */
   @Override
   public Double getCost() {
-    return new Double(10);
+    return new Double(GameStructure.ACTION_MOVE_COST);
   }
 
   /**

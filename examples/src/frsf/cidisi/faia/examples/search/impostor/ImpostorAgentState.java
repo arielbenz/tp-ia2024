@@ -122,21 +122,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       str = str + GameStructure.ROOMS.get(sabotageRooms[row]);
       str = str + "] ";
     }
-    str = str + " )\"\n";
-    str = str + "\nTotal de Tripulantes = \"( " + totalCrew;
-
-    // str = str + "\nHabitaciones c/Tripulantes = \"( ";
-    // for (int row = 0; row < GameStructure.CREW_POSITIONS.length; row++) {
-    // str = str + "[";
-    // if (crewInRoom[row] == 0) {
-    // str = str + " * ]";
-    // } else {
-    // str = str + crewInRoom[row] + "-" + GameStructure.ROOMS.get(row);
-    // str = str + "] ";
-    // }
-    // }
-
-    str = str + " )\"\n";
+    str = str + ")\"\n";
+    str = str + "\nTotal de Tripulantes = \"( " + totalCrew + " ) Tripulante/s\"\n";
 
     return str;
   }
