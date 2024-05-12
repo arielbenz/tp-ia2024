@@ -123,13 +123,13 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
     // str = str + "\nHabitaciones c/Tripulantes = \"( ";
     // for (int row = 0; row < GameStructure.CREW_POSITIONS.length; row++) {
-    //   str = str + "[";
-    //   if (crewPerRoom[row] == 0) {
-    //     str = str + " * ]";
-    //   } else {
-    //     str = str + crewPerRoom[row] + "-" + GameStructure.ROOMS.get(row);
-    //     str = str + "] ";
-    //   }
+    // str = str + "[";
+    // if (crewPerRoom[row] == 0) {
+    // str = str + " * ]";
+    // } else {
+    // str = str + crewPerRoom[row] + "-" + GameStructure.ROOMS.get(row);
+    // str = str + "] ";
+    // }
     // }
 
     str = str + " )\"\n";
@@ -231,8 +231,11 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     return false;
   }
 
-  public boolean isNoMoreCrewPerRoom() {
-    return totalCrew > 0; 
+  public boolean isNoMoreCrew() {
+    if (totalCrew > 0) {
+      return false;
+    }
+    return true;
   }
 
   public int getActionCost() {

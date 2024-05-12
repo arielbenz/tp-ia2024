@@ -88,7 +88,10 @@ public class ImpostorEnvironment extends Environment {
     int agentEnergy = impostorEnvironmentState.getAgentEnergy();
 
     // If the agent has no energy, he failed
-    return agentEnergy <= 0;
+    if (agentEnergy <= 0) {
+      return true;
+    }
+    return false;
   }
 
   // The following methods are Impostor-specific:
