@@ -39,7 +39,7 @@ public class ImpostorEnvironment extends Environment {
     perception.setDownSensor(this.getDownPosition(pos));
     perception.setLeftSensor(this.getLeftPosition(pos));
     perception.setRightSensor(this.getRightPosition(pos));
-    perception.setCrewSensor(this.getRightPosition(pos));
+    perception.setCrewSensor(this.getCrewPosition(pos));
 
     // Return the perception
     return perception;
@@ -61,14 +61,21 @@ public class ImpostorEnvironment extends Environment {
           // Aca se podria considerar si la habitacion a mover es la misma, que vuelva a
           // generar otro valor
           int newPosition = random.nextInt(GameStructure.CREW_PER_ROOM.length);
+          System.out
+          .println("- Actual Crew posicion: " + i +" -cantidad: " + getCrewPosition(i) + "  - Nueva Crew posicion: " + newPosition+ "\n");
+
           // while (newPosition == i) {
           // newPosition = random.nextInt(crewPosition.length);
           // }
-          // Hace el cambio efectivo de posicion
-          ((ImpostorEnvironmentState) this.environmentState).setCrewPosition(i, amountCrewInRoom - 1);
 
-          int amountCrewNewPosition = ((ImpostorEnvironmentState) this.environmentState).getCrewPosition(newPosition);
-          ((ImpostorEnvironmentState) this.environmentState).setCrewPosition(newPosition, amountCrewNewPosition + 1);
+          // solo mueve crew si el resultado no es la misma posicion
+          if(newPosition != i){
+            // Hace el cambio efectivo de posicion
+            ((ImpostorEnvironmentState) this.environmentState).setCrewPosition(i, amountCrewInRoom - 1);
+
+            int amountCrewNewPosition = ((ImpostorEnvironmentState) this.environmentState).getCrewPosition(newPosition);
+            ((ImpostorEnvironmentState) this.environmentState).setCrewPosition(newPosition, amountCrewNewPosition + 1);
+          }
         }
       }
 

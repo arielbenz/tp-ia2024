@@ -27,9 +27,11 @@ public class EliminateCrew extends SearchAction {
      */
     if ((impostorState.getCrewPerRoom() > 0) && (impostorState.getEnergy() > 0)) {
 
-      // Increase the visited cells count
+      // incrementa el costo asignado a la accion. 
+      // Se utiliza para las estrategias de busqueda
       impostorState.increaseActionCost(1);
 
+      //disminuye en 1 totalCrew y crewPerRoom y energia 
       impostorState.setCrewPerRoom();
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 

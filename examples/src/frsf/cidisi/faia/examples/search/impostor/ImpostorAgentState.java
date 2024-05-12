@@ -54,7 +54,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   @Override
   public SearchBasedAgentState clone() {
 
-    int newCrewPerRoom = crewPerRoom;
+    //int newCrewPerRoom = crewPerRoom;
+    int newCrewPerRoom = this.getCrewPerRoom();
 
     int[] newImpostorOrientation = new int[impostorOrientation.length];
     for (int i = 0; i < impostorOrientation.length; i++) {

@@ -46,7 +46,7 @@ public class GameStructure {
     ROOMS.put(ROOM_SHIELDS, "shields");
     ROOMS.put(ROOM_COMUNICATION, "Comunications");
     ROOMS.put(ROOM_STORAGE, "Storage");
-    ROOMS.put(ROOM_ELECTRICAL, "Electical");
+    ROOMS.put(ROOM_ELECTRICAL, "Electrical");
     ROOMS.put(ROOM_MEDBAY, "Medbay");
 
     ROOMS.put(HALL_A, "Hall A");
@@ -74,6 +74,8 @@ public class GameStructure {
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
   public static final int Q_CONSUME_ENERGY = 1;
+  public static final int Q_COST_TO_ELIMINATE = 1;
+  public static final int Q_COST_TO_MOVE = 15;
 
   // Game data structure
   public static final int[][] SHIP = new int[5][4];
