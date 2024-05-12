@@ -50,27 +50,22 @@ public class ImpostorAgent extends SearchBasedAgent {
   public Action selectAction() {
 
     // Create a Search object with the strategy //profundidad o amplitud
-    // Search searchSolver = new Search(GameStructure.getSearchStrategy());
+    Search searchSolver = new Search(GameStructure.getSearchStrategy());
 
-    // Uniform Cost:
-    //IStepCostFunction costFunction = new CostFunction();
-    //UniformCostSearch strategy = new UniformCostSearch(costFunction);
-
-    /*
-    * A Star (A*) Search:
-    * IStepCostFunction cost = new CostFunction();
-    * IEstimatedCostFunction heuristic = new Heuristic();
-    * AStarSearch strategy = new AStarSearch(cost, heuristic);
-    * 
-     */
-
-    // Greedy(AVARAST)  Search:
-    IEstimatedCostFunction heuristic = new Heuristic();
-    GreedySearch strategy = new GreedySearch(heuristic);
+    // Uniform Cost Search:
+    // IStepCostFunction costFunction = new CostFunction();
+    // UniformCostSearch strategy = new UniformCostSearch(costFunction);
+    // Search searchSolver = new Search(strategy);
     
+    // (A*) Search:
+    // IStepCostFunction cost = new CostFunction();
+    // IEstimatedCostFunction heuristic = new Heuristic();
+    // AStarSearch strategy = new AStarSearch(cost, heuristic);    
 
-    // Create a Search object with the strategy
-    Search searchSolver = new Search(strategy);
+    // Greedy(AVARA) Search:
+    // IEstimatedCostFunction heuristic = new Heuristic();
+    // GreedySearch strategy = new GreedySearch(heuristic);
+    // Search searchSolver = new Search(strategy);
 
     /*
      * Generate an XML file with the search tree. It can also be generated

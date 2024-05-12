@@ -21,8 +21,8 @@ public class GoDown extends SearchAction {
     /* The agent can always go down */
     if (impostorState.getEnergy() > 0 && newPosition != GameStructure.WALL) {
 
-      // Increase the visited cells count
-      impostorState.increaseActionCost(10);
+      // Increase the action cost count
+      impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
       int[] newOrientation = GameStructure.getRowShipPosition(newPosition);
 
@@ -53,8 +53,8 @@ public class GoDown extends SearchAction {
     // Ask if it possible to move DOWN based on pre-requisits
     if (environmentState.getAgentEnergy() > 0 && newPosition != GameStructure.WALL) {
 
-      // Increase the visited cells count
-      impostorState.increaseActionCost(10);
+      // Increase the action cost count
+      impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
       // Update orientation agent array
       int[] newOrientation = GameStructure.getRowShipPosition(newPosition);

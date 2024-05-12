@@ -122,7 +122,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     str = str + "\nTotal de Tripulantes = \"( " + totalCrew;
 
     // str = str + "\nHabitaciones c/Tripulantes = \"( ";
-    // for (int row = 0; row < GameStructure.CREW_PER_ROOM.length; row++) {
+    // for (int row = 0; row < GameStructure.CREW_POSITIONS.length; row++) {
     //   str = str + "[";
     //   if (crewPerRoom[row] == 0) {
     //     str = str + " * ]";

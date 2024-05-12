@@ -37,8 +37,8 @@ public class Sabotage extends SearchAction {
 
     if (isSabotageRoom && impostorState.getEnergy() > 0 && totalSabotate > 0) {
 
-      // Increase the visited cells count
-      impostorState.increaseActionCost(1);
+      // Increase the action cost count
+      impostorState.increaseActionCost(GameStructure.ACTION_SABOTAGE_COST);
 
       int[] newSabotageRooms = new int[sabotageRooms.length - 1];
 
@@ -87,8 +87,8 @@ public class Sabotage extends SearchAction {
 
     if (isSabotageRoom && environmentState.getAgentEnergy() > 0 && totalSabotate > 0) {
 
-      // Increase the visited cells count
-      impostorState.increaseActionCost(1);
+      // Increase the action cost count
+      impostorState.increaseActionCost(GameStructure.ACTION_SABOTAGE_COST);
 
       // Remove the sabotage room
       int[] newSabotageRooms = new int[sabotageRooms.length - 1];

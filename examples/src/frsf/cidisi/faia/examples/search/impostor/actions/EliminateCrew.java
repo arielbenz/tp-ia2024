@@ -27,8 +27,8 @@ public class EliminateCrew extends SearchAction {
      */
     if ((impostorState.getCrewPerRoom() > 0) && (impostorState.getEnergy() > 0)) {
 
-      // Increase the visited cells count
-      impostorState.increaseActionCost(1);
+      // Increase the action cost count
+      impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
       impostorState.setCrewPerRoom();
       impostorState.consumeEnergy();
@@ -52,11 +52,11 @@ public class EliminateCrew extends SearchAction {
 
     if ((impostorState.getCrewPerRoom() > 0) && (environmentState.getAgentEnergy() > 0)) {
 
-      // Increase the visited cells count
-      impostorState.increaseActionCost(1);
+      // Increase the action cost count
+      impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
       impostorState.setCrewPerRoom();
-      environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
+      environmentState.eliminateCrew();
 
       // Update agent and environment energy
       impostorState.consumeEnergy();
