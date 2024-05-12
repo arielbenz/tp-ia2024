@@ -71,7 +71,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
     int newEnergy = this.getEnergy();
     int newPosition = this.getPosition();
-    int newTotalCrew = this.totalCrew;
+    int newTotalCrew = this.getRemainingCrewRoom();
 
     ImpostorAgentState newState = new ImpostorAgentState(newEnergy, newCrewInRoom, newPosition,
         newSabotageRooms, newImpostorOrientation, newTotalCrew);
@@ -137,9 +137,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     if (!(obj instanceof ImpostorAgentState))
       return false;
 
-    int positionObj = ((ImpostorAgentState) obj).getPosition();
     int totalSabotageRoomsObj = ((ImpostorAgentState) obj).getTotalSabotageRooms();
-
     if (this.totalSabotageRooms != totalSabotageRoomsObj) {
       return false;
     }
@@ -149,6 +147,12 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       return false;
     }
 
+    int totalCrewObj = ((ImpostorAgentState) obj).getRemainingCrewRoom();
+    if (totalCrew != totalCrewObj) {
+      return false;
+    }
+
+    int positionObj = ((ImpostorAgentState) obj).getPosition();
     if (this.position != positionObj) {
       return false;
     }
