@@ -101,8 +101,12 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.totalCrew = totalCrew;
   }
 
-  public void eliminateCrew() {
+  public void decreaseTotalCrew() {
     this.totalCrew = this.totalCrew - 1;
+  }
+
+  public void eliminateCrewInPosition(int pos) {
+    this.crewPosition[pos] = this.crewPosition[pos] - 1;
   }
 
   public int getAgentEnergy() {

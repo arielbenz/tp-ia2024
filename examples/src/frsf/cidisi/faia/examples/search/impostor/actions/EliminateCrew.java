@@ -55,8 +55,12 @@ public class EliminateCrew extends SearchAction {
       // Increase the action cost count
       impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
+      int pos = environmentState.getAgentPosition();
+
+      // Eliminate Crew
       impostorState.eliminateCrewInRoom();
-      environmentState.eliminateCrew();
+      environmentState.decreaseTotalCrew();
+      environmentState.eliminateCrewInPosition(pos);
 
       // Update agent and environment energy
       impostorState.consumeEnergy();
