@@ -13,26 +13,28 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   private int energy;
   private int[] sabotageRooms;
   private int totalSabotageRooms;
-  private int crewPerRoom;
+  private int crewInRoom;
   private int totalCrew;
   private int[] impostorOrientation; // [UP, DOWN, LEFT, RIGHT]
   private int actionCost;
 
   public ImpostorAgentState() {
-    crewPerRoom = 0;
+    crewInRoom = 0;
+    totalCrew = GameStructure.INITIAL_TOTAL_CREW;
     sabotageRooms = new int[0];
     impostorOrientation = GameStructure.AGENT_ORIENTATION;
     this.initState();
   }
 
-  public ImpostorAgentState(int e, int crew, int pos, int[] sabRooms, int[] orientation) {
+  public ImpostorAgentState(int e, int crew, int pos, int[] sabRooms, int[] orientation, int newTotalCrew) {
     position = pos;
     energy = e;
     sabotageRooms = sabRooms;
     totalSabotageRooms = sabRooms.length;
-    crewPerRoom = crew;
+    crewInRoom = crew;
     impostorOrientation = orientation;
     actionCost = 0;
+    totalCrew = newTotalCrew;
   }
 
   /**
@@ -42,7 +44,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void initState() {
     energy = GameStructure.INITIAL_AGENT_ENERGY;
     position = GameStructure.INITIAL_AGENT_POSITION;
-    crewPerRoom = 0;
+    crewInRoom = 0;
+    totalCrew = GameStructure.INITIAL_TOTAL_CREW;
     sabotageRooms = GameStructure.INITIAL_SABOTAGE_ROOMS;
     totalSabotageRooms = sabotageRooms.length;
   }
@@ -54,7 +57,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   @Override
   public SearchBasedAgentState clone() {
 
-    int newCrewPerRoom = crewPerRoom;
+    int newCrewInRoom = crewInRoom;
 
     int[] newImpostorOrientation = new int[impostorOrientation.length];
     for (int i = 0; i < impostorOrientation.length; i++) {
@@ -68,9 +71,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
     int newEnergy = this.getEnergy();
     int newPosition = this.getPosition();
+    int newTotalCrew = this.totalCrew;
 
-    ImpostorAgentState newState = new ImpostorAgentState(newEnergy, newCrewPerRoom, newPosition,
-        newSabotageRooms, newImpostorOrientation);
+    ImpostorAgentState newState = new ImpostorAgentState(newEnergy, newCrewInRoom, newPosition,
+        newSabotageRooms, newImpostorOrientation, newTotalCrew);
 
     return newState;
   }
@@ -87,7 +91,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     impostorOrientation[GameStructure.DOWN] = impostorPerception.getDownSensor();
     impostorOrientation[GameStructure.LEFT] = impostorPerception.getLeftSensor();
     impostorOrientation[GameStructure.RIGHT] = impostorPerception.getRightSensor();
-    crewPerRoom = impostorPerception.getCrewSensor();
+    crewInRoom = impostorPerception.getCrewSensor();
   }
 
   /**
@@ -124,10 +128,10 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     // str = str + "\nHabitaciones c/Tripulantes = \"( ";
     // for (int row = 0; row < GameStructure.CREW_POSITIONS.length; row++) {
     // str = str + "[";
-    // if (crewPerRoom[row] == 0) {
+    // if (crewInRoom[row] == 0) {
     // str = str + " * ]";
     // } else {
-    // str = str + crewPerRoom[row] + "-" + GameStructure.ROOMS.get(row);
+    // str = str + crewInRoom[row] + "-" + GameStructure.ROOMS.get(row);
     // str = str + "] ";
     // }
     // }
@@ -153,8 +157,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       return false;
     }
 
-    int crewPerRoomObj = ((ImpostorAgentState) obj).getCrewPerRoom();
-    if (crewPerRoom != crewPerRoomObj) {
+    int crewInRoomObj = ((ImpostorAgentState) obj).getCrewInRoom();
+    if (crewInRoom != crewInRoomObj) {
       return false;
     }
 
@@ -207,13 +211,13 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     this.sabotageRooms = sabotageRooms;
   }
 
-  public int getCrewPerRoom() {
-    return crewPerRoom;
+  public int getCrewInRoom() {
+    return crewInRoom;
   }
 
-  public void setCrewPerRoom() {
+  public void setCrewInRoom() {
     this.totalCrew = this.totalCrew - 1;
-    this.crewPerRoom = this.crewPerRoom - 1;
+    this.crewInRoom = this.crewInRoom - 1;
   }
 
   public int getTotalSabotageRooms() {

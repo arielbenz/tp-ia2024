@@ -63,14 +63,18 @@ public class GameStructure {
   public static final int LEFT = 2;
   public static final int RIGHT = 3;
 
-  // Initial values
+  // Initial values agent
   public static final int INITIAL_AGENT_ENERGY = 100;
   public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
 
+  // Initial values rooms
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
+
+  // Initial values crew
   public static final int[] CREW_POSITIONS = new int[] { 0, 0, 0, 0, 0 };
   public static final int INITIAL_TOTAL_CREW = 0;
 
+  // Initial values actions
   public static final int Q_CONSUME_ENERGY = 1;
   public static final int ACTION_ELIMINATE_COST = 1;
   public static final int ACTION_SABOTAGE_COST = 1;
