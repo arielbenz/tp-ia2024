@@ -215,7 +215,11 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     return crewInRoom;
   }
 
-  public void setCrewInRoom() {
+  public void setCrewInRoom(int crewInRoom) {
+    this.crewInRoom = crewInRoom;
+  }
+
+  public void eliminateCrewInRoom() {
     this.totalCrew = this.totalCrew - 1;
     this.crewInRoom = this.crewInRoom - 1;
   }

@@ -30,7 +30,7 @@ public class EliminateCrew extends SearchAction {
       // Increase the action cost count
       impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
-      impostorState.setCrewInRoom();
+      impostorState.eliminateCrewInRoom();
       impostorState.consumeEnergy();
 
       System.out
@@ -55,7 +55,7 @@ public class EliminateCrew extends SearchAction {
       // Increase the action cost count
       impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
-      impostorState.setCrewInRoom();
+      impostorState.eliminateCrewInRoom();
       environmentState.eliminateCrew();
 
       // Update agent and environment energy
