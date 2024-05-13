@@ -71,8 +71,9 @@ public class GameStructure {
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
   // Initial values crew
-  public static final int[] CREW_POSITIONS = new int[] { 0, 2, 0, 0, 0 };
+  public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 1 };
   public static final int INITIAL_TOTAL_CREW = 2;
+  public static final int CREW_IN_POSITION = 0;
 
   // Initial values actions
   public static final int Q_CONSUME_ENERGY = 1;
@@ -88,6 +89,8 @@ public class GameStructure {
   }
 
   public void init() {
+
+    // Upper Engine = 0
     SHIP[ROOM_UPPER_ENGINE][UP] = WALL;
     SHIP[ROOM_UPPER_ENGINE][DOWN] = HALL_F;
     SHIP[ROOM_UPPER_ENGINE][LEFT] = WALL;
@@ -147,6 +150,60 @@ public class GameStructure {
     // SHIP[HALL_E][LEFT] = ROOM_UPPER_ENGINE;
     // SHIP[HALL_E][RIGHT] = ROOM_CAFETERIA;
 
+    // // Cafeteria = 
+    // SHIP[ROOM_CAFETERIA][UP] = WALL;
+    // SHIP[ROOM_CAFETERIA][DOWN] = HALL_C;
+    // SHIP[ROOM_CAFETERIA][LEFT] = HALL_E;
+    // SHIP[ROOM_CAFETERIA][RIGHT] = ROOM_WEAPONS;
+
+    // // Weapons = 
+    // SHIP[ROOM_WEAPONS][UP] = WALL;
+    // SHIP[ROOM_WEAPONS][DOWN] = HALL_A;
+    // SHIP[ROOM_WEAPONS][LEFT] = ROOM_CAFETERIA;
+    // SHIP[ROOM_WEAPONS][RIGHT] = WALL;
+
+    // // Navigation = 
+    // SHIP[ROOM_NAVIGATION][UP] = WALL;
+    // SHIP[ROOM_NAVIGATION][DOWN] = WALL;
+    // SHIP[ROOM_NAVIGATION][LEFT] = HALL_A;
+    // SHIP[ROOM_NAVIGATION][RIGHT] = WALL;
+
+    // // O2 = 
+    // SHIP[ROOM_O2][UP] = WALL;
+    // SHIP[ROOM_O2][DOWN] = WALL;
+    // SHIP[ROOM_O2][LEFT] = WALL;
+    // SHIP[ROOM_O2][RIGHT] = HALL_A;
+
+    // // Shields = 
+    // SHIP[ROOM_SHIELDS][UP] = HALL_A;
+    // SHIP[ROOM_SHIELDS][DOWN] = WALL;
+    // SHIP[ROOM_SHIELDS][LEFT] = HALL_B;
+    // SHIP[ROOM_SHIELDS][RIGHT] = WALL;
+
+    // // Communication = 
+    // SHIP[ROOM_COMUNICATION][UP] = HALL_B;
+    // SHIP[ROOM_COMUNICATION][DOWN] = WALL;
+    // SHIP[ROOM_COMUNICATION][LEFT] = WALL;
+    // SHIP[ROOM_COMUNICATION][RIGHT] = WALL;
+
+    // // Storage = 
+    // SHIP[ROOM_STORAGE][UP] = HALL_C;
+    // SHIP[ROOM_STORAGE][DOWN] = WALL;
+    // SHIP[ROOM_STORAGE][LEFT] = HALL_D;
+    // SHIP[ROOM_STORAGE][RIGHT] = HALL_B;
+
+    // // Admin = 
+    // SHIP[ROOM_ADMIN][UP] = WALL;
+    // SHIP[ROOM_ADMIN][DOWN] = WALL;
+    // SHIP[ROOM_ADMIN][LEFT] = HALL_C;
+    // SHIP[ROOM_ADMIN][RIGHT] = WALL;
+
+    // // Electrical = 
+    // SHIP[ROOM_ELECTRICAL][UP] = WALL;
+    // SHIP[ROOM_ELECTRICAL][DOWN] = HALL_D;
+    // SHIP[ROOM_ELECTRICAL][LEFT] = WALL;
+    // SHIP[ROOM_ELECTRICAL][RIGHT] = WALL;
+
   }
 
   public static int getShipPosition(int room, int orientation) {
@@ -169,6 +226,6 @@ public class GameStructure {
   // DepthFirstSearch
   // UniformCostSearch
   public static Strategy getSearchStrategy() {
-    return new DepthFirstSearch();
+    return new BreathFirstSearch();
   }
 }
