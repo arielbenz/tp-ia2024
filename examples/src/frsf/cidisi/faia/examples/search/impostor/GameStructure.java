@@ -67,9 +67,9 @@ public class GameStructure {
   public static final int INITIAL_AGENT_ENERGY = 100;
   public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
 
-  public static final int[] INITIAL_CREW_PER_ROOM = new int[] { 0, 1, 1, 0, 0 };
+  public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 1 };
   public static final int INITIAL_TOTAL_CREW = 2;
-  // public static final int CREW_IN_POSITION = 0;
+  public static final int CREW_IN_POSITION = 0;
 
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
@@ -165,6 +165,6 @@ public class GameStructure {
   // DepthFirstSearch
   // UniformCostSearch
   public static Strategy getSearchStrategy() {
-    return new DepthFirstSearch();
+    return new BreathFirstSearch();
   }
 }

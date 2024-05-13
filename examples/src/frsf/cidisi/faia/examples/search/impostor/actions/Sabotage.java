@@ -54,8 +54,8 @@ public class Sabotage extends SearchAction {
 
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
-      System.out
-          .println("-- Sabotage Action - Agent pos: " + pos + "  -remaining energy: " + impostorState.getEnergy());
+      // System.out
+      //     .println("-- Sabotage Action - Agent pos: " + pos + "  -remaining energy: " + impostorState.getEnergy());
 
       return impostorState;
     }
