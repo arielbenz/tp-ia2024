@@ -43,7 +43,7 @@ public class GameStructure {
     ROOMS.put(ROOM_NAVIGATION, "Navigation");
     ROOMS.put(ROOM_O2, "O2");
     ROOMS.put(ROOM_ADMIN, "Admin");
-    ROOMS.put(ROOM_SHIELDS, "shields");
+    ROOMS.put(ROOM_SHIELDS, "Shields");
     ROOMS.put(ROOM_COMUNICATION, "Comunications");
     ROOMS.put(ROOM_STORAGE, "Storage");
     ROOMS.put(ROOM_ELECTRICAL, "Electical");
@@ -71,9 +71,17 @@ public class GameStructure {
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
   // Initial values crew
-  public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 1 };
-  public static final int INITIAL_TOTAL_CREW = 2;
   public static final int CREW_IN_POSITION = 0;
+  public static final int INITIAL_TOTAL_CREW = 5;
+  public static final int[] INITIAL_CREW_POSITION = new int[] { 2, 0, 0, 1, 2 };
+
+  // public static final int[] INITIAL_CREW_POSITION = new int[] { 2, 0, 0, 1, 2 };  (BreathFirstSearch) -----> OK!
+  // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 0 };  (BreathFirstSearch) -----> OK!
+  // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 1 };  (BreathFirstSearch) -----> OK!
+  // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 1, 1 };  (BreathFirstSearch) -----> OK!
+  // public static final int[] INITIAL_CREW_POSITION = new int[] { 0, 1, 0, 0, 0 };  (BreathFirstSearch) -----> FAIL!
+  // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 1, 0, 0, 0 };  (BreathFirstSearch) -----> FAIL!
+  // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 1, 1, 1 };  (BreathFirstSearch) -----> FAIL!
 
   // Initial values actions
   public static final int Q_CONSUME_ENERGY = 1;
@@ -214,18 +222,28 @@ public class GameStructure {
     return new int[] { SHIP[room][UP], SHIP[room][DOWN], SHIP[room][LEFT], SHIP[room][RIGHT] };
   }
 
-  // WHITHOUT_TREE
-  // XML_TREE
-  // PDF_TREE
-  // GRAPHICAL_TREE
-  // GRAPHVIZ_TREE
-  // EFAIA_TREE
+  /**
+   * Possible values for search output:
+   * 
+   * - WHITHOUT_TREE
+   * - XML_TREE
+   * - PDF_TREE
+   * - GRAPHICAL_TREE
+   * - GRAPHVIZ_TREE
+   * - EFAIA_TREE
+   * 
+   */
   public static final int VISIBLE_TREE = Search.XML_TREE;
   
-  // BreathFirstSearch
-  // DepthFirstSearch
-  // UniformCostSearch
+  /**
+   * Possible search strategies:
+   * 
+   * - BreathFirstSearch
+   * - DepthFirstSearch
+   * - UniformCostSearch
+   * 
+   */
   public static Strategy getSearchStrategy() {
-    return new BreathFirstSearch();
+    return new DepthFirstSearch();
   }
 }
