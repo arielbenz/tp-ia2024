@@ -32,8 +32,8 @@ public class GoRight extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
-      System.out.println(
-          "-- Go Right Action - Agent pos: " + newPosition + "  -remaining energy: " + impostorState.getEnergy());
+      // System.out.println(
+      //     "-- Go Right Action - Agent pos: " + newPosition + "  -remaining energy: " + impostorState.getEnergy());
 
       return impostorState;
     }
