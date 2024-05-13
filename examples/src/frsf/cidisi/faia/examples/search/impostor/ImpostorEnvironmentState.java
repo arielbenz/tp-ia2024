@@ -85,12 +85,20 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.totalCrew = totalCrew;
   }
 
+  public int[] getCrewPosition() {
+    return this.crewPosition;
+  }
+
   public int getCrewInPosition(int pos) {
     return this.crewPosition[pos];
   }
 
   public void setCrewPosition(int[] crewPosition) {
     this.crewPosition = crewPosition;
+  }
+
+  public void setCrewInPosition(int pos, int crew) {
+    this.crewPosition[pos] = crew;
   }
 
   public void eliminateCrew(int pos) {
