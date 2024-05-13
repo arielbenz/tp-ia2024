@@ -79,6 +79,7 @@ public class GameStructure {
   // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 0 };  (BreathFirstSearch) -----> OK!
   // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 1 };  (BreathFirstSearch) -----> OK!
   // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 1, 1 };  (BreathFirstSearch) -----> OK!
+  // public static final int[] INITIAL_CREW_POSITION = new int[] { 0, 1, 0, 0, 0 };  (AVARA)             -----> FAIL!
   // public static final int[] INITIAL_CREW_POSITION = new int[] { 0, 1, 0, 0, 0 };  (BreathFirstSearch) -----> FAIL!
   // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 1, 0, 0, 0 };  (BreathFirstSearch) -----> FAIL!
   // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 1, 1, 1 };  (BreathFirstSearch) -----> FAIL!
