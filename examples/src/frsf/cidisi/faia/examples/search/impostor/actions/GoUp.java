@@ -85,6 +85,6 @@ public class GoUp extends SearchAction {
    */
   @Override
   public String toString() {
-    return "**GO UP**";
+    return "GO UP";
   }
 }

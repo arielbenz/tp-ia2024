@@ -64,16 +64,16 @@ public class GameStructure {
   public static final int RIGHT = 3;
 
   // Initial values agent
-  public static final int INITIAL_AGENT_ENERGY = 100;
-  public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
+  public static final int INITIAL_AGENT_ENERGY = 50;
+  public static final int INITIAL_AGENT_POSITION = ROOM_LOWER_ENGINE;
 
   // Initial values rooms
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
   // Initial values crew
-  public static final int CREW_IN_POSITION = 0;
-  public static final int INITIAL_TOTAL_CREW = 5;
-  public static final int[] INITIAL_CREW_POSITION = new int[] { 2, 0, 0, 1, 2 };
+  public static final int CREW_IN_AGENT_POSITION = 0;
+  public static final int TOTAL_CREW = 1;
+  public static final int[] INITIAL_CREW_POSITION = new int[] { 0, 1, 0, 0, 0 };
 
   // public static final int[] INITIAL_CREW_POSITION = new int[] { 2, 0, 0, 1, 2 };  (BreathFirstSearch) -----> OK!
   // public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 0 };  (BreathFirstSearch) -----> OK!
@@ -245,6 +245,6 @@ public class GameStructure {
    * 
    */
   public static Strategy getSearchStrategy() {
-    return new DepthFirstSearch();
+    return new BreathFirstSearch();
   }
 }

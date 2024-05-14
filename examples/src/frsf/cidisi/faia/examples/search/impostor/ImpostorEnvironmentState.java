@@ -34,7 +34,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
     this.setAgentPosition(GameStructure.INITIAL_AGENT_POSITION);
     this.setAgentEnergy(GameStructure.INITIAL_AGENT_ENERGY);
-    this.setTotalCrew(GameStructure.INITIAL_TOTAL_CREW);
+    this.setTotalCrew(GameStructure.TOTAL_CREW);
     this.setSabotageRooms(GameStructure.INITIAL_SABOTAGE_ROOMS);
     this.setCrewPosition(GameStructure.INITIAL_CREW_POSITION);
   }

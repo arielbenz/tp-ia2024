@@ -23,7 +23,7 @@ public class EliminateCrew extends SearchAction {
      * The 'EliminateCrew' action can be selected only if there is a crew member in
      * the current position. Otherwise return 'null'.
      */
-    if ((impostorState.getCrewInPosition() > 0) && (impostorState.getEnergy() > 0)) {
+    if (impostorState.getCrewInPosition() > 0 && (impostorState.getEnergy() > 0)) {
 
       // Increase the action cost count
       impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
@@ -46,7 +46,7 @@ public class EliminateCrew extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    if ((impostorState.getCrewInPosition() > 0) && (environmentState.getAgentEnergy() > 0)) {
+    if (impostorState.getCrewInPosition() > 0 && (environmentState.getAgentEnergy() > 0)) {
 
       // Increase the action cost count
       impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
@@ -81,6 +81,6 @@ public class EliminateCrew extends SearchAction {
    */
   @Override
   public String toString() {
-    return "Eliminate Crew";
+    return "ELIMINATE CREW";
   }
 }
