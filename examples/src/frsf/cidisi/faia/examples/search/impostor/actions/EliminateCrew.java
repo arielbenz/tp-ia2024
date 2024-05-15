@@ -30,7 +30,7 @@ public class EliminateCrew extends SearchAction {
      */
     if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
 
-      impostorState.setCrewPerRoom(pos);
+      impostorState.eliminateCrewInPosition(pos);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
       return impostorState;
@@ -49,15 +49,15 @@ public class EliminateCrew extends SearchAction {
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
     // Increase the visited cells count
-    impostorState.increaseActionCost(1);
+    impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
     // Get agente position from environment
     int pos = environmentState.getAgentPosition();
 
     if ((impostorState.getCrewPerRoom(pos) > 0) && (environmentState.getAgentEnergy() > 0)) {
 
-      impostorState.setCrewPerRoom(pos);
-      environmentState.setTotalCrew(environmentState.getTotalCrew() - 1);
+      impostorState.eliminateCrewInPosition(pos);
+      // environmentState.eliminateCrewInPosition(pos); TODO porque replica la operacion y da -1?
 
       // Update agent and environment energy
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
@@ -83,6 +83,6 @@ public class EliminateCrew extends SearchAction {
    */
   @Override
   public String toString() {
-    return "Eliminate Crew";
+    return "**ELIMINATE CREW**";
   }
 }
