@@ -83,7 +83,7 @@ public class ImpostorPerception extends Perception {
   public String toString() {
     StringBuffer str = new StringBuffer();
 
-    str.append("* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + GameStructure.ROOMS.get(this.upSensor) + "\n");
+    str.append("\n* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + GameStructure.ROOMS.get(this.upSensor) + "\n");
     str.append("* Sensor Abajo: " + "(" + this.downSensor + ")" + " : " + GameStructure.ROOMS.get(this.downSensor) + "\n");
     str.append(
         "* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + GameStructure.ROOMS.get(this.leftSensor) + "\n");
