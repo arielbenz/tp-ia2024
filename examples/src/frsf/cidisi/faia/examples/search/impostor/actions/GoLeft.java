@@ -19,7 +19,7 @@ public class GoLeft extends SearchAction {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
     // Increase the visited cells count
-    impostorState.increaseActionCost(10);
+    impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
     int newPosition = impostorState.getImpostorOrientation(GameStructure.LEFT);
 
@@ -31,9 +31,6 @@ public class GoLeft extends SearchAction {
       impostorState.setImpostorOrientation(newOrientation);
       impostorState.setPosition(newPosition);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
-
-      System.out.println(
-          "-- Go Left Action - Agent pos: " + newPosition + "  -remaining energy: " + impostorState.getEnergy());
 
       return impostorState;
     }
@@ -79,7 +76,7 @@ public class GoLeft extends SearchAction {
    */
   @Override
   public Double getCost() {
-    return new Double(10);
+    return new Double(GameStructure.ACTION_MOVE_COST);
   }
 
   /**

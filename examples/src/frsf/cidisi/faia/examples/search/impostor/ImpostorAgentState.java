@@ -15,7 +15,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   private int totalSabotageRooms;
   private int[] crewPerRoom;
   private int[] impostorOrientation; // [UP, DOWN, LEFT, RIGHT]
-  private int visitedCells;
+  private int actionCost;
 
   public ImpostorAgentState() {
     crewPerRoom = GameStructure.CREW_PER_ROOM;
@@ -31,7 +31,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     totalSabotageRooms = sabRooms.length;
     crewPerRoom = crew;
     impostorOrientation = orientation;
-    visitedCells = 0;
+    actionCost = 0;
   }
 
   /**
@@ -242,11 +242,11 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   public int getActionCost() {
-    return visitedCells;
+    return actionCost;
   }
 
   public void increaseActionCost(int n) {
-    this.visitedCells = +n;
+    this.actionCost = +n;
   }
 
   public int getRemainingCrewRoom() {
