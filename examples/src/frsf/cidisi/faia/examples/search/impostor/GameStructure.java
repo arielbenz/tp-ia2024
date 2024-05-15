@@ -64,7 +64,7 @@ public class GameStructure {
   public static final int RIGHT = 3;
 
   // Initial values agent
-  public static final int INITIAL_AGENT_ENERGY = 50;
+  public static final int INITIAL_AGENT_ENERGY = 10;
   public static final int INITIAL_AGENT_POSITION = ROOM_LOWER_ENGINE;
 
   // Initial values rooms
