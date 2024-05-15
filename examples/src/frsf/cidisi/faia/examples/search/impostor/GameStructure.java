@@ -63,6 +63,11 @@ public class GameStructure {
   public static final int LEFT = 2;
   public static final int RIGHT = 3;
 
+  // Game data structure
+  public static final int[][] SHIP = new int[5][4];
+  public static final int[] AGENT_ORIENTATION = new int[4];
+  public static final int[] CREW_PER_ROOM = new int[5];
+
   // Initial agent values
   public static final int INITIAL_AGENT_ENERGY = 100;
   public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
@@ -80,15 +85,11 @@ public class GameStructure {
   public static final int ACTION_SABOTAGE_COST = 1;
   public static final int ACTION_MOVE_COST = 10;
 
-  // Game data structure
-  public static final int[][] SHIP = new int[5][4];
-  public static final int[] AGENT_ORIENTATION = new int[4];
-  public static final int[] CREW_PER_ROOM = new int[5];
-
   public GameStructure() {
+    init();
   }
 
-  public void init() {
+  private void init() {
     SHIP[ROOM_UPPER_ENGINE][UP] = WALL;
     SHIP[ROOM_UPPER_ENGINE][DOWN] = HALL_F;
     SHIP[ROOM_UPPER_ENGINE][LEFT] = WALL;
