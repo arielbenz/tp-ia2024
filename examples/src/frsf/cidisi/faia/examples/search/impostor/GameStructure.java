@@ -87,10 +87,9 @@ public class GameStructure {
   public static final int ACTION_MOVE_COST = 10;
 
   public GameStructure() {
-    init();
   }
 
-  private void init() {
+  public void init() {
     SHIP[ROOM_UPPER_ENGINE][UP] = WALL;
     SHIP[ROOM_UPPER_ENGINE][DOWN] = HALL_F;
     SHIP[ROOM_UPPER_ENGINE][LEFT] = WALL;

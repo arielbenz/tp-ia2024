@@ -30,6 +30,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   public void initState() {
 
     GameStructure shipStructure = new GameStructure();
+    shipStructure.init();
 
     this.setAgentPosition(GameStructure.INITIAL_AGENT_POSITION);
     this.setAgentEnergy(GameStructure.INITIAL_AGENT_ENERGY);
