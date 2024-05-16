@@ -28,17 +28,17 @@ public class EliminateCrew extends SearchAction {
      * The 'EliminateCrew' action can be selected only if there is a crew member in
      * the current position. Otherwise return 'null'.
      */
-    if ((impostorState.getCrewInPosition() > 0) && (impostorState.getEnergy() > 0)) {
+    if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
 
       impostorState.eliminateCrewInPosition(pos);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
-      System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI ELIMINATE");
+      // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI ELIMINATE");
 
       return impostorState;
     }
 
-    System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO ELIMINATE");
+    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO ELIMINATE");
 
     return null;
   }
@@ -58,7 +58,7 @@ public class EliminateCrew extends SearchAction {
     // Get agente position from environment
     int pos = environmentState.getAgentPosition();
 
-    if ((impostorState.getCrewInPosition() > 0) && (environmentState.getAgentEnergy() > 0)) {
+    if ((impostorState.getCrewPerRoom(pos) > 0) && (environmentState.getAgentEnergy() > 0)) {
 
       impostorState.eliminateCrewInPosition(pos);
       environmentState.eliminateCrewInPosition(pos);

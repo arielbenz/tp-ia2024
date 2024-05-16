@@ -10,7 +10,7 @@ public class ImpostorPerception extends Perception {
   private int downSensor;
   private int leftSensor;
   private int rightSensor;
-  private int crewSensor;
+  private int[] crewSensor;
 
   public ImpostorPerception() {
     super();
@@ -34,16 +34,16 @@ public class ImpostorPerception extends Perception {
     this.setLeftSensor(impostorEnvironment.getLeftPosition(pos));
     this.setRightSensor(impostorEnvironment.getRightPosition(pos));
     this.setDownSensor(impostorEnvironment.getDownPosition(pos));
-    this.setCrewSensor(impostorEnvironment.getCrewInPosition(pos));
+    this.setCrewSensor(impostorEnvironment.getCrewInPosition());
   }
 
   // The following methods are Impostor-specific:
 
-  public int getCrewSensor() {
+  public int[] getCrewSensor() {
     return crewSensor;
   }
 
-  public void setCrewSensor(int crewSensor) {
+  public void setCrewSensor(int[] crewSensor) {
     this.crewSensor = crewSensor;
   }
 
@@ -89,7 +89,7 @@ public class ImpostorPerception extends Perception {
         "* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + GameStructure.ROOMS.get(this.leftSensor) + "\n");
     str.append(
         "* Sensor Derecha: " + "(" + this.rightSensor + ")" + " : " + GameStructure.ROOMS.get(this.rightSensor) + "\n");
-    str.append("* Sensor Crew: " + "(" + this.crewSensor + ")" + "\n");
+    // str.append("* Sensor Crew: " + "(" + this.crewSensor + ")" + "\n");
 
     return str.toString();
   }

@@ -38,9 +38,8 @@ public class ImpostorEnvironment extends Environment {
     perception.setDownSensor(this.getDownPosition(pos));
     perception.setLeftSensor(this.getLeftPosition(pos));
     perception.setRightSensor(this.getRightPosition(pos));
-    perception.setCrewSensor(this.getCrewInPosition(pos));
+    perception.setCrewSensor(this.getCrewInPosition());
     
-
     // Return the perception
     return perception;
   }
@@ -82,8 +81,8 @@ public class ImpostorEnvironment extends Environment {
     return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
   }
 
-  public int getCrewInPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getCrewInPosition(pos);
+  public int[] getCrewInPosition() {
+    return ((ImpostorEnvironmentState) this.environmentState).getCrewPosition();
   }
 
 }

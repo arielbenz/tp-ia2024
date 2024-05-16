@@ -33,12 +33,12 @@ public class GoLeft extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
-      System.out.printf("\nImpostor position: " + oldPosition + " - SI LEFT");
+      // System.out.printf("\nImpostor position: " + oldPosition + " - SI LEFT");
 
       return impostorState;
     }
     
-    System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO LEFT");
+    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO LEFT");
 
     return null;
   }

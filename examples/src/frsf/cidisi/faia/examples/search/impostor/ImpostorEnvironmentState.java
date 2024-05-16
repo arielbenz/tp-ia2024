@@ -77,10 +77,6 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.sabotageRooms = sabotageRooms;
   }
 
-  // public int getEnvTotalCrew() {
-  //   return envTotalCrew;
-  // }
-
   private void setEnvTotalCrew(int envTotalCrew) {
     this.envTotalCrew = envTotalCrew;
   }
@@ -89,9 +85,9 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.crewPosition = crewPosition;
   }
 
-  // public int[] getCrewPosition() {
-  //   return this.crewPosition;
-  // }
+  public int[] getCrewPosition() {
+    return this.crewPosition;
+  }
 
   public int getCrewInPosition(int pos) {
     return this.crewPosition[pos];

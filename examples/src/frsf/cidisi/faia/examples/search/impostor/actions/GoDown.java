@@ -31,12 +31,12 @@ public class GoDown extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
-      System.out.printf("\nImpostor position: " + oldPosition + " - SI DOWN");
+      // System.out.printf("\nImpostor position: " + oldPosition + " - SI DOWN");
 
       return impostorState;
     }
 
-    System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO DOWN");
+    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO DOWN");
 
     return null;
   }

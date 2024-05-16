@@ -69,7 +69,7 @@ public class GameStructure {
   public static final int[] CREW_PER_ROOM = new int[5];
 
   // Initial agent values
-  public static final int INITIAL_AGENT_ENERGY = 10;
+  public static final int INITIAL_AGENT_ENERGY = 30;
   public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
 
   // Initial room values
@@ -83,9 +83,9 @@ public class GameStructure {
   // public static final int CREW_IN_AGENT_POSITION = 1;
 
   // NO FUNCIONA
-  public static final int INITIAL_TOTAL_CREW = 1;
-  public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 0, 0, 0, 0 };
-  public static final int CREW_IN_AGENT_POSITION = 0;
+  public static final int INITIAL_TOTAL_CREW = 4;
+  public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 1, 1, 1, 1 };
+  // public static final int CREW_IN_AGENT_POSITION = 0;
   
 
   // Initial action values
