@@ -54,8 +54,12 @@ public class Sabotage extends SearchAction {
 
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
+      System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI SABOTAGE");
+
       return impostorState;
     }
+
+    System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO SABOTAGE");
 
     return null;
   }
@@ -70,7 +74,7 @@ public class Sabotage extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
 
     // Increase the visited cells count
-    impostorState.increaseActionCost(1);
+    impostorState.increaseActionCost(GameStructure.ACTION_SABOTAGE_COST);
 
     int pos = environmentState.getAgentPosition();
 

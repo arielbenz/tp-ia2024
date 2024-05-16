@@ -21,6 +21,7 @@ public class GoUp extends SearchAction {
     // Increase the visited cells count
     impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
+    int oldPosition = impostorState.getPosition();
     int newPosition = impostorState.getImpostorOrientation(GameStructure.UP);
 
     /* The agent can always go up */
@@ -32,8 +33,12 @@ public class GoUp extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
 
+      System.out.printf("\nImpostor position: " + oldPosition + " - SI UP");
+
       return impostorState;
     }
+
+    System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO UP");
 
     return null;
   }
@@ -47,7 +52,7 @@ public class GoUp extends SearchAction {
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
     // Increase the visited cells count
-    impostorState.increaseActionCost(10);
+    impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
     // Get new position value
     int newPosition = impostorState.getImpostorOrientation(GameStructure.UP);
