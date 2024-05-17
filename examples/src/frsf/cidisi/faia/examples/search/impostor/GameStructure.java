@@ -76,16 +76,8 @@ public class GameStructure {
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
   // Initial crew values
-
-  // FUNCIONA
-  // public static final int INITIAL_TOTAL_CREW = 1;
-  // public static final int[] INITIAL_CREW_POSITION = new int[] { 0, 1, 0, 0, 0 };
-  // public static final int CREW_IN_AGENT_POSITION = 1;
-
-  // NO FUNCIONA
-  public static final int INITIAL_TOTAL_CREW = 4;
+  public static final int INITIAL_TOTAL_CREW = 5;
   public static final int[] INITIAL_CREW_POSITION = new int[] { 1, 1, 1, 1, 1 };
-  // public static final int CREW_IN_AGENT_POSITION = 0;
   
 
   // Initial action values

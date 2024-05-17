@@ -63,7 +63,7 @@ public class ImpostorAgent extends SearchBasedAgent {
     // IEstimatedCostFunction heuristic = new Heuristic();
     // AStarSearch strategy = new AStarSearch(cost, heuristic);    
 
-    // Greedy(AVARA) Search:
+    // Greedy (AVARA) Search:
     IEstimatedCostFunction heuristic = new Heuristic();
     GreedySearch strategy = new GreedySearch(heuristic);
     Search searchSolver = new Search(strategy);
