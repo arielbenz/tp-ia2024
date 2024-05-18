@@ -54,12 +54,12 @@ public class Sabotage extends SearchAction {
 
       impostorState.consumeEnergy();
 
-      // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI SABOTAGE");
+      System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI SABOTAGE");
 
       return impostorState;
     }
 
-    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO SABOTAGE");
+    System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO SABOTAGE");
 
     return null;
   }

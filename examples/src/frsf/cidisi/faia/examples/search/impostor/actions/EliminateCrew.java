@@ -30,15 +30,15 @@ public class EliminateCrew extends SearchAction {
      */
     if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
 
-      impostorState.eliminateCrewInPosition(pos);
+      impostorState.eliminateCrewFromAgent(pos);
       impostorState.consumeEnergy();
 
-      // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI ELIMINATE");
+      System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI ELIMINATE");
 
       return impostorState;
     }
 
-    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO ELIMINATE");
+    System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO ELIMINATE");
 
     return null;
   }
@@ -55,13 +55,13 @@ public class EliminateCrew extends SearchAction {
     // Increase the action cost count
     impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
-    // Get agente position from environment
+    // Get agent position from environment
     int pos = environmentState.getAgentPosition();
 
     if ((impostorState.getCrewPerRoom(pos) > 0) && (environmentState.getAgentEnergy() > 0)) {
 
-      impostorState.eliminateCrewInPosition(pos);
-      environmentState.eliminateCrewInPosition(pos);
+      environmentState.eliminateCrewFromEnvironment(pos);
+      impostorState.eliminateCrewFromAgent(pos);
 
       // Update agent and environment energy
       impostorState.consumeEnergy();

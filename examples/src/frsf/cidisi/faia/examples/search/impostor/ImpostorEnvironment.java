@@ -33,15 +33,32 @@ public class ImpostorEnvironment extends Environment {
     // Get the actual position of the agent to be able to create the perception
     int pos = this.getEnvironmentState().getAgentPosition();
 
-    int[] crewFromEnvironment = this.getCrewInPosition();
-    int[] newCrewPosition = new int[GameStructure.TOTAL_ROOMS];
+    // makeCrewRandomMovement();
 
+    // Set the perception sensors
+    perception.setUpSensor(this.getUpPosition(pos));
+    perception.setDownSensor(this.getDownPosition(pos));
+    perception.setLeftSensor(this.getLeftPosition(pos));
+    perception.setRightSensor(this.getRightPosition(pos));
+    int[] crewEnvPos = this.getCrewInPosition();
+    perception.setCrewSensor(crewEnvPos);
+
+    // Return the perception
+    return perception;
+  }
+
+  private void makeCrewRandomMovement() {
     if (this.getEnvTotalCrew() > 0) {
+      int[] crewFromEnvironment = this.getCrewInPosition();
+      int[] newCrewPosition = new int[GameStructure.TOTAL_ROOMS];
+
       for (int row = 0; row < crewFromEnvironment.length; row++) {
         System.out.println("\nCrew State: " + crewFromEnvironment[row]);
       }
-      
+
       Random randomCiclePerception = new Random();
+
+      // 0 = NO update : 1 = YES Update
       int newRandomCiclePerception = randomCiclePerception.nextInt(2);
       if (newRandomCiclePerception == 1) {
         for (int i = 0; i < crewFromEnvironment.length; i++) {
@@ -67,16 +84,6 @@ public class ImpostorEnvironment extends Environment {
         this.setNewCrewPosition(newCrewPosition);
       }
     }
-
-    // Set the perception sensors
-    perception.setUpSensor(this.getUpPosition(pos));
-    perception.setDownSensor(this.getDownPosition(pos));
-    perception.setLeftSensor(this.getLeftPosition(pos));
-    perception.setRightSensor(this.getRightPosition(pos));
-    perception.setCrewSensor(this.getCrewInPosition());
-
-    // Return the perception
-    return perception;
   }
 
   @Override

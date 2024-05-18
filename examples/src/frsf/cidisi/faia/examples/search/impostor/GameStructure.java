@@ -26,12 +26,11 @@ public class GameStructure {
   // public static final int ROOM_COMUNICATION = 10;
   // public static final int ROOM_STORAGE = 11;
   // public static final int ROOM_ELECTRICAL = 12;
-  
+
   // public static final int HALL_A = 14;
   // public static final int HALL_B = 15;
   // public static final int HALL_C = 16;
   // public static final int HALL_D = 17;
-  
 
   public static final HashMap<Integer, String> ROOMS = new HashMap<>();
   static {
@@ -72,23 +71,26 @@ public class GameStructure {
   public static final int[] CREW_PER_ROOM = new int[TOTAL_ROOMS];
 
   // Initial agent values
-  public static final int INITIAL_AGENT_ENERGY = 100;
+  public static final int INITIAL_AGENT_ENERGY = 10000;
   public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
 
   // Initial room values
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
   // Initial crew values
-  public static final int INITIAL_TOTAL_CREW = 3;
+  public static final int INITIAL_TOTAL_CREW = 5;
   public static final int[] INITIAL_CREW_POSITION = new int[TOTAL_ROOMS];
 
   public static final HashMap<Integer, Integer> CREW = new HashMap<>();
   static {
-    CREW.put(ROOM_UPPER_ENGINE, 0);
-    CREW.put(ROOM_SECURITY, 0);
-    CREW.put(ROOM_LOWER_ENGINE, 0);
+    CREW.put(ROOM_UPPER_ENGINE, 1);
+    CREW.put(ROOM_SECURITY, 1);
+    CREW.put(ROOM_LOWER_ENGINE, 1);
     CREW.put(ROOM_REACTOR, 1);
-    CREW.put(ROOM_CAFETERIA, 1);
+    CREW.put(HALL_F, 1);
+    CREW.put(HALL_E, 0);
+    CREW.put(ROOM_MEDBAY, 0);
+    CREW.put(ROOM_CAFETERIA, 0);
     // CREW.put(ROOM_WEAPONS, 0);
     // CREW.put(ROOM_NAVIGATION, 0);
     // CREW.put(ROOM_O2, 0);
@@ -97,13 +99,10 @@ public class GameStructure {
     // CREW.put(ROOM_COMUNICATION, 0);
     // CREW.put(ROOM_STORAGE, 0);
     // CREW.put(ROOM_ELECTRICAL, 0);
-    CREW.put(ROOM_MEDBAY, 0);
     // CREW.put(HALL_A, 0);
     // CREW.put(HALL_B, 0);
     // CREW.put(HALL_C, 0);
     // CREW.put(HALL_D, 0);
-    CREW.put(HALL_E, 0);
-    CREW.put(HALL_F, 1);
   }
 
   // Initial action values
@@ -151,7 +150,7 @@ public class GameStructure {
     // SHIP[ROOM_CAFETERIA][LEFT] = HALL_E;
     // SHIP[ROOM_CAFETERIA][RIGHT] = ROOM_WEAPONS;
 
-    // Cafeteria = 4
+    // Cafeteria = 7
     SHIP[ROOM_CAFETERIA][UP] = WALL;
     SHIP[ROOM_CAFETERIA][DOWN] = WALL;
     SHIP[ROOM_CAFETERIA][LEFT] = HALL_E;
@@ -205,7 +204,7 @@ public class GameStructure {
     // SHIP[ROOM_ELECTRICAL][LEFT] = WALL;
     // SHIP[ROOM_ELECTRICAL][RIGHT] = WALL;
 
-    // Medbay = 13
+    // Medbay = 6
     SHIP[ROOM_MEDBAY][UP] = HALL_E;
     SHIP[ROOM_MEDBAY][DOWN] = WALL;
     SHIP[ROOM_MEDBAY][LEFT] = WALL;
@@ -235,13 +234,13 @@ public class GameStructure {
     // SHIP[HALL_D][LEFT] = ROOM_LOWER_ENGINE;
     // SHIP[HALL_D][RIGHT] = ROOM_STORAGE;
 
-    // Hall E = 18
+    // Hall E = 5
     SHIP[HALL_E][UP] = WALL;
     SHIP[HALL_E][DOWN] = ROOM_MEDBAY;
     SHIP[HALL_E][LEFT] = ROOM_UPPER_ENGINE;
     SHIP[HALL_E][RIGHT] = ROOM_CAFETERIA;
 
-    // Hall F = 19
+    // Hall F = 4
     SHIP[HALL_F][UP] = ROOM_UPPER_ENGINE;
     SHIP[HALL_F][DOWN] = ROOM_LOWER_ENGINE;
     SHIP[HALL_F][LEFT] = ROOM_REACTOR;
