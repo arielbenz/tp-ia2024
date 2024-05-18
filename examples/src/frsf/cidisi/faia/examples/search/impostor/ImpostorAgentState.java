@@ -122,7 +122,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     str = str + "\nHabitaciones a Sabotear = \"( ";
     for (int row = 0; row < sabotageRooms.length; row++) {
       str = str + "[";
-      str = str + GameStructure.ROOMS.get(row);
+      str = str + GameStructure.ROOMS.get(sabotageRooms[row]);
       str = str + "] ";
     }
     str = str + " )\"\n";

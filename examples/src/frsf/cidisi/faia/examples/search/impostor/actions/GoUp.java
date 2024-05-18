@@ -33,12 +33,12 @@ public class GoUp extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.consumeEnergy();
 
-      System.out.printf("\nImpostor position: " + oldPosition + " - SI UP");
+      // System.out.printf("\nImpostor position: " + oldPosition + " - SI UP");
 
       return impostorState;
     }
 
-    System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO UP");
+    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO UP");
 
     return null;
   }
