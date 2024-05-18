@@ -65,7 +65,7 @@ public class GameStructure {
   public static final int RIGHT = 3;
 
   // Game data structure
-  public static final int TOTAL_ROOMS = 6;
+  public static final int TOTAL_ROOMS = 8;
   public static final int[][] SHIP = new int[TOTAL_ROOMS][4];
   public static final int[] AGENT_ORIENTATION = new int[4];
   public static final int[] CREW_PER_ROOM = new int[TOTAL_ROOMS];
@@ -89,8 +89,8 @@ public class GameStructure {
     CREW.put(ROOM_REACTOR, 1);
     CREW.put(HALL_F, 1);
     CREW.put(HALL_E, 0);
-    // CREW.put(ROOM_MEDBAY, 0);
-    // CREW.put(ROOM_CAFETERIA, 0);
+    CREW.put(ROOM_MEDBAY, 0);
+    CREW.put(ROOM_CAFETERIA, 0);
     // CREW.put(ROOM_WEAPONS, 0);
     // CREW.put(ROOM_NAVIGATION, 0);
     // CREW.put(ROOM_O2, 0);
@@ -151,10 +151,10 @@ public class GameStructure {
     // SHIP[ROOM_CAFETERIA][RIGHT] = ROOM_WEAPONS;
 
     // Cafeteria = 7
-    // SHIP[ROOM_CAFETERIA][UP] = WALL;
-    // SHIP[ROOM_CAFETERIA][DOWN] = WALL;
-    // SHIP[ROOM_CAFETERIA][LEFT] = HALL_E;
-    // SHIP[ROOM_CAFETERIA][RIGHT] = WALL;
+    SHIP[ROOM_CAFETERIA][UP] = WALL;
+    SHIP[ROOM_CAFETERIA][DOWN] = WALL;
+    SHIP[ROOM_CAFETERIA][LEFT] = HALL_E;
+    SHIP[ROOM_CAFETERIA][RIGHT] = WALL;
 
     // // Weapons = 5
     // SHIP[ROOM_WEAPONS][UP] = WALL;
@@ -205,10 +205,10 @@ public class GameStructure {
     // SHIP[ROOM_ELECTRICAL][RIGHT] = WALL;
 
     // Medbay = 6
-    // SHIP[ROOM_MEDBAY][UP] = HALL_E;
-    // SHIP[ROOM_MEDBAY][DOWN] = WALL;
-    // SHIP[ROOM_MEDBAY][LEFT] = WALL;
-    // SHIP[ROOM_MEDBAY][RIGHT] = WALL;
+    SHIP[ROOM_MEDBAY][UP] = HALL_E;
+    SHIP[ROOM_MEDBAY][DOWN] = WALL;
+    SHIP[ROOM_MEDBAY][LEFT] = WALL;
+    SHIP[ROOM_MEDBAY][RIGHT] = WALL;
 
     // // Hall A = 14
     // SHIP[HALL_A][UP] = ROOM_WEAPONS;
@@ -235,15 +235,10 @@ public class GameStructure {
     // SHIP[HALL_D][RIGHT] = ROOM_STORAGE;
 
     // Hall E = 5
-    // SHIP[HALL_E][UP] = WALL;
-    // SHIP[HALL_E][DOWN] = ROOM_MEDBAY;
-    // SHIP[HALL_E][LEFT] = ROOM_UPPER_ENGINE;
-    // SHIP[HALL_E][RIGHT] = ROOM_CAFETERIA;
-
     SHIP[HALL_E][UP] = WALL;
-    SHIP[HALL_E][DOWN] = WALL;
+    SHIP[HALL_E][DOWN] = ROOM_MEDBAY;
     SHIP[HALL_E][LEFT] = ROOM_UPPER_ENGINE;
-    SHIP[HALL_E][RIGHT] = WALL;
+    SHIP[HALL_E][RIGHT] = ROOM_CAFETERIA;
 
     // Hall F = 4
     SHIP[HALL_F][UP] = ROOM_UPPER_ENGINE;
