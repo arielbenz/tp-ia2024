@@ -16,20 +16,20 @@ public class GoDown extends SearchAction {
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    // Increase the visited cells count
+    // Increase the action cost count
     impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
     int oldPosition = impostorState.getPosition();
     int newPosition = impostorState.getImpostorOrientation(GameStructure.DOWN);
+    boolean isNotWall = newPosition != GameStructure.WALL;
 
-    /* The agent can always go down */
-    if (impostorState.getEnergy() > 0 && newPosition != GameStructure.WALL) {
+    if (impostorState.getEnergy() > 0 && isNotWall) {
 
       int[] newOrientation = GameStructure.getRowShipPosition(newPosition);
 
       impostorState.setImpostorOrientation(newOrientation);
       impostorState.setPosition(newPosition);
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
 
       // System.out.printf("\nImpostor position: " + oldPosition + " - SI DOWN");
 
@@ -49,7 +49,7 @@ public class GoDown extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    // Increase the visited cells count
+    // Increase the action cost count
     impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
     // Get new position value
@@ -63,8 +63,8 @@ public class GoDown extends SearchAction {
       impostorState.setImpostorOrientation(newOrientation);
 
       // Update agent and environment energy
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
+      environmentState.consumeEnergy();
 
       // Update agent state and environment state position
       impostorState.setPosition(newPosition);

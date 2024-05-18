@@ -106,6 +106,10 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.agentEnergy = agentEnergy;
   }
 
+  public void consumeEnergy() {
+    agentEnergy = agentEnergy - GameStructure.Q_CONSUME_ENERGY;
+  }
+
   public int getUpPosition(int pos) {
     return ship[pos][GameStructure.UP];
   }

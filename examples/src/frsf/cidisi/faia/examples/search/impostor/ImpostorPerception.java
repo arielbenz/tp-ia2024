@@ -89,7 +89,6 @@ public class ImpostorPerception extends Perception {
         "* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + GameStructure.ROOMS.get(this.leftSensor) + "\n");
     str.append(
         "* Sensor Derecha: " + "(" + this.rightSensor + ")" + " : " + GameStructure.ROOMS.get(this.rightSensor) + "\n");
-    // str.append("* Sensor Crew: " + "(" + this.crewSensor + ")" + "\n");
 
     return str.toString();
   }

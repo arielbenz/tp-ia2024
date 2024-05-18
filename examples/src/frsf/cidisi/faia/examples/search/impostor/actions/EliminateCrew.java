@@ -19,7 +19,7 @@ public class EliminateCrew extends SearchAction {
 
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    // Increase the visited cells count
+    // Increase the action cost count
     impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
     int pos = impostorState.getPosition();
@@ -31,7 +31,7 @@ public class EliminateCrew extends SearchAction {
     if ((impostorState.getCrewPerRoom(pos) > 0) && (impostorState.getEnergy() > 0)) {
 
       impostorState.eliminateCrewInPosition(pos);
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
 
       // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI ELIMINATE");
 
@@ -52,7 +52,7 @@ public class EliminateCrew extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    // Increase the visited cells count
+    // Increase the action cost count
     impostorState.increaseActionCost(GameStructure.ACTION_ELIMINATE_COST);
 
     // Get agente position from environment
@@ -64,8 +64,8 @@ public class EliminateCrew extends SearchAction {
       environmentState.eliminateCrewInPosition(pos);
 
       // Update agent and environment energy
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
+      environmentState.consumeEnergy();
 
       return environmentState;
     }

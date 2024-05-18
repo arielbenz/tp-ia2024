@@ -14,16 +14,12 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   private int[] sabotageRooms;
   private int totalSabotageRooms;
   private int[] crewPerRoom;
-
-  // private int crewInPosition;
-
   private int totalCrew;
   private int[] impostorOrientation; // [UP, DOWN, LEFT, RIGHT]
   private int actionCost;
 
   public ImpostorAgentState() {
     crewPerRoom = GameStructure.CREW_PER_ROOM;
-    // crewInPosition = GameStructure.CREW_IN_AGENT_POSITION;
     totalCrew = GameStructure.INITIAL_TOTAL_CREW;
     sabotageRooms = new int[0];
     impostorOrientation = GameStructure.AGENT_ORIENTATION;
@@ -36,9 +32,6 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     sabotageRooms = sabRooms;
     totalSabotageRooms = sabRooms.length;
     crewPerRoom = crew;
-
-    // crewInPosition = crew;
-
     totalCrew = totalC;
     impostorOrientation = orientation;
     actionCost = 0;
@@ -51,8 +44,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void initState() {
     energy = GameStructure.INITIAL_AGENT_ENERGY;
     position = GameStructure.INITIAL_AGENT_POSITION;
-    // crewPerRoom = GameStructure.INITIAL_CREW_POSITION;
-    // crewInPosition = GameStructure.CREW_IN_AGENT_POSITION;
+    crewPerRoom = GameStructure.INITIAL_CREW_POSITION;
     totalCrew = GameStructure.INITIAL_TOTAL_CREW;
     sabotageRooms = GameStructure.INITIAL_SABOTAGE_ROOMS;
     totalSabotageRooms = sabotageRooms.length;
@@ -173,11 +165,6 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       }
     }
 
-    // int crewInPositionObj = ((ImpostorAgentState) obj).getCrewInPosition();
-    // if (crewInPosition != crewInPositionObj) {
-    //   return false;
-    // }
-
     int totalCrewObj = ((ImpostorAgentState) obj).getRemainingCrewRoom();
     if (totalCrew != totalCrewObj) {
       return false;
@@ -217,8 +204,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     return energy;
   }
 
-  public void setEnergy(int energy) {
-    this.energy = energy;
+  public void consumeEnergy() {
+    energy = energy - GameStructure.Q_CONSUME_ENERGY;
   }
 
   public int[] getSabotageRooms() {
@@ -237,13 +224,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     return crewPerRoom[pos];
   }
 
-  // public int getCrewInPosition() {
-  //   return crewInPosition;
-  // }
-
   public void eliminateCrewInPosition(int pos) {
     this.crewPerRoom[pos] = this.crewPerRoom[pos] - 1;
-    // this.crewInPosition = this.crewInPosition - 1;
     this.totalCrew = this.totalCrew - 1;
   }
 
