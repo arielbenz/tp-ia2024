@@ -81,7 +81,11 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.envTotalCrew = envTotalCrew;
   }
 
-  private void setCrewPosition(int[] crewPosition) {
+  public int getEnvTotalCrew() {
+    return this.envTotalCrew;
+  }
+
+  public void setCrewPosition(int[] crewPosition) {
     this.crewPosition = crewPosition;
   }
 
