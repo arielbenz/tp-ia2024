@@ -211,7 +211,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   public void eliminateCrewFromAgent(int pos) {
-    crewPerRoom[pos] = 0;
+    // this.crewPerRoom[pos] = this.crewPerRoom[pos] - 1;
     totalCrew = totalCrew - 1;
   }
 
