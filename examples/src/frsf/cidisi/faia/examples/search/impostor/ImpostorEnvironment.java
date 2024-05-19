@@ -35,6 +35,12 @@ public class ImpostorEnvironment extends Environment {
 
     // makeCrewRandomMovement();
 
+    int[] crewFromEnvironment = this.getCrewInPosition();
+
+    for (int row = 0; row < crewFromEnvironment.length; row++) {
+      System.out.println("\nCrew State: " + crewFromEnvironment[row]);
+    }
+
     // Set the perception sensors
     perception.setUpSensor(this.getUpPosition(pos));
     perception.setDownSensor(this.getDownPosition(pos));
@@ -107,31 +113,31 @@ public class ImpostorEnvironment extends Environment {
   // The following methods are Impostor-specific:
 
   public int getUpPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getUpPosition(pos);
+    return this.getEnvironmentState().getUpPosition(pos);
   }
 
   public int getDownPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getDownPosition(pos);
+    return this.getEnvironmentState().getDownPosition(pos);
   }
 
   public int getLeftPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getLeftPosition(pos);
+    return this.getEnvironmentState().getLeftPosition(pos);
   }
 
   public int getRightPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
+    return this.getEnvironmentState().getRightPosition(pos);
   }
 
   public int[] getCrewInPosition() {
-    return ((ImpostorEnvironmentState) this.environmentState).getCrewPosition();
+    return this.getEnvironmentState().getCrewPosition();
   }
 
   public void setNewCrewPosition(int[] newCrewPosition) {
-    ((ImpostorEnvironmentState) this.environmentState).setCrewPosition(newCrewPosition);
+    this.getEnvironmentState().setCrewPosition(newCrewPosition);
   }
 
   public int getEnvTotalCrew() {
-    return ((ImpostorEnvironmentState) this.environmentState).getEnvTotalCrew();
+    return this.getEnvironmentState().getEnvTotalCrew();
   }
 
 }

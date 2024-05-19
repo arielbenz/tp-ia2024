@@ -20,7 +20,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
 
   public ImpostorAgentState() {
     crewPerRoom = new int[GameStructure.TOTAL_ROOMS];
-    totalCrew = GameStructure.INITIAL_TOTAL_CREW;
+    totalCrew = 0;
     sabotageRooms = new int[0];
     impostorOrientation = GameStructure.AGENT_ORIENTATION;
     this.initState();
@@ -44,9 +44,9 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public void initState() {
     energy = GameStructure.INITIAL_AGENT_ENERGY;
     position = GameStructure.INITIAL_AGENT_POSITION;
-    crewPerRoom = GameStructure.INITIAL_CREW_POSITION;
+    crewPerRoom = new int[GameStructure.TOTAL_ROOMS];
     totalCrew = GameStructure.INITIAL_TOTAL_CREW;
-    sabotageRooms = GameStructure.INITIAL_SABOTAGE_ROOMS;
+    sabotageRooms = GameStructure.INITIAL_SABOTAGE_ROOMS.clone();
     totalSabotageRooms = sabotageRooms.length;
   }
 
@@ -57,12 +57,12 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   @Override
   public SearchBasedAgentState clone() {
 
-    int[] newCrewPerRoom = new int[crewPerRoom.length];
+    int[] newCrewPerRoom = new int[GameStructure.TOTAL_ROOMS];
     for (int i = 0; i < crewPerRoom.length; i++) {
       newCrewPerRoom[i] = crewPerRoom[i];
     }
 
-    int[] newImpostorOrientation = new int[impostorOrientation.length];
+    int[] newImpostorOrientation = new int[4];
     for (int i = 0; i < impostorOrientation.length; i++) {
       newImpostorOrientation[i] = impostorOrientation[i];
     }
@@ -72,8 +72,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
       newSabotageRooms[i] = sabotageRooms[i];
     }
 
-    int newEnergy = this.getEnergy();
-    int newPosition = this.getPosition();
+    int newEnergy = this.energy;
+    int newPosition = this.position;
     int newTotalCrew = this.totalCrew;
 
     ImpostorAgentState newState = new ImpostorAgentState(newEnergy, newCrewPerRoom, newPosition,
@@ -94,7 +94,13 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     impostorOrientation[GameStructure.DOWN] = impostorPerception.getDownSensor();
     impostorOrientation[GameStructure.LEFT] = impostorPerception.getLeftSensor();
     impostorOrientation[GameStructure.RIGHT] = impostorPerception.getRightSensor();
-    crewPerRoom = impostorPerception.getCrewSensor();
+    int[] crewFromEnvironment = impostorPerception.getCrewSensor();
+
+    // crewFromEnvironment.clone()
+
+    for (int i = 0; i < crewFromEnvironment.length; i++) {
+      crewPerRoom[i] = crewFromEnvironment[i]; 
+    }
   }
 
   /**
@@ -191,7 +197,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   public void consumeEnergy() {
-    energy = energy - GameStructure.Q_CONSUME_ENERGY;
+    this.energy = this.energy - GameStructure.Q_CONSUME_ENERGY;
   }
 
   public int[] getSabotageRooms() {
@@ -211,8 +217,8 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   }
 
   public void eliminateCrewFromAgent(int pos) {
-    // this.crewPerRoom[pos] = this.crewPerRoom[pos] - 1;
-    totalCrew = totalCrew - 1;
+    this.crewPerRoom[pos] = this.crewPerRoom[pos] - 1;
+    this.totalCrew = this.totalCrew - 1;
   }
 
   public int getTotalSabotageRooms() {

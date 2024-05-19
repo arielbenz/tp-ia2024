@@ -72,7 +72,7 @@ public class GameStructure {
 
   // Initial agent values
   public static final int INITIAL_AGENT_ENERGY = 100;
-  public static final int INITIAL_AGENT_POSITION = ROOM_SECURITY;
+  public static final int INITIAL_AGENT_POSITION = ROOM_CAFETERIA;
 
   // Initial room values
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };

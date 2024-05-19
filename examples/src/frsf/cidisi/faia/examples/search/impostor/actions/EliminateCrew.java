@@ -33,12 +33,14 @@ public class EliminateCrew extends SearchAction {
       impostorState.eliminateCrewFromAgent(pos);
       impostorState.consumeEnergy();
 
-      // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - SI ELIMINATE");
+      // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " -
+      // SI ELIMINATE");
 
       return impostorState;
     }
 
-    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO ELIMINATE");
+    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " -
+    // NO ELIMINATE");
 
     return null;
   }
@@ -58,14 +60,17 @@ public class EliminateCrew extends SearchAction {
     // Get agent position from environment
     int pos = environmentState.getAgentPosition();
 
-    if ((impostorState.getCrewPerRoom(pos) > 0) && (environmentState.getAgentEnergy() > 0)) {
+    if ((environmentState.getCrewInPosition(pos) > 0) && (environmentState.getAgentEnergy() > 0)) {
 
+      // Eliminate crew from environment
       environmentState.eliminateCrewFromEnvironment(pos);
+
+      // Eliminate crew from agent state
       impostorState.eliminateCrewFromAgent(pos);
 
       // Update agent and environment energy
-      impostorState.consumeEnergy();
       environmentState.consumeEnergy();
+      impostorState.consumeEnergy();
 
       return environmentState;
     }
