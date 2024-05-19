@@ -99,7 +99,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   }
 
   public void eliminateCrewFromEnvironment(int pos) {
-    this.crewPosition[pos] = 0;
+    this.crewPosition[pos] = this.crewPosition[pos] - 1;
     this.envTotalCrew = this.envTotalCrew - 1;
   }
 
