@@ -94,13 +94,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     impostorOrientation[GameStructure.DOWN] = impostorPerception.getDownSensor();
     impostorOrientation[GameStructure.LEFT] = impostorPerception.getLeftSensor();
     impostorOrientation[GameStructure.RIGHT] = impostorPerception.getRightSensor();
-    int[] crewFromEnvironment = impostorPerception.getCrewSensor();
-
-    // crewFromEnvironment.clone()
-
-    for (int i = 0; i < crewFromEnvironment.length; i++) {
-      crewPerRoom[i] = crewFromEnvironment[i]; 
-    }
+    crewPerRoom = impostorPerception.getCrewSensor().clone();
   }
 
   /**
