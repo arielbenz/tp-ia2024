@@ -33,7 +33,7 @@ public class ImpostorEnvironment extends Environment {
     // Get the actual position of the agent to be able to create the perception
     int pos = this.getEnvironmentState().getAgentPosition();
 
-    // makeCrewRandomMovement();
+    makeCrewRandomMovement();
 
     int[] crewFromEnvironment = this.getCrewInPosition();
 
@@ -57,26 +57,33 @@ public class ImpostorEnvironment extends Environment {
       int[] crewFromEnvironment = this.getCrewInPosition();
       int[] newCrewPosition = new int[GameStructure.TOTAL_ROOMS];
 
-      for (int row = 0; row < crewFromEnvironment.length; row++) {
-        System.out.println("\nCrew State: " + crewFromEnvironment[row]);
-      }
-
       Random randomCiclePerception = new Random();
 
       // 0 = NO update : 1 = YES Update
       int newRandomCiclePerception = randomCiclePerception.nextInt(2);
       if (newRandomCiclePerception == 1) {
+
+        for (int row = 0; row < crewFromEnvironment.length; row++) {
+          System.out.println("\nCrew State: " + crewFromEnvironment[row]);
+        }
+
         for (int i = 0; i < crewFromEnvironment.length; i++) {
           // Move crew
-          if (crewFromEnvironment[i] > 0) {
-            Random random = new Random();
-            int newRandomOrientation = random.nextInt(4);
+          int totalCrewInPosition = crewFromEnvironment[i];
+          if (totalCrewInPosition > 0) {
 
-            int newPosition = GameStructure.SHIP[i][newRandomOrientation];
-            if (newPosition != GameStructure.WALL) {
-              newCrewPosition[newPosition] = newCrewPosition[newPosition] + 1;
-            } else {
-              newCrewPosition[i] = newCrewPosition[i] + 1;
+            for (int crewIndex = 0; crewIndex < totalCrewInPosition; crewIndex++) {
+              // Get random orientation
+              Random random = new Random();
+              int newRandomOrientation = random.nextInt(4);
+
+              // Get new position
+              int newPosition = GameStructure.SHIP[i][newRandomOrientation];
+              if (newPosition != GameStructure.WALL) {
+                newCrewPosition[newPosition] = newCrewPosition[newPosition] + 1;
+              } else {
+                newCrewPosition[i] = newCrewPosition[i] + 1;
+              }
             }
           }
         }
