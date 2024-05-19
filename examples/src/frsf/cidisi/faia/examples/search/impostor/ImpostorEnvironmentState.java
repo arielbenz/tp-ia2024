@@ -47,15 +47,14 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   public String toString() {
     String str = "";
 
-    str = str + "NAVE=( \n";
-    for (int row = 0; row < ship.length; row++) {
-      str = str + "                   [ ";
-      for (int col = 0; col < ship[row].length; col++) {
-        str = str + ship[row][col] + " ";
-      }
-      str = str + "]\n";
+    str = str + "\n\nTOTAL TRIPULANTES = " + envTotalCrew;
+
+    str = str + "\n\nTRIPULANTES=(";
+    for (int i = 0; i < crewPosition.length; i++) {
+      str = str + "[ " + crewPosition[i];
+      str = str + " ]";
     }
-    str = str + ")";
+    str = str + ")\n";
 
     return str;
   }

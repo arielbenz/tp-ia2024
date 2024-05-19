@@ -35,12 +35,6 @@ public class ImpostorEnvironment extends Environment {
 
     makeCrewRandomMovement();
 
-    int[] crewFromEnvironment = this.getCrewInPosition();
-
-    for (int row = 0; row < crewFromEnvironment.length; row++) {
-      System.out.println("\nCrew State: " + crewFromEnvironment[row]);
-    }
-
     // Set the perception sensors
     perception.setUpSensor(this.getUpPosition(pos));
     perception.setDownSensor(this.getDownPosition(pos));
@@ -63,9 +57,9 @@ public class ImpostorEnvironment extends Environment {
       int newRandomCiclePerception = randomCiclePerception.nextInt(2);
       if (newRandomCiclePerception == 1) {
 
-        for (int row = 0; row < crewFromEnvironment.length; row++) {
-          System.out.println("\nCrew State: " + crewFromEnvironment[row]);
-        }
+        // for (int row = 0; row < crewFromEnvironment.length; row++) {
+        //   System.out.println("\nCrew State: " + crewFromEnvironment[row]);
+        // }
 
         for (int i = 0; i < crewFromEnvironment.length; i++) {
           // Move crew
@@ -88,9 +82,9 @@ public class ImpostorEnvironment extends Environment {
           }
         }
 
-        for (int row = 0; row < newCrewPosition.length; row++) {
-          System.out.println("\nCrew Updated: " + newCrewPosition[row]);
-        }
+        // for (int row = 0; row < newCrewPosition.length; row++) {
+        //   System.out.println("\nCrew Updated: " + newCrewPosition[row]);
+        // }
 
         // Update new crew position on env state
         this.setNewCrewPosition(newCrewPosition);
