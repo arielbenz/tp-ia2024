@@ -57,10 +57,6 @@ public class ImpostorEnvironment extends Environment {
       int newRandomCiclePerception = randomCiclePerception.nextInt(2);
       if (newRandomCiclePerception == 1) {
 
-        // for (int row = 0; row < crewFromEnvironment.length; row++) {
-        //   System.out.println("\nCrew State: " + crewFromEnvironment[row]);
-        // }
-
         for (int i = 0; i < crewFromEnvironment.length; i++) {
           // Move crew
           int totalCrewInPosition = crewFromEnvironment[i];
@@ -81,10 +77,6 @@ public class ImpostorEnvironment extends Environment {
             }
           }
         }
-
-        // for (int row = 0; row < newCrewPosition.length; row++) {
-        //   System.out.println("\nCrew Updated: " + newCrewPosition[row]);
-        // }
 
         // Update new crew position on env state
         this.setNewCrewPosition(newCrewPosition);

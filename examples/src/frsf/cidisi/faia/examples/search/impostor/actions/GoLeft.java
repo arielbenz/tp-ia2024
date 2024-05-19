@@ -21,7 +21,6 @@ public class GoLeft extends SearchAction {
     // Increase the action cost count
     impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
-    int oldPosition = impostorState.getPosition();
     int newPosition = impostorState.getImpostorOrientation(GameStructure.LEFT);
     boolean isNotWall = newPosition != GameStructure.WALL;
 
@@ -33,12 +32,8 @@ public class GoLeft extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.consumeEnergy();
 
-      // System.out.printf("\nImpostor position: " + oldPosition + " - SI LEFT");
-
       return impostorState;
     }
-    
-    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO LEFT");
 
     return null;
   }

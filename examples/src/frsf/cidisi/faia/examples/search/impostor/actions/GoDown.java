@@ -19,7 +19,6 @@ public class GoDown extends SearchAction {
     // Increase the action cost count
     impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
-    int oldPosition = impostorState.getPosition();
     int newPosition = impostorState.getImpostorOrientation(GameStructure.DOWN);
     boolean isNotWall = newPosition != GameStructure.WALL;
 
@@ -31,12 +30,8 @@ public class GoDown extends SearchAction {
       impostorState.setPosition(newPosition);
       impostorState.consumeEnergy();
 
-      // System.out.printf("\nImpostor position: " + oldPosition + " - SI DOWN");
-
       return impostorState;
     }
-
-    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " - NO DOWN");
 
     return null;
   }

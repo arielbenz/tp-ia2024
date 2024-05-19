@@ -33,14 +33,8 @@ public class EliminateCrew extends SearchAction {
       impostorState.eliminateCrewFromAgent(pos);
       impostorState.consumeEnergy();
 
-      // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " -
-      // SI ELIMINATE");
-
       return impostorState;
     }
-
-    // System.out.printf("\nImpostor position: " + impostorState.getPosition() + " -
-    // NO ELIMINATE");
 
     return null;
   }
