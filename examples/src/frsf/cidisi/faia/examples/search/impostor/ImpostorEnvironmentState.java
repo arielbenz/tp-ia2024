@@ -55,7 +55,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
       str = str + "]\n";
     }
     str = str + ")";
-
+    str = str + " -Total Tripulantes: "+ getEnvTotalCrew() + "\n";
     return str;
   }
 

@@ -46,15 +46,22 @@ public class ImpostorEnvironment extends Environment {
       if (newRandomCiclePerception == 1) {
         for (int i = 0; i < crewFromEnvironment.length; i++) {
           // Move crew
-          if (crewFromEnvironment[i] > 0) {
+          if (crewFromEnvironment[i] > 0) { //i=3  crew=2
             Random random = new Random();
-            int newRandomOrientation = random.nextInt(4);
+            int newRandomOrientation = random.nextInt(4);  
 
-            int newPosition = GameStructure.SHIP[i][newRandomOrientation];
+            int newPosition = GameStructure.SHIP[i][newRandomOrientation]; //newposition=3 der
             if (newPosition != GameStructure.WALL) {
-              newCrewPosition[newPosition] = newCrewPosition[newPosition] + 1;
+                if(newPosition != i){  //nueva pos es distinta a la actual, es otra habitacion
+                    newCrewPosition[newPosition] = newCrewPosition[newPosition] + 1; // lo muevo a la nueva ha
+                    if  ( crewFromEnvironment[i] > 1){  //pero miro si la hab tiene masde un tripulante
+                      newCrewPosition[i] = crewFromEnvironment[i] - 1;
+                    }
+                }else {  //es el mismo lugar pasa lo que tiene el original
+                    newCrewPosition[i] = crewFromEnvironment[i] ;
+                } 
             } else {
-              newCrewPosition[i] = newCrewPosition[i] + 1;
+                newCrewPosition[i] = newCrewPosition[i] + 1; //lo dejo en la posicion donde esta
             }
           }
         }

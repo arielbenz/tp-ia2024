@@ -123,7 +123,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     str = str + "\nHabitaciones a Sabotear = \"( ";
     for (int row = 0; row < sabotageRooms.length; row++) {
       str = str + "[";
-      str = str + GameStructure.ROOMS.get(row);
+      str = str + GameStructure.ROOMS.get(sabotageRooms[row]);
       str = str + "] ";
     }
     str = str + " )\"\n";
@@ -223,7 +223,7 @@ public class ImpostorAgentState extends SearchBasedAgentState {
   public int getCrewPerRoom(int pos) {
     return crewPerRoom[pos];
   }
-
+  
   public void eliminateCrewInPosition(int pos) {
     // this.crewPerRoom[pos] = this.crewPerRoom[pos] - 1;
     this.totalCrew = this.totalCrew - 1;
