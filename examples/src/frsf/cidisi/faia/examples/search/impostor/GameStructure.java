@@ -78,17 +78,17 @@ public class GameStructure {
   public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
 
   // Initial crew values
-  public static final int INITIAL_TOTAL_CREW = 7;
+  public static final int INITIAL_TOTAL_CREW = 1;
   public static final int[] INITIAL_CREW_POSITION = new int[TOTAL_ROOMS];
 
   public static final HashMap<Integer, Integer> CREW = new HashMap<>();
   static {
-    CREW.put(ROOM_UPPER_ENGINE, 1);
+    CREW.put(ROOM_UPPER_ENGINE, 0);
     CREW.put(ROOM_SECURITY, 1);
-    CREW.put(ROOM_LOWER_ENGINE, 1);
-    CREW.put(ROOM_REACTOR, 1);
-    CREW.put(HALL_F, 2);
-    CREW.put(HALL_E, 1);
+    CREW.put(ROOM_LOWER_ENGINE, 0);
+    CREW.put(ROOM_REACTOR, 0);
+    CREW.put(HALL_F, 0);
+    CREW.put(HALL_E, 0);
     CREW.put(ROOM_MEDBAY, 0);
     CREW.put(ROOM_CAFETERIA, 0);
     // CREW.put(ROOM_WEAPONS, 0);
