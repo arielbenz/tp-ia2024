@@ -128,6 +128,6 @@ public class Sabotage extends SearchAction {
    */
   @Override
   public String toString() {
-    return "**SABOTAGE**";
+    return "-SABOTAGE";
   }
 }

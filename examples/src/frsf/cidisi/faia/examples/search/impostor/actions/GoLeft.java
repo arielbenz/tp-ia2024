@@ -85,6 +85,6 @@ public class GoLeft extends SearchAction {
    */
   @Override
   public String toString() {
-    return "**GO LEFT**";
+    return "-GO-LEFT";
   }
 }

@@ -107,25 +107,25 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     str = str + "\n\n* Posición: (" + this.getPosition() + " - " + GameStructure.ROOMS.get(this.getPosition()) + ")";
     str = str + "\n* Energía: " + energy + "\n";
 
-    str = str + "\nORIENTACIÓN EN NAVE = \"( ";
+    str = str + "\n* Orientación en Nave = ( ";
     for (int row = 0; row < impostorOrientation.length; row++) {
       str = str + "[ ";
       if (impostorOrientation[row] == GameStructure.WALL) {
         str = str + "* ";
       } else {
-        str = str + impostorOrientation[row] + " ";
+        str = str + GameStructure.ROOMS.get(impostorOrientation[row]) + " ";
       }
       str = str + "]";
     }
 
-    str = str + " )\"\n";
-    str = str + "\nHabitaciones a Sabotear = \"( ";
+    str = str + " )\n";
+    str = str + "\n* Habitaciones a Sabotear = ( ";
     for (int row = 0; row < sabotageRooms.length; row++) {
       str = str + "[";
       str = str + GameStructure.ROOMS.get(sabotageRooms[row]);
       str = str + "] ";
     }
-    str = str + " )\"\n";
+    str = str + " )\n";
 
     return str;
   }

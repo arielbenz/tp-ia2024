@@ -86,6 +86,6 @@ public class EliminateCrew extends SearchAction {
    */
   @Override
   public String toString() {
-    return "**ELIMINATE CREW**";
+    return "-ELIMINATE-CREW";
   }
 }
