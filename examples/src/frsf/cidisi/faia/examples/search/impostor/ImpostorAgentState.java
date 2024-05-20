@@ -127,6 +127,15 @@ public class ImpostorAgentState extends SearchBasedAgentState {
     }
     str = str + " )\n";
 
+    str = str + "\n* Total tripulantes = " + totalCrew + "\n";
+
+    str = str + "\n* Tripulantes=(";
+    for (int i = 0; i < crewPerRoom.length; i++) {
+      str = str + "[ " + crewPerRoom[i];
+      str = str + " ]";
+    }
+    str = str + ")\n";
+
     return str;
   }
 
