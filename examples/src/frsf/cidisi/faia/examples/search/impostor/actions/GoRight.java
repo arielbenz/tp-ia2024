@@ -18,22 +18,19 @@ public class GoRight extends SearchAction {
   public SearchBasedAgentState execute(SearchBasedAgentState s) {
     ImpostorAgentState impostorState = (ImpostorAgentState) s;
 
-    // Increase the visited cells count
-    impostorState.increaseActionCost(10);
+    // Increase the action cost count
+    impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
     int newPosition = impostorState.getImpostorOrientation(GameStructure.RIGHT);
+    boolean isNotWall = newPosition != GameStructure.WALL;
 
-    /* The agent can always go right */
-    if (impostorState.getEnergy() > 0 && newPosition != GameStructure.WALL) {
+    if (impostorState.getEnergy() > 0 && isNotWall) {
 
       int[] newOrientation = GameStructure.getRowShipPosition(newPosition);
 
       impostorState.setImpostorOrientation(newOrientation);
       impostorState.setPosition(newPosition);
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
-
-      System.out.println(
-          "-- Go Right Action - Agent pos: " + newPosition + "  -remaining energy: " + impostorState.getEnergy());
+      impostorState.consumeEnergy();
 
       return impostorState;
     }
@@ -49,8 +46,8 @@ public class GoRight extends SearchAction {
     ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
     ImpostorAgentState impostorState = ((ImpostorAgentState) ast);
 
-    // Increase the visited cells count
-    impostorState.increaseActionCost(10);
+    // Increase the action cost count
+    impostorState.increaseActionCost(GameStructure.ACTION_MOVE_COST);
 
     // Get new position value
     int newPosition = impostorState.getImpostorOrientation(GameStructure.RIGHT);
@@ -63,8 +60,8 @@ public class GoRight extends SearchAction {
       impostorState.setImpostorOrientation(newOrientation);
 
       // Update agent and environment energy
-      impostorState.setEnergy(impostorState.getEnergy() - GameStructure.Q_CONSUME_ENERGY);
-      environmentState.setAgentEnergy(environmentState.getAgentEnergy() - GameStructure.Q_CONSUME_ENERGY);
+      impostorState.consumeEnergy();
+      environmentState.consumeEnergy();
 
       // Update agent state and environment state position
       impostorState.setPosition(newPosition);
@@ -79,7 +76,7 @@ public class GoRight extends SearchAction {
    */
   @Override
   public Double getCost() {
-    return new Double(10);
+    return new Double(GameStructure.ACTION_MOVE_COST);
   }
 
   /**
@@ -88,6 +85,6 @@ public class GoRight extends SearchAction {
    */
   @Override
   public String toString() {
-    return "**GO RIGHT**";
+    return "-GO-RIGHT";
   }
 }

@@ -9,9 +9,10 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
   private int[][] ship;
   private int[] sabotageRooms;
+  private int[] crewPosition;
   private int agentPosition;
   private int agentEnergy;
-  private int totalCrew;
+  private int envTotalCrew;
 
   public ImpostorEnvironmentState(int[][] m) {
     ship = m;
@@ -19,6 +20,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
   public ImpostorEnvironmentState() {
     ship = GameStructure.SHIP;
+    crewPosition = new int[GameStructure.TOTAL_ROOMS];
     this.initState();
   }
 
@@ -33,8 +35,9 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
     this.setAgentPosition(GameStructure.INITIAL_AGENT_POSITION);
     this.setAgentEnergy(GameStructure.INITIAL_AGENT_ENERGY);
-    this.setTotalCrew(GameStructure.INITIAL_TOTAL_CREW);
-    this.setSabotageRooms(GameStructure.INITIAL_SABOTAGE_ROOMS);
+    this.setEnvTotalCrew(GameStructure.INITIAL_TOTAL_CREW);
+    this.setSabotageRooms(GameStructure.INITIAL_SABOTAGE_ROOMS.clone());
+    this.setCrewPosition(GameStructure.INITIAL_CREW_POSITION.clone());
   }
 
   /**
@@ -44,15 +47,14 @@ public class ImpostorEnvironmentState extends EnvironmentState {
   public String toString() {
     String str = "";
 
-    str = str + "NAVE=( \n";
-    for (int row = 0; row < ship.length; row++) {
-      str = str + "                   [ ";
-      for (int col = 0; col < ship[row].length; col++) {
-        str = str + ship[row][col] + " ";
-      }
-      str = str + "]\n";
+    str = str + "\n\nTOTAL TRIPULANTES = " + envTotalCrew;
+
+    str = str + "\n\nTRIPULANTES=(";
+    for (int i = 0; i < crewPosition.length; i++) {
+      str = str + "[ " + crewPosition[i];
+      str = str + " ]";
     }
-    str = str + ")";
+    str = str + ")\n";
 
     return str;
   }
@@ -75,12 +77,29 @@ public class ImpostorEnvironmentState extends EnvironmentState {
     this.sabotageRooms = sabotageRooms;
   }
 
-  public int getTotalCrew() {
-    return totalCrew;
+  private void setEnvTotalCrew(int envTotalCrew) {
+    this.envTotalCrew = envTotalCrew;
   }
 
-  public void setTotalCrew(int totalCrew) {
-    this.totalCrew = totalCrew;
+  public int getEnvTotalCrew() {
+    return this.envTotalCrew;
+  }
+
+  public void setCrewPosition(int[] crewPosition) {
+    this.crewPosition = crewPosition;
+  }
+
+  public int[] getCrewPosition() {
+    return this.crewPosition;
+  }
+
+  public int getCrewInPosition(int pos) {
+    return crewPosition[pos];
+  }
+
+  public void eliminateCrewFromEnvironment(int pos) {
+    this.crewPosition[pos] = this.crewPosition[pos] - 1;
+    this.envTotalCrew = this.envTotalCrew - 1;
   }
 
   public int getAgentEnergy() {
@@ -89,6 +108,10 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
   public void setAgentEnergy(int agentEnergy) {
     this.agentEnergy = agentEnergy;
+  }
+
+  public void consumeEnergy() {
+    agentEnergy = agentEnergy - GameStructure.Q_CONSUME_ENERGY;
   }
 
   public int getUpPosition(int pos) {

@@ -10,9 +10,10 @@ public class ImpostorPerception extends Perception {
   private int downSensor;
   private int leftSensor;
   private int rightSensor;
+  private int[] crewSensor;
 
   public ImpostorPerception() {
-    super();
+
   }
 
   public ImpostorPerception(Agent agent, Environment environment) {
@@ -33,9 +34,18 @@ public class ImpostorPerception extends Perception {
     this.setLeftSensor(impostorEnvironment.getLeftPosition(pos));
     this.setRightSensor(impostorEnvironment.getRightPosition(pos));
     this.setDownSensor(impostorEnvironment.getDownPosition(pos));
+    this.setCrewSensor(impostorEnvironment.getCrewInPosition());
   }
 
   // The following methods are Impostor-specific:
+
+  public int[] getCrewSensor() {
+    return crewSensor;
+  }
+
+  public void setCrewSensor(int[] crewSensor) {
+    this.crewSensor = crewSensor;
+  }
 
   public int getLeftSensor() {
     return leftSensor;
@@ -73,8 +83,10 @@ public class ImpostorPerception extends Perception {
   public String toString() {
     StringBuffer str = new StringBuffer();
 
-    str.append("* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + GameStructure.ROOMS.get(this.upSensor) + "\n");
-    str.append("* Sensor Abajo: " + "(" + this.downSensor + ")" + " : " + GameStructure.ROOMS.get(this.downSensor) + "\n");
+    str.append(
+        "\n* Sensor Arriba: " + "(" + this.upSensor + ")" + " : " + GameStructure.ROOMS.get(this.upSensor) + "\n");
+    str.append(
+        "* Sensor Abajo: " + "(" + this.downSensor + ")" + " : " + GameStructure.ROOMS.get(this.downSensor) + "\n");
     str.append(
         "* Sensor Izquierda: " + "(" + this.leftSensor + ")" + " : " + GameStructure.ROOMS.get(this.leftSensor) + "\n");
     str.append(

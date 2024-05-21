@@ -33,7 +33,7 @@ public class GoDown extends SearchAction {
 
         PacmanAgentState pacmanState = (PacmanAgentState) s;
 
-        // Increase the visited cells count
+        // Increase the action cost count
         pacmanState.increaseVisitedCellsCount();
 
         int row = pacmanState.getRowPosition();

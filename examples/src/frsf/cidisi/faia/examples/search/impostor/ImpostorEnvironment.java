@@ -1,5 +1,7 @@
 package frsf.cidisi.faia.examples.search.impostor;
 
+import java.util.Random;
+
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -28,21 +30,59 @@ public class ImpostorEnvironment extends Environment {
     // Create a new perception to return
     ImpostorPerception perception = new ImpostorPerception();
 
-    // TODO: execute random crew
-
     // Get the actual position of the agent to be able to create the perception
     int pos = this.getEnvironmentState().getAgentPosition();
+
+    // Make the random move of crew before to get the perception
+    makeCrewRandomMovement();
 
     // Set the perception sensors
     perception.setUpSensor(this.getUpPosition(pos));
     perception.setDownSensor(this.getDownPosition(pos));
     perception.setLeftSensor(this.getLeftPosition(pos));
     perception.setRightSensor(this.getRightPosition(pos));
-
-    // TODO: get crew position from perception
+    perception.setCrewSensor(this.getCrewInPosition());
 
     // Return the perception
     return perception;
+  }
+
+  private void makeCrewRandomMovement() {
+    if (this.getEnvTotalCrew() > 0) {
+      int[] crewFromEnvironment = this.getCrewInPosition();
+      int[] newCrewPosition = new int[GameStructure.TOTAL_ROOMS];
+
+      Random randomCiclePerception = new Random();
+
+      // 0 = NO update : 1 = YES Update
+      int newRandomCiclePerception = randomCiclePerception.nextInt(2);
+      if (newRandomCiclePerception == 1) {
+
+        for (int i = 0; i < crewFromEnvironment.length; i++) {
+          // Move crew
+          int totalCrewInPosition = crewFromEnvironment[i];
+          if (totalCrewInPosition > 0) {
+
+            for (int crewIndex = 0; crewIndex < totalCrewInPosition; crewIndex++) {
+              // Get random orientation
+              Random random = new Random();
+              int newRandomOrientation = random.nextInt(4);
+
+              // Get new position
+              int newPosition = GameStructure.SHIP[i][newRandomOrientation];
+              if (newPosition != GameStructure.WALL) {
+                newCrewPosition[newPosition] = newCrewPosition[newPosition] + 1;
+              } else {
+                newCrewPosition[i] = newCrewPosition[i] + 1;
+              }
+            }
+          }
+        }
+
+        // Update new crew position on env state
+        this.setNewCrewPosition(newCrewPosition);
+      }
+    }
   }
 
   @Override
@@ -67,19 +107,31 @@ public class ImpostorEnvironment extends Environment {
   // The following methods are Impostor-specific:
 
   public int getUpPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getUpPosition(pos);
+    return this.getEnvironmentState().getUpPosition(pos);
   }
-  
+
   public int getDownPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getDownPosition(pos);
+    return this.getEnvironmentState().getDownPosition(pos);
   }
 
   public int getLeftPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getLeftPosition(pos);
+    return this.getEnvironmentState().getLeftPosition(pos);
   }
 
   public int getRightPosition(int pos) {
-    return ((ImpostorEnvironmentState) this.environmentState).getRightPosition(pos);
+    return this.getEnvironmentState().getRightPosition(pos);
+  }
+
+  public int[] getCrewInPosition() {
+    return this.getEnvironmentState().getCrewPosition();
+  }
+
+  public void setNewCrewPosition(int[] newCrewPosition) {
+    this.getEnvironmentState().setCrewPosition(newCrewPosition);
+  }
+
+  public int getEnvTotalCrew() {
+    return this.getEnvironmentState().getEnvTotalCrew();
   }
 
 }
