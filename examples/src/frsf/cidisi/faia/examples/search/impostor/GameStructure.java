@@ -9,27 +9,27 @@ public class GameStructure {
   // Rooms codification
   public static final int WALL = -1;
 
-  public static final int ROOM_UPPER_ENGINE = 0;
-  public static final int ROOM_SECURITY = 1;
-  public static final int ROOM_LOWER_ENGINE = 2;
-  public static final int ROOM_REACTOR = 3;
-  public static final int ROOM_CAFETERIA = 4;
-  public static final int ROOM_WEAPONS = 5;
-  public static final int ROOM_NAVIGATION = 6;
-  public static final int ROOM_O2 = 7;
-  public static final int ROOM_ADMIN = 8;
-  public static final int ROOM_SHIELDS = 9;
-  public static final int ROOM_COMUNICATION = 10;
-  public static final int ROOM_STORAGE = 11;
-  public static final int ROOM_ELECTRICAL = 12;
+  public static final int ROOM_CAFETERIA = 0;
+  public static final int ROOM_WEAPONS = 1;
+  public static final int ROOM_NAVIGATION = 2;
+  public static final int ROOM_O2 = 3;
+  public static final int ROOM_SHIELDS = 4;
+  public static final int ROOM_COMUNICATION = 5;
+  public static final int ROOM_STORAGE = 6;
+  public static final int ROOM_ADMIN = 7;
+  public static final int ROOM_ELECTRICAL = 8;
+  public static final int ROOM_LOWER_ENGINE = 9;
+  public static final int ROOM_SECURITY = 10;
+  public static final int ROOM_REACTOR = 11;
+  public static final int ROOM_UPPER_ENGINE = 12;
   public static final int ROOM_MEDBAY = 13;
 
   public static final int HALL_A = 14;
   public static final int HALL_B = 15;
   public static final int HALL_C = 16;
   public static final int HALL_D = 17;
-  public static final int HALL_F = 18;
-  public static final int HALL_E = 19;
+  public static final int HALL_E = 18;
+  public static final int HALL_F = 19;
 
   public static final HashMap<Integer, String> ROOMS = new HashMap<>();
   static {
@@ -64,7 +64,7 @@ public class GameStructure {
   public static final int RIGHT = 3;
 
   // Game data structure
-  public static final int TOTAL_ROOMS = ROOMS.size() - 1;
+  public static final int TOTAL_ROOMS = ROOMS.size() - 1; // Remove WALL
   public static final int[][] SHIP = new int[TOTAL_ROOMS][4];
   public static final int[] AGENT_ORIENTATION = new int[4];
   public static final int[] CREW_PER_ROOM = new int[TOTAL_ROOMS];
@@ -74,31 +74,31 @@ public class GameStructure {
   public static final int INITIAL_AGENT_POSITION = ROOM_CAFETERIA;
 
   // Initial room values
-  public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_LOWER_ENGINE };
+  public static final int[] INITIAL_SABOTAGE_ROOMS = new int[] { ROOM_REACTOR, ROOM_WEAPONS, ROOM_ELECTRICAL };
 
   // Initial crew values
   public static final HashMap<Integer, Integer> CREW = new HashMap<>();
   static {
-    CREW.put(ROOM_UPPER_ENGINE, 1);
-    CREW.put(ROOM_SECURITY, 1);
-    CREW.put(ROOM_LOWER_ENGINE, 0);
-    CREW.put(ROOM_REACTOR, 2);
-    CREW.put(HALL_F, 0);
-    CREW.put(HALL_E, 0);
-    CREW.put(ROOM_MEDBAY, 0);
     CREW.put(ROOM_CAFETERIA, 1);
     CREW.put(ROOM_WEAPONS, 0);
     CREW.put(ROOM_NAVIGATION, 0);
     CREW.put(ROOM_O2, 0);
-    CREW.put(ROOM_ADMIN, 0);
     CREW.put(ROOM_SHIELDS, 0);
     CREW.put(ROOM_COMUNICATION, 1);
     CREW.put(ROOM_STORAGE, 0);
+    CREW.put(ROOM_ADMIN, 0);
     CREW.put(ROOM_ELECTRICAL, 0);
+    CREW.put(ROOM_LOWER_ENGINE, 0);
+    CREW.put(ROOM_SECURITY, 1);
+    CREW.put(ROOM_REACTOR, 1);
+    CREW.put(ROOM_UPPER_ENGINE, 1);
+    CREW.put(ROOM_MEDBAY, 0);
     CREW.put(HALL_A, 0);
     CREW.put(HALL_B, 0);
     CREW.put(HALL_C, 0);
     CREW.put(HALL_D, 0);
+    CREW.put(HALL_E, 0);
+    CREW.put(HALL_F, 0);
   }
 
   public static final int INITIAL_TOTAL_CREW = CREW.values().stream().mapToInt(Integer::intValue).sum();
@@ -119,83 +119,83 @@ public class GameStructure {
       INITIAL_CREW_POSITION[i] = CREW.get(i);
     }
 
-    // Upper engine = 0
-    SHIP[ROOM_UPPER_ENGINE][UP] = WALL;
-    SHIP[ROOM_UPPER_ENGINE][DOWN] = HALL_F;
-    SHIP[ROOM_UPPER_ENGINE][LEFT] = WALL;
-    SHIP[ROOM_UPPER_ENGINE][RIGHT] = WALL;
-
-    // Security = 1
-    SHIP[ROOM_SECURITY][UP] = WALL;
-    SHIP[ROOM_SECURITY][DOWN] = WALL;
-    SHIP[ROOM_SECURITY][LEFT] = HALL_F;
-    SHIP[ROOM_SECURITY][RIGHT] = WALL;
-
-    // Lower Engine = 2
-    SHIP[ROOM_LOWER_ENGINE][UP] = HALL_F;
-    SHIP[ROOM_LOWER_ENGINE][DOWN] = WALL;
-    SHIP[ROOM_LOWER_ENGINE][LEFT] = WALL;
-    SHIP[ROOM_LOWER_ENGINE][RIGHT] = WALL;
-
-    // Reactor = 3
-    SHIP[ROOM_REACTOR][UP] = WALL;
-    SHIP[ROOM_REACTOR][DOWN] = WALL;
-    SHIP[ROOM_REACTOR][LEFT] = WALL;
-    SHIP[ROOM_REACTOR][RIGHT] = HALL_F;
-
-    // Cafeteria = 4
+    // Cafeteria = 0
     SHIP[ROOM_CAFETERIA][UP] = WALL;
     SHIP[ROOM_CAFETERIA][DOWN] = HALL_C;
     SHIP[ROOM_CAFETERIA][LEFT] = HALL_E;
     SHIP[ROOM_CAFETERIA][RIGHT] = ROOM_WEAPONS;
 
-    // Weapons = 5
+    // Weapons = 1
     SHIP[ROOM_WEAPONS][UP] = WALL;
     SHIP[ROOM_WEAPONS][DOWN] = HALL_A;
     SHIP[ROOM_WEAPONS][LEFT] = ROOM_CAFETERIA;
     SHIP[ROOM_WEAPONS][RIGHT] = WALL;
 
-    // Navigation = 6
+    // Navigation = 2
     SHIP[ROOM_NAVIGATION][UP] = WALL;
     SHIP[ROOM_NAVIGATION][DOWN] = WALL;
     SHIP[ROOM_NAVIGATION][LEFT] = HALL_A;
     SHIP[ROOM_NAVIGATION][RIGHT] = WALL;
 
-    // O2 = 7
+    // O2 = 3
     SHIP[ROOM_O2][UP] = WALL;
     SHIP[ROOM_O2][DOWN] = WALL;
     SHIP[ROOM_O2][LEFT] = WALL;
     SHIP[ROOM_O2][RIGHT] = HALL_A;
 
-    // Shields = 8
+    // Shields = 4
     SHIP[ROOM_SHIELDS][UP] = HALL_A;
     SHIP[ROOM_SHIELDS][DOWN] = WALL;
     SHIP[ROOM_SHIELDS][LEFT] = HALL_B;
     SHIP[ROOM_SHIELDS][RIGHT] = WALL;
 
-    // Communication = 9
+    // Communication = 5
     SHIP[ROOM_COMUNICATION][UP] = HALL_B;
     SHIP[ROOM_COMUNICATION][DOWN] = WALL;
     SHIP[ROOM_COMUNICATION][LEFT] = WALL;
     SHIP[ROOM_COMUNICATION][RIGHT] = WALL;
 
-    // Storage = 10
+    // Storage = 6
     SHIP[ROOM_STORAGE][UP] = HALL_C;
     SHIP[ROOM_STORAGE][DOWN] = WALL;
     SHIP[ROOM_STORAGE][LEFT] = HALL_D;
     SHIP[ROOM_STORAGE][RIGHT] = HALL_B;
 
-    // Admin = 11
+    // Admin = 7
     SHIP[ROOM_ADMIN][UP] = WALL;
     SHIP[ROOM_ADMIN][DOWN] = WALL;
     SHIP[ROOM_ADMIN][LEFT] = HALL_C;
     SHIP[ROOM_ADMIN][RIGHT] = WALL;
 
-    // Electrical = 12
+    // Electrical = 8
     SHIP[ROOM_ELECTRICAL][UP] = WALL;
     SHIP[ROOM_ELECTRICAL][DOWN] = HALL_D;
     SHIP[ROOM_ELECTRICAL][LEFT] = WALL;
     SHIP[ROOM_ELECTRICAL][RIGHT] = WALL;
+
+    // Lower Engine = 9
+    SHIP[ROOM_LOWER_ENGINE][UP] = HALL_F;
+    SHIP[ROOM_LOWER_ENGINE][DOWN] = WALL;
+    SHIP[ROOM_LOWER_ENGINE][LEFT] = WALL;
+    SHIP[ROOM_LOWER_ENGINE][RIGHT] = WALL;
+
+    // Security = 10
+    SHIP[ROOM_SECURITY][UP] = WALL;
+    SHIP[ROOM_SECURITY][DOWN] = WALL;
+    SHIP[ROOM_SECURITY][LEFT] = HALL_F;
+    SHIP[ROOM_SECURITY][RIGHT] = WALL;
+
+    // Reactor = 11
+    SHIP[ROOM_REACTOR][UP] = WALL;
+    SHIP[ROOM_REACTOR][DOWN] = WALL;
+    SHIP[ROOM_REACTOR][LEFT] = WALL;
+    SHIP[ROOM_REACTOR][RIGHT] = HALL_F;
+
+    // Upper engine = 12
+    SHIP[ROOM_UPPER_ENGINE][UP] = WALL;
+    SHIP[ROOM_UPPER_ENGINE][DOWN] = HALL_F;
+    SHIP[ROOM_UPPER_ENGINE][LEFT] = WALL;
+    SHIP[ROOM_UPPER_ENGINE][RIGHT] = WALL;
 
     // Medbay = 13
     SHIP[ROOM_MEDBAY][UP] = HALL_E;

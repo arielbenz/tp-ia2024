@@ -33,6 +33,7 @@ public class ImpostorEnvironment extends Environment {
     // Get the actual position of the agent to be able to create the perception
     int pos = this.getEnvironmentState().getAgentPosition();
 
+    // Make the random move of crew before to get the perception
     makeCrewRandomMovement();
 
     // Set the perception sensors
