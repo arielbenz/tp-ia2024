@@ -10,7 +10,15 @@ Integrantes:
 
 El proyecto se encuentra en la siguiente carpeta:
 
-examples/src/frsf/cidisi/faia/examples/search/impostor
+* examples/src/frsf/cidisi/faia/examples/search/impostor
+
+Los valores que se pueden cambiar están todos en el archivo GameStructure.java y son los siguientes:
+
+* INITIAL_SABOTAGE_ROOMS se definen las habitaciones a sabotear, estas son constantes definidas previamente y con un ID único.
+
+* CREW es un hashmap donde tenemos como key el valor de una habitación/pasillo y en el value la cantidad de tripulantes que contiene esa habitación.
+
+Así que modificando esos dos valores tendremos diferentes escenarios del juego. Luego también podemos definir el método de búsqueda cambiando la función getSearchStrategy() y/o el selectAction() del ImpostorAgent.java.
 
 Desarrollo de un Agente de software que pueda jugar en el rol de un “Impostor” que debe desplazarse en el escenario del juego, según las especificaciones de diseño para así poder sabotear las operaciones de la nave espacial y eliminar a los “Tripulantes” sin ser descubierto.
 
